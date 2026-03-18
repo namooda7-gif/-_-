@@ -111,7 +111,7 @@ export default function StylesPage() {
           <p className="text-accent-pink text-[10px] md:text-xs tracking-[0.8em] font-black uppercase">
             Style Collections
           </p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none whitespace-nowrap">
+          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none whitespace-nowrap">
             Editorial <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-transparent">Styles</span>
           </h1>
         </motion.div>
