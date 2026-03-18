@@ -136,10 +136,10 @@ export default function ServicesPage() {
                         <button
                           key={tagIndex}
                           onClick={() => setSelectedTag(selectedTag?.name === tag.name ? null : tag)}
-                          className={`group relative px-6 py-3 text-xs md:text-sm font-bold tracking-widest uppercase border \${service.isAccent ? 'border-white/40 text-white' : 'border-white/20 text-white/80'} \${selectedTag?.name === tag.name ? 'bg-white text-black border-white' : 'hover:bg-white/10 hover:text-white bg-white/5'} rounded-full backdrop-blur-sm transition-all duration-300 flex items-center gap-3 overflow-hidden`}
+                          className={`group relative px-6 py-3 text-xs md:text-sm font-bold tracking-widest uppercase border \${service.isAccent ? 'border-white/40' : 'border-white/20'} \${selectedTag?.name === tag.name ? 'bg-white/20 text-white border-white scale-[1.02]' : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'} rounded-full backdrop-blur-md transition-all duration-300 flex items-center gap-3 overflow-hidden shadow-lg`}
                         >
                           <span className="relative z-10">{tag.name}</span>
-                          <span className={`relative z-10 w-4 h-4 rounded-full \${selectedTag?.name === tag.name ? 'bg-black/20 text-black' : 'bg-white/20 group-hover:bg-white group-hover:text-black'} flex items-center justify-center transition-colors`}>
+                          <span className={`relative z-10 w-4 h-4 rounded-full \${selectedTag?.name === tag.name ? 'bg-white text-black' : 'bg-white/20 group-hover:bg-white group-hover:text-black'} flex items-center justify-center transition-colors`}>
                             <motion.svg 
                               animate={{ rotate: selectedTag?.name === tag.name ? 45 : 0 }}
                               className="w-2.5 h-2.5" 
