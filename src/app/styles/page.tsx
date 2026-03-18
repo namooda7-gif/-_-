@@ -1,170 +1,184 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { interiorStyles } from '@/data/styles';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
+
+const StyleHorizontalItem = ({ style, index }: { style: any; index: number }) => {
+  return (
+    <motion.div
+      className="relative shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw] h-[70vh] group ml-32 first:ml-0"
+    >
+      <Link href={`/styles/${style.slug}`} className="block w-full h-full relative overflow-hidden rounded-[20px] lg:rounded-[40px] border border-white/5 hover:border-white/20 transition-colors duration-700">
+        {/* Background Image with Parallax effect could be added here later */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={style.previewImage}
+            alt={style.nameEn}
+            fill
+            className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-100 grayscale-[40%] group-hover:grayscale-0"
+            sizes="(max-width: 1200px) 100vw, 80vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
+        </div>
+
+        {/* Content Overlay */}
+        <div className="absolute inset-0 z-10 p-8 md:p-16 flex flex-col justify-between pointer-events-none">
+          <div className="flex justify-between items-start">
+            <div className="space-y-2">
+              <span className="text-[10px] font-black tracking-[0.5em] text-accent-pink uppercase block">
+                Style Case {String(index + 1).padStart(2, '0')}
+              </span>
+              <h3 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none">
+                {style.nameEn}
+              </h3>
+            </div>
+            
+            <motion.div 
+              whileHover={{ scale: 1.1, rotate: 45 }}
+              className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-auto"
+            >
+              <ArrowUpRight size={32} />
+            </motion.div>
+          </div>
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div className="max-w-xl space-y-6">
+              <div className="flex flex-wrap gap-2">
+                {style.keywords.map((kw: string, i: number) => (
+                  <span key={i} className="text-[10px] font-bold px-3 py-1 bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-white/80">
+                    #{kw}
+                  </span>
+                ))}
+              </div>
+              <p className="text-white/60 text-sm md:text-base leading-relaxed font-light line-clamp-3">
+                {style.description}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <div 
+                className="w-4 h-4 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
+                style={{ backgroundColor: style.bgColor }}
+              />
+              <span className="text-xl font-bold tracking-tight text-white">{style.nameKo}</span>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+};
 
 export default function StylesPage() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.215, 0.61, 0.355, 1],
-      },
-    },
-  };
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const x = useTransform(smoothProgress, [0, 1], ["0%", "-85%"]);
+  
+  // Parallax for the background title
+  const titleX = useTransform(smoothProgress, [0, 1], [0, -400]);
 
   return (
-    <main className="pt-32 pb-40 px-6 md:px-12 xl:px-24 max-w-[1800px] mx-auto min-h-screen bg-[#0A0A0A] text-white overflow-hidden">
-      {/* Editorial Header */}
-      <section className="mb-24 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
-        <div className="max-w-3xl">
-          <motion.p 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-accent-pink text-xs md:text-sm tracking-[0.5em] font-black uppercase mb-6"
-          >
-            Curated Collections
-          </motion.p>
-          <motion.h1 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-6xl md:text-8xl lg:text-[120px] font-black leading-[0.9] tracking-tighter uppercase mb-10"
-          >
-            Editorial<br />
-            <span className="text-transparent stroke-white" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.3)" }}>Styles</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="text-lg md:text-xl text-white/50 max-w-xl font-light leading-relaxed"
-          >
-            공간은 단순한 물리적 장소를 넘어 삶의 철학을 담는 그릇입니다. <br className="hidden md:block" />
-            라올실내건축이 제안하는 10가지 프리미엄 스타일 보드를 통해 당신만의 감각을 발견해 보세요.
-          </motion.p>
-        </div>
-        
+    <main 
+      ref={containerRef}
+      className="relative h-[800vh] bg-[#0A0A0A] text-white"
+    >
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
+        {/* Background Ambient Text */}
         <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="hidden lg:block text-right"
+          style={{ x: titleX }}
+          className="absolute top-1/2 left-0 -translate-y-1/2 whitespace-nowrap pointer-events-none z-0 select-none opacity-[0.02]"
         >
-          <p className="text-[10px] tracking-[0.4em] text-white/30 uppercase font-black mb-2">Refined by Laol</p>
-          <p className="text-xl font-serif italic text-white/60">Est. 2026 / Architecture & Design</p>
+          <span className="text-[40vh] font-black uppercase tracking-tighter leading-none">
+            Editorial Perspectives Style Collections Premium Design
+          </span>
         </motion.div>
-      </section>
 
-      {/* Masonry-style Staggered Grid */}
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8"
-      >
-        {interiorStyles.map((style, index) => (
-          <motion.div 
-            key={style.slug}
-            variants={itemVariants}
-            className="break-inside-avoid"
-          >
-            <Link 
-              href={`/styles/${style.slug}`}
-              className="group block relative overflow-hidden rounded-[40px] bg-white/5 border border-white/10 transition-all duration-700 hover:border-white/30"
-            >
-              {/* Image Container with variable aspect ratios for Masonry feel */}
-              <div className={`relative overflow-hidden ${
-                index % 3 === 0 ? 'aspect-[3/4]' : 
-                index % 3 === 1 ? 'aspect-square' : 
-                'aspect-[4/3]'
-              }`}>
-                <Image 
-                  src={style.previewImage}
-                  alt={style.nameEn}
-                  fill
-                  sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100 grayscale-[50%] group-hover:grayscale-0"
-                />
-                
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Arrow Icon */}
-                <div className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                  <ArrowUpRight className="w-6 h-6" />
-                </div>
-              </div>
-
-              {/* Card Footer */}
-              <div className="p-8 md:p-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div 
-                    className="w-3 h-3 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.2)]" 
-                    style={{ backgroundColor: style.bgColor }}
-                  />
-                  <span className="text-[10px] tracking-[0.3em] font-black uppercase text-white/40">
-                    {style.nameEn}
-                  </span>
-                </div>
-                
-                <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">
-                  {style.nameKo}
-                </h3>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {style.keywords.map((kw, i) => (
-                    <span key={i} className="text-[11px] font-bold px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/50 group-hover:text-white/80 transition-colors">
-                      #{kw}
-                    </span>
-                  ))}
-                </div>
-
-                <p className="text-white/40 text-sm leading-relaxed font-light line-clamp-2 group-hover:text-white/60 transition-colors">
-                  {style.description}
-                </p>
-              </div>
-            </Link>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Footer Decoration */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        className="mt-40 pt-20 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-10"
-      >
-        <div className="text-center md:text-left">
-          <p className="text-4xl md:text-6xl font-black uppercase text-white/10 leading-none">Perspective</p>
-          <p className="text-4xl md:text-6xl font-black uppercase text-white/10 leading-none mt-2">Reimagined</p>
-        </div>
-        <Link 
-          href="/contact"
-          className="px-10 py-5 bg-white text-black rounded-full font-black uppercase tracking-widest text-sm hover:bg-accent-pink hover:text-white transition-all duration-500 hover:scale-105 shadow-[0_20px_40px_rgba(255,255,255,0.1)]"
+        {/* Page Header (Fixed within the sticky container for first half) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute top-24 left-[10vw] z-30 space-y-4"
         >
-          Inquire Now
-        </Link>
-      </motion.div>
+          <p className="text-accent-pink text-[10px] md:text-xs tracking-[0.8em] font-black uppercase">
+            Style Collections
+          </p>
+          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
+            Editorial<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-transparent">Styles</span>
+          </h1>
+        </motion.div>
+
+        {/* Horizontal Track */}
+        <div className="relative z-20 flex-1 flex items-center">
+          <motion.div 
+            style={{ x }}
+            className="flex items-center gap-16 px-[10vw] min-w-max"
+          >
+            {/* Introductory Slide */}
+            <div className="w-[85vw] md:w-[50vw] shrink-0 mr-32 flex flex-col justify-center space-y-10">
+              <p className="text-lg md:text-2xl text-white/50 max-w-xl font-light leading-relaxed">
+                공간은 단순한 물리적 장소를 넘어 삶의 철학을 담는 그릇입니다. <br className="hidden md:block" />
+                라올실내건축이 제안하는 10가지 프리미엄 스타일 보드를 통해 당신만의 감각을 발견해 보세요.
+              </p>
+              <div className="flex gap-4 items-center text-accent-pink">
+                <span className="text-xs font-black tracking-[0.4em] uppercase">Scroll to explore</span>
+                <ArrowRight size={20} />
+              </div>
+            </div>
+
+            {interiorStyles.map((style, index) => (
+              <StyleHorizontalItem 
+                key={style.slug} 
+                style={style} 
+                index={index} 
+              />
+            ))}
+
+            {/* Final Slide / Call to Action */}
+            <div className="w-[85vw] md:w-[60vw] shrink-0 ml-32 flex items-center justify-center">
+              <Link href="/contact" className="group text-center">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="inline-block px-12 py-6 rounded-full bg-white text-black font-black uppercase tracking-[0.4em] text-sm group-hover:bg-accent-pink group-hover:text-white transition-all duration-500 shadow-2xl"
+                >
+                  Start Your Project
+                </motion.div>
+                <p className="mt-8 text-white/30 text-xs font-medium tracking-[0.3em] uppercase">
+                  Let's reimagine your perspective
+                </p>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom Progress Bar */}
+        <div className="absolute bottom-16 left-[10vw] right-[10vw] z-30">
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex items-baseline gap-2">
+              <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">Style Board</span>
+              <motion.span className="text-accent-pink font-black text-sm">
+                {String(Math.min(10, Math.floor(scrollYProgress.get() * 11) + 1)).padStart(2, '0')}
+              </motion.span>
+            </div>
+            <span className="text-[10px] font-black text-white/10 uppercase tracking-[0.5em]">Laol Interior Design</span>
+          </div>
+          <div className="h-px w-full bg-white/5 relative">
+            <motion.div 
+              style={{ scaleX: smoothProgress, transformOrigin: "left" }}
+              className="absolute inset-0 bg-accent-pink shadow-[0_0_15px_rgba(255,139,167,0.4)]"
+            />
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
