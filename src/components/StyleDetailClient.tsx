@@ -90,17 +90,25 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
               </p>
               
               <div 
-                className="p-8 rounded-3xl border border-white/5"
-                style={{ backgroundColor: `${style.bgColor}08` }} // 3% - 5% opacity tint
+                className="p-8 rounded-3xl border border-white/5 transition-colors duration-700"
+                style={{ 
+                  backgroundColor: style.bgColor,
+                  color: style.isDark ? 'white' : 'black'
+                }}
               >
-                <h4 className="font-bold mb-4 flex items-center gap-2">
-                  <Hash className="w-4 h-4 text-accent-pink" />
-                  디자인 키워드
+                <h4 className="font-black mb-4 flex items-center gap-2 opacity-80 uppercase tracking-widest text-xs">
+                  <Hash className={`w-4 h-4 ${style.isDark ? 'text-accent-pink' : 'text-black/40'}`} />
+                  Interior Keywords
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {style.keywords.map((kw, i) => (
-                    <div key={i} className="flex items-center gap-1.5 px-4 py-2 bg-white/5 rounded-xl text-sm border border-white/5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-accent-pink" />
+                    <div 
+                      key={i} 
+                      className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold border ${
+                        style.isDark ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
+                      }`}
+                    >
+                      <div className={`w-1.5 h-1.5 rounded-full ${style.isDark ? 'bg-accent-pink' : 'bg-black/40'}`} />
                       {kw}
                     </div>
                   ))}
@@ -119,20 +127,26 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div 
-                  className="aspect-square rounded-2xl flex items-center justify-center p-8 text-center border border-white/5"
-                  style={{ backgroundColor: `${style.bgColor}15` }} // Higher opacity tint
+                  className="aspect-square rounded-2xl flex items-center justify-center p-8 text-center border border-white/5 transition-transform hover:scale-[1.02] duration-500"
+                  style={{ 
+                    backgroundColor: style.bgColor,
+                    color: style.isDark ? 'white' : 'black'
+                  }}
                 >
-                  <div className="text-white">
-                    <div className="text-3xl font-black text-accent-pink mb-1">01</div>
+                  <div>
+                    <div className={`text-4xl font-black mb-1 ${style.isDark ? 'text-accent-pink' : 'text-black'}`}>01</div>
                     <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Safety First</div>
                   </div>
                 </div>
                 <div 
-                  className="aspect-square rounded-2xl flex items-center justify-center p-8 text-center border border-white/5"
-                  style={{ backgroundColor: `${style.bgColor}15` }}
+                  className="aspect-square rounded-2xl flex items-center justify-center p-8 text-center border border-white/5 transition-transform hover:scale-[1.02] duration-500"
+                  style={{ 
+                    backgroundColor: style.bgColor,
+                    color: style.isDark ? 'white' : 'black'
+                  }}
                 >
-                  <div className="text-white">
-                    <div className="text-3xl font-black text-accent-pink mb-1">02</div>
+                  <div>
+                    <div className={`text-4xl font-black mb-1 ${style.isDark ? 'text-accent-pink' : 'text-black'}`}>02</div>
                     <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Premium Detail</div>
                   </div>
                 </div>
