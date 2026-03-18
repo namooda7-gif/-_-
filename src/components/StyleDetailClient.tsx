@@ -73,31 +73,33 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-neutral-900 rounded-[3rem] p-12 md:p-20 shadow-2xl border border-white/5"
+          className="rounded-[3rem] p-12 md:p-20 shadow-2xl border border-white/10 transition-colors duration-700"
+          style={{ 
+            backgroundColor: style.bgColor,
+            color: style.isDark ? 'white' : 'black'
+          }}
         >
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div className="text-white">
-              <div className="flex items-center gap-3 text-accent-pink mb-6">
+            <div className={style.isDark ? 'text-white' : 'text-black'}>
+              <div className={`flex items-center gap-3 mb-6 ${style.isDark ? 'text-accent-pink' : 'text-black/60'}`}>
                 <Sparkles className="w-5 h-5" />
                 <span className="text-sm font-black tracking-widest uppercase">Philosophy</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
                 {style.nameKo} 스타일로 완성하는 <br />
-                <span className="text-white/40">공간의 시그니처</span>
+                <span className={style.isDark ? 'text-white/40' : 'text-black/40'}>공간의 시그니처</span>
               </h2>
-              <p className="text-xl text-white/60 leading-relaxed mb-10">
+              <p className={`text-xl leading-relaxed mb-10 ${style.isDark ? 'text-white/60' : 'text-black/70'}`}>
                 {style.description}
               </p>
               
               <div 
-                className="p-8 rounded-3xl border border-white/5 transition-colors duration-700"
-                style={{ 
-                  backgroundColor: style.bgColor,
-                  color: style.isDark ? 'white' : 'black'
-                }}
+                className={`p-8 rounded-3xl border backdrop-blur-md ${
+                  style.isDark ? 'bg-white/5 border-white/10' : 'bg-black/5 border-black/10'
+                }`}
               >
                 <h4 className="font-black mb-4 flex items-center gap-2 opacity-80 uppercase tracking-widest text-xs">
-                  <Hash className={`w-4 h-4 ${style.isDark ? 'text-accent-pink' : 'text-black/40'}`} />
+                  <Hash className={`w-4 h-4 ${style.isDark ? 'text-accent-pink' : 'text-black/60'}`} />
                   Interior Keywords
                 </h4>
                 <div className="flex flex-wrap gap-2">
@@ -108,7 +110,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                         style.isDark ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
                       }`}
                     >
-                      <div className={`w-1.5 h-1.5 rounded-full ${style.isDark ? 'bg-accent-pink' : 'bg-black/40'}`} />
+                      <div className={`w-1.5 h-1.5 rounded-full ${style.isDark ? 'bg-accent-pink' : 'bg-black/60'}`} />
                       {kw}
                     </div>
                   ))}
@@ -127,26 +129,22 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div 
-                  className="aspect-square rounded-2xl flex items-center justify-center p-8 text-center border border-white/5 transition-transform hover:scale-[1.02] duration-500"
-                  style={{ 
-                    backgroundColor: style.bgColor,
-                    color: style.isDark ? 'white' : 'black'
-                  }}
+                  className={`aspect-square rounded-2xl flex items-center justify-center p-8 text-center border backdrop-blur-xl transition-transform hover:scale-[1.02] duration-500 ${
+                    style.isDark ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
+                  }`}
                 >
                   <div>
-                    <div className={`text-4xl font-black mb-1 ${style.isDark ? 'text-accent-pink' : 'text-black'}`}>01</div>
+                    <div className={`text-4xl font-black mb-1 ${style.isDark ? 'text-white' : 'text-black'}`}>01</div>
                     <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Safety First</div>
                   </div>
                 </div>
                 <div 
-                  className="aspect-square rounded-2xl flex items-center justify-center p-8 text-center border border-white/5 transition-transform hover:scale-[1.02] duration-500"
-                  style={{ 
-                    backgroundColor: style.bgColor,
-                    color: style.isDark ? 'white' : 'black'
-                  }}
+                  className={`aspect-square rounded-2xl flex items-center justify-center p-8 text-center border backdrop-blur-xl transition-transform hover:scale-[1.02] duration-500 ${
+                    style.isDark ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
+                  }`}
                 >
                   <div>
-                    <div className={`text-4xl font-black mb-1 ${style.isDark ? 'text-accent-pink' : 'text-black'}`}>02</div>
+                    <div className={`text-4xl font-black mb-1 ${style.isDark ? 'text-white' : 'text-black'}`}>02</div>
                     <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Premium Detail</div>
                   </div>
                 </div>
@@ -198,10 +196,15 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
       {/* CTA Section */}
       <section className="max-w-[1000px] mx-auto px-4 md:px-8 mt-40">
         <div 
-          className="text-white rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden border border-white/5 shadow-2xl"
-          style={{ backgroundColor: `${style.bgColor}05` }} // 5% tint
+          className="rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden border border-white/10 shadow-2xl transition-colors duration-700"
+          style={{ 
+            backgroundColor: style.bgColor,
+            color: style.isDark ? 'white' : 'black'
+          }}
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-pink/10 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className={`absolute top-0 right-0 w-64 h-64 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 ${
+            style.isDark ? 'bg-accent-pink/10' : 'bg-black/10'
+          }`} />
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -215,7 +218,9 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
               <Link href="/contact" className="px-10 py-5 bg-accent-pink text-white font-black rounded-full hover:scale-105 transition-all shadow-lg flex items-center justify-center gap-3">
                 상담 예약하기 <ChevronRight className="w-5 h-5" />
               </Link>
-              <Link href="/services" className="px-10 py-5 bg-white/5 backdrop-blur-md border border-white/10 text-white font-black rounded-full hover:bg-white/10 transition-all flex items-center justify-center">
+              <Link href="/services" className={`px-10 py-5 backdrop-blur-md border font-black rounded-full transition-all flex items-center justify-center ${
+                style.isDark ? 'bg-white/10 border-white/20 text-white hover:bg-white/20' : 'bg-black/5 border-black/10 text-black hover:bg-black/10'
+              }`}>
                 서비스 가이드 보기
               </Link>
             </div>
