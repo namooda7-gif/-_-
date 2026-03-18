@@ -48,9 +48,11 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current || !ctxRef.current || !isInit) return;
-    const { left, top } = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - left;
-    const y = e.clientY - top;
+    
+    // Get mouse position relative to the element (important when the track is moving)
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
     pointerX.set(x);
     pointerY.set(y);
@@ -72,7 +74,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
     if (colorImageRef.current && canvasRef.current) {
       const dataUrl = canvasRef.current.toDataURL();
       colorImageRef.current.style.maskImage = `url(${dataUrl})`;
-      (colorImageRef.current.style as any).webkitMaskImage = `url(${dataUrl})`;
+      colorImageRef.current.style.webkitMaskImage = `url(${dataUrl})`;
     }
   };
 
@@ -82,7 +84,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
-      className="relative shrink-0 w-[85vw] md:w-[65vw] lg:w-[45vw] aspect-[16/10] overflow-hidden bg-neutral-900 cursor-none ml-12 first:ml-[10vw] last:mr-[20vw]"
+      className="relative shrink-0 w-[85vw] md:w-[65vw] lg:w-[45vw] aspect-[16/10] overflow-hidden bg-neutral-900 cursor-none ml-24 first:ml-[0vw] last:mr-[10vw] pointer-events-auto"
     >
       <div className="absolute inset-0 z-0 grayscale contrast-125 brightness-75">
         <Image
@@ -90,7 +92,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-[3s] group-hover:scale-105"
+          className="object-cover"
         />
       </div>
 
@@ -111,7 +113,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-[3s] group-hover:scale-105"
+          className="object-cover"
         />
       </div>
 
@@ -124,9 +126,9 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
-            className="absolute top-0 left-0 w-[400px] h-[400px] border border-white/10 rounded-full z-30 pointer-events-none flex items-center justify-center bg-white/[0.01] backdrop-blur-[2px]"
+            className="absolute top-0 left-0 w-[300px] h-[300px] border border-white/20 rounded-full z-30 pointer-events-none flex items-center justify-center bg-white/[0.02] backdrop-blur-[4px]"
           >
-             <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_10px_white]" />
+             <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_15px_white]" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -138,7 +140,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
           className="overflow-hidden"
         >
           <span className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase block mb-2">
-            Selection {index + 1}
+            Selected Work {index + 1}
           </span>
           <h3 className="text-3xl font-black text-white uppercase tracking-tighter leading-none mb-4 translate-y-full group-hover:translate-y-0 transition-transform duration-700">
             {project.title}
@@ -152,21 +154,25 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
 
 export default function PortfolioEditorial() {
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Use scroll without target to track window scroll if the target ref is unreliable
+  // Or ensure the target ref is captured correctly.
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Calculate horizontal shift: 
-  // We have projects.length items + 1 archive link
-  // Let's make it move enough to see everything.
-  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-80%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
 
   return (
-    <section ref={containerRef} className="relative h-[600vh] bg-[#0A0A0A]">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+    <section 
+      ref={containerRef} 
+      className="relative h-[600vh] bg-[#0A0A0A]"
+      id="portfolio-editorial-section"
+    >
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         {/* Header Section */}
-        <div className="px-[10vw] pt-24 mb-16">
+        <div className="px-[10vw] pt-24 mb-16 relative z-30">
           <div className="space-y-6">
             <motion.p 
               initial={{ opacity: 0 }}
@@ -181,14 +187,17 @@ export default function PortfolioEditorial() {
               className="text-6xl md:text-8xl font-black text-white uppercase leading-none tracking-tighter"
             >
               찾아가는 가치,<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white/10">포ٹ폴리오</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white/10 uppercase">포트폴리오</span>
             </motion.h2>
           </div>
         </div>
 
         {/* Horizontal Track */}
-        <div className="flex-1 flex items-center">
-          <motion.div style={{ x }} className="flex items-center gap-24 min-w-max">
+        <div className="flex-1 flex items-center relative z-20">
+          <motion.div 
+            style={{ x }} 
+            className="flex items-center gap-24 min-w-max pr-[20vw]"
+          >
             {projects.map((project, index) => (
               <PortfolioItem 
                 key={project.id} 
@@ -199,7 +208,7 @@ export default function PortfolioEditorial() {
             
             {/* View Full Archive Card at the end */}
             <div className="shrink-0 w-[60vw] h-[400px] flex items-center justify-center mr-[20vw]">
-              <Link href="/portfolio" className="group text-center">
+              <Link href="/portfolio" className="group text-center pointer-events-auto">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   className="w-40 h-40 rounded-full border border-white/10 flex items-center justify-center mb-8 group-hover:border-white transition-colors relative overflow-hidden"
@@ -221,7 +230,7 @@ export default function PortfolioEditorial() {
         </div>
 
         {/* Scroll Progress Bar */}
-        <div className="px-[10vw] pb-20">
+        <div className="px-[10vw] pb-24 relative z-30">
           <div className="h-px w-full bg-white/10 relative">
             <motion.div 
               style={{ scaleX: scrollYProgress, transformOrigin: "left" }}

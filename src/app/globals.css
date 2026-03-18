@@ -21,14 +21,10 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
   min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto !important;
-  scrollbar-gutter: stable;
 }
 
-/* 스무스 스크롤 및 앵커 오프셋 */
 html {
   scroll-behavior: smooth;
-  overflow-y: auto !important;
 }
 
 /* 히어로 확장 시 GNB 숨김 */
