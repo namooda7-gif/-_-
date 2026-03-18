@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #F5F0E8;
+  --text-primary: #1E1E2E;
+  --text-secondary: #555555;
+  --accent-gold: #C5A059;
+  --text-dimmed: #E2E2E2; /* 화이트보다 차분한 소프트 그레이 */
+}
+
+[data-theme='dark'] {
+  --text-primary: #F5F5F0;
+  --text-secondary: #CCCCCC;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  scrollbar-gutter: stable;
+}
+
+/* 스무스 스크롤 및 앵커 오프셋 */
+html {
+  scroll-behavior: smooth;
+  overflow-y: auto !important;
+}
+
+/* 히어로 확장 시 GNB 숨김 */
+.hero-portal-active header,
+.hero-portal-active .gnb-wrapper,
+.hero-portal-active .fixed-header {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+section {
+  position: relative;
+}
