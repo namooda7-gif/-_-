@@ -160,10 +160,11 @@ export default function PortfolioEditorial() {
     offset: ["start start", "end end"]
   });
 
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   // Significantly larger movement range to ensure it's visible
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+  const x = useTransform(smoothProgress, [0, 1], ["0%", "-85%"]);
   // Optional: fade in/out based on scroll
-  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.8, 1, 1, 0.8]);
+  const opacity = useTransform(smoothProgress, [0, 0.05, 0.95, 1], [0.8, 1, 1, 0.8]);
 
   return (
     <section 
@@ -230,14 +231,20 @@ export default function PortfolioEditorial() {
 
         {/* Scroll Progress Bar */}
         <div className="px-[10vw] pb-24 relative z-30 pointer-events-none">
-          <div className="flex justify-between mb-4">
-            <span className="text-[10px] font-black text-accent-pink tracking-widest uppercase">Progress</span>
-            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">Scroll to explore</span>
+          <div className="flex justify-between items-end mb-4">
+            <div className="space-y-1">
+              <span className="text-[10px] font-black text-accent-pink tracking-[0.4em] uppercase block">Progress</span>
+              <div className="flex items-baseline gap-2">
+                 {/* Numerical indicator will be handled by CSS or MotionValue for performance */}
+                <span className="text-xs font-bold text-white/20 uppercase tracking-widest">Active Insight</span>
+              </div>
+            </div>
+            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase pb-1">Scroll to explore projects</span>
           </div>
-          <div className="h-px w-full bg-white/5 relative">
+          <div className="h-[2px] w-full bg-white/5 relative overflow-hidden">
             <motion.div 
-              style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
-              className="absolute inset-0 bg-accent-pink shadow-[0_0_15px_rgba(255,139,167,0.4)]"
+              style={{ scaleX: smoothProgress, transformOrigin: "left" }}
+              className="absolute inset-0 bg-accent-pink shadow-[0_0_20px_rgba(255,139,167,0.6)]"
             />
           </div>
         </div>
