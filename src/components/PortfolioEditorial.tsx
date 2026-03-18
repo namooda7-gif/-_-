@@ -5,58 +5,9 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motio
 import Image from "next/image";
 import Link from "next/link";
 
-const projects = [
-  {
-    id: 1,
-    title: "Minimalist Sanctuary",
-    type: "Living Space",
-    image: "/images/portfolio/01.png",
-    className: "col-span-12 md:col-span-8 h-[600px] mb-8",
-    parallax: 0.05,
-  },
-  {
-    id: 2,
-    title: "Quiet Morning",
-    type: "Bedroom",
-    image: "/images/portfolio/02.png",
-    className: "col-span-12 md:col-span-4 h-[750px] md:-mt-20",
-    parallax: -0.05,
-  },
-  {
-    id: 3,
-    title: "Marble Essence",
-    type: "Kitchen Detail",
-    image: "/images/portfolio/03.png",
-    className: "col-span-12 md:col-span-4 h-[400px] md:mt-8",
-    parallax: 0.1,
-  },
-  {
-    id: 4,
-    title: "Architectural Path",
-    type: "Hallway",
-    image: "/images/portfolio/04.png",
-    className: "col-span-12 md:col-span-4 h-[550px]",
-    parallax: -0.08,
-  },
-  {
-    id: 5,
-    title: "Sculptural Dining",
-    type: "Dining Area",
-    image: "/images/portfolio/05.png",
-    className: "col-span-12 md:col-span-4 h-[450px] md:mt-24",
-    parallax: 0.03,
-  },
-  {
-    id: 6,
-    title: "Zen Retreatment",
-    type: "Spa Bathroom",
-    image: "/images/portfolio/06.png",
-    className: "col-span-12 h-[500px] mt-8",
-    parallax: 0.05,
-  },
-];
+import { projects } from "@/data/projects";
 
-const PortfolioItem = ({ project }: { project: typeof projects[0] }) => {
+const PortfolioItem = ({ project, index }: { project: typeof projects[0]; index: number }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -162,12 +113,19 @@ const PortfolioItem = ({ project }: { project: typeof projects[0] }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
-      className={`relative group overflow-hidden bg-neutral-900 rounded-none cursor-none ${project.className}`}
+      className={`relative group overflow-hidden bg-neutral-900 rounded-none cursor-none ${
+        index % 6 === 0 ? 'col-span-12 md:col-span-8 h-[600px] mb-8' :
+        index % 6 === 1 ? 'col-span-12 md:col-span-4 h-[750px] md:-mt-20' :
+        index % 6 === 2 ? 'col-span-12 md:col-span-4 h-[400px] md:mt-8' :
+        index % 6 === 3 ? 'col-span-12 md:col-span-4 h-[550px]' :
+        index % 6 === 4 ? 'col-span-12 md:col-span-4 h-[450px] md:mt-24' :
+        'col-span-12 h-[500px] mt-8'
+      }`}
     >
       {/* Base Layer: Black & White */}
       <div className="absolute inset-0 z-0 grayscale contrast-125 brightness-75">
         <Image
-          src={project.image}
+          src={project.mainImage}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -189,7 +147,7 @@ const PortfolioItem = ({ project }: { project: typeof projects[0] }) => {
         }}
       >
         <Image
-          src={project.image}
+          src={project.mainImage}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -232,7 +190,7 @@ const PortfolioItem = ({ project }: { project: typeof projects[0] }) => {
           className="overflow-hidden"
         >
           <span className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase block mb-2">
-            {project.type}
+            {project.category} | {project.location}
           </span>
           <h3 className="text-3xl font-black text-white uppercase tracking-tighter leading-none mb-4 translate-y-full group-hover:translate-y-0 transition-transform duration-700">
             {project.title}
@@ -283,8 +241,12 @@ export default function PortfolioEditorial() {
         </div>
 
         <div className="grid grid-cols-12 gap-x-6 gap-y-12">
-          {projects.map((project) => (
-            <PortfolioItem key={project.id} project={project} />
+          {projects.map((project, index) => (
+            <PortfolioItem 
+              key={project.id} 
+              project={project} 
+              index={index}
+            />
           ))}
         </div>
 
