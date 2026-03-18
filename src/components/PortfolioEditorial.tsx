@@ -160,35 +160,35 @@ export default function PortfolioEditorial() {
   // Calculate horizontal shift: 
   // We have projects.length items + 1 archive link
   // Let's make it move enough to see everything.
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-80%"]);
 
   return (
-    <section ref={containerRef} className="relative h-[500vh] bg-[#0A0A0A]">
+    <section ref={containerRef} className="relative h-[600vh] bg-[#0A0A0A]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         {/* Header Section */}
-        <div className="px-[10vw] pt-20 mb-12">
-          <div className="space-y-4">
+        <div className="px-[10vw] pt-24 mb-16">
+          <div className="space-y-6">
             <motion.p 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               className="text-xs font-black tracking-[0.8em] text-white/20 uppercase"
             >
               Selected Works
             </motion.p>
             <motion.h2 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-black text-white uppercase leading-none tracking-tighter"
+              className="text-6xl md:text-8xl font-black text-white uppercase leading-none tracking-tighter"
             >
               찾아가는 가치,<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/50 to-white/10">포트폴리오</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white/10">포ٹ폴리오</span>
             </motion.h2>
           </div>
         </div>
 
         {/* Horizontal Track */}
         <div className="flex-1 flex items-center">
-          <motion.div style={{ x }} className="flex items-center gap-12">
+          <motion.div style={{ x }} className="flex items-center gap-24 min-w-max">
             {projects.map((project, index) => (
               <PortfolioItem 
                 key={project.id} 
