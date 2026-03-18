@@ -49,7 +49,6 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current || !ctxRef.current || !isInit) return;
     
-    // Get mouse position relative to the element (important when the track is moving)
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -62,7 +61,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
 
     const gradient = ctx.createRadialGradient(x, y, 0, x, y, brushSize);
     gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-    gradient.addColorStop(0.5, "rgba(255, 255, 255, 0.8)");
+    gradient.addColorStop(0.5, "rgba(255, 255, 255, 0.6)");
     gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
     ctx.globalCompositeOperation = "source-over";
@@ -84,8 +83,9 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
-      className="relative shrink-0 w-[85vw] md:w-[65vw] lg:w-[45vw] aspect-[16/10] overflow-hidden bg-neutral-900 cursor-none ml-24 first:ml-[0vw] last:mr-[10vw] pointer-events-auto"
+      className="relative shrink-0 w-[85vw] md:w-[65vw] lg:w-[45vw] aspect-[16/10] overflow-hidden bg-neutral-900 cursor-none ml-24 first:ml-[0vw] last:mr-[10vw] pointer-events-auto z-50 group"
     >
+      {/* Base grayscale layer */}
       <div className="absolute inset-0 z-0 grayscale contrast-125 brightness-75">
         <Image
           src={project.mainImage}
@@ -96,6 +96,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
         />
       </div>
 
+      {/* Color layer (Masked by Canvas) */}
       <div 
         ref={colorImageRef}
         className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -119,6 +120,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
 
       <canvas ref={canvasRef} className="hidden" />
 
+      {/* Pointer UI */}
       <AnimatePresence>
         {isHovered && (
           <motion.div
@@ -126,26 +128,23 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
-            className="absolute top-0 left-0 w-[300px] h-[300px] border border-white/20 rounded-full z-30 pointer-events-none flex items-center justify-center bg-white/[0.02] backdrop-blur-[4px]"
+            className="absolute top-0 left-0 w-[200px] h-[200px] border border-white/30 rounded-full z-40 pointer-events-none flex items-center justify-center bg-white/[0.03] backdrop-blur-[6px]"
           >
-             <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_15px_white]" />
+             <div className="w-2 h-2 bg-accent-pink rounded-full shadow-[0_0_15px_#FF8BA7]" />
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Text Info */}
       <div className="absolute inset-0 z-20 p-10 flex flex-col justify-end pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          className="overflow-hidden"
-        >
+        <motion.div className="overflow-hidden">
           <span className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase block mb-2">
-            Selected Work {index + 1}
+            Showcase {index + 1}
           </span>
-          <h3 className="text-3xl font-black text-white uppercase tracking-tighter leading-none mb-4 translate-y-full group-hover:translate-y-0 transition-transform duration-700">
+          <h3 className="text-4xl font-black text-white uppercase tracking-tighter leading-none mb-4 translate-y-full group-hover:translate-y-0 transition-transform duration-700">
             {project.title}
           </h3>
-          <div className="w-0 group-hover:w-16 h-1 bg-white transition-all duration-700 delay-100" />
+          <div className="w-0 group-hover:w-16 h-1 bg-accent-pink transition-all duration-700 delay-100" />
         </motion.div>
       </div>
     </motion.div>
@@ -155,35 +154,36 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
 export default function PortfolioEditorial() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Use scroll without target to track window scroll if the target ref is unreliable
-  // Or ensure the target ref is captured correctly.
+  // High-reliability scroll tracking
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
+  // Significantly larger movement range to ensure it's visible
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+  // Optional: fade in/out based on scroll
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.8, 1, 1, 0.8]);
 
   return (
     <section 
       ref={containerRef} 
-      className="relative h-[600vh] bg-[#0A0A0A]"
-      id="portfolio-editorial-section"
+      className="relative h-[600vh] bg-[#0A0A0A] z-20"
+      style={{ isolation: 'isolate' }}
     >
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden pointer-events-none">
+        {/* Background Highlight */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] bg-accent-pink/5 blur-[150px] rounded-full pointer-events-none" />
+
         {/* Header Section */}
-        <div className="px-[10vw] pt-24 mb-16 relative z-30">
+        <div className="px-[10vw] pt-24 mb-16 relative z-30 pointer-events-none">
           <div className="space-y-6">
             <motion.p 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
               className="text-xs font-black tracking-[0.8em] text-white/20 uppercase"
             >
               Selected Works
             </motion.p>
             <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
               className="text-6xl md:text-8xl font-black text-white uppercase leading-none tracking-tighter"
             >
               찾아가는 가치,<br />
@@ -192,11 +192,11 @@ export default function PortfolioEditorial() {
           </div>
         </div>
 
-        {/* Horizontal Track */}
-        <div className="flex-1 flex items-center relative z-20">
+        {/* Horizontal Track - THE CORE INTERACTION AREA */}
+        <div className="flex-1 flex items-center relative z-20 pointer-events-auto">
           <motion.div 
-            style={{ x }} 
-            className="flex items-center gap-24 min-w-max pr-[20vw]"
+            style={{ x, opacity }} 
+            className="flex items-center gap-32 min-w-max px-[10vw]"
           >
             {projects.map((project, index) => (
               <PortfolioItem 
@@ -207,21 +207,20 @@ export default function PortfolioEditorial() {
             ))}
             
             {/* View Full Archive Card at the end */}
-            <div className="shrink-0 w-[60vw] h-[400px] flex items-center justify-center mr-[20vw]">
+            <div className="shrink-0 w-[50vw] h-[400px] flex items-center justify-center mr-[20vw]">
               <Link href="/portfolio" className="group text-center pointer-events-auto">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-40 h-40 rounded-full border border-white/10 flex items-center justify-center mb-8 group-hover:border-white transition-colors relative overflow-hidden"
+                  className="w-40 h-40 rounded-full border border-white/10 flex items-center justify-center mb-8 group-hover:border-accent-pink transition-colors relative"
                 >
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity" />
-                  <div className="w-3 h-3 bg-accent-pink rounded-full group-hover:scale-150 transition-transform shadow-[0_0_20px_rgba(255,139,167,0.5)]" />
+                  <div className="w-3 h-3 bg-accent-pink rounded-full group-hover:scale-150 transition-transform shadow-[0_0_20px_rgba(255,139,167,0.8)]" />
                 </motion.div>
                 <div className="space-y-2">
                   <span className="text-2xl font-black text-white uppercase tracking-[0.5em] block group-hover:text-accent-pink transition-colors">
                     Full Archive
                   </span>
                   <span className="text-[10px] text-white/30 uppercase tracking-[0.3em] font-medium block">
-                    Explore all projects
+                    + Explore all construction cases
                   </span>
                 </div>
               </Link>
@@ -230,16 +229,16 @@ export default function PortfolioEditorial() {
         </div>
 
         {/* Scroll Progress Bar */}
-        <div className="px-[10vw] pb-24 relative z-30">
-          <div className="h-px w-full bg-white/10 relative">
+        <div className="px-[10vw] pb-24 relative z-30 pointer-events-none">
+          <div className="flex justify-between mb-4">
+            <span className="text-[10px] font-black text-accent-pink tracking-widest uppercase">Progress</span>
+            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">Scroll to explore</span>
+          </div>
+          <div className="h-px w-full bg-white/5 relative">
             <motion.div 
               style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
-              className="absolute inset-0 bg-accent-pink shadow-[0_0_10px_rgba(255,139,167,0.5)]"
+              className="absolute inset-0 bg-accent-pink shadow-[0_0_15px_rgba(255,139,167,0.4)]"
             />
-          </div>
-          <div className="flex justify-between mt-4">
-            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">01 / {String(projects.length).padStart(2, '0')}</span>
-            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">Archive</span>
           </div>
         </div>
       </div>
