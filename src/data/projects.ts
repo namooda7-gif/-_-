@@ -9,7 +9,64 @@ export interface Project {
   year: string;
 }
 
-export const projects: Project[] = [
+export const editorialProjects: Project[] = [
+  {
+    id: 101,
+    title: "Minimalist Sanctuary",
+    category: "Living Space",
+    location: "Signature Concept",
+    mainImage: "/images/portfolio/01.png",
+    description: "본질에 집중한 미니멀리즘의 정수를 보여주는 공간 제안입니다.",
+    year: "Concept"
+  },
+  {
+    id: 102,
+    title: "Quiet Morning",
+    category: "Bedroom",
+    location: "Signature Concept",
+    mainImage: "/images/portfolio/02.png",
+    description: "아늑한 빛과 소재가 어우러진 평온한 아침의 감성을 담았습니다.",
+    year: "Concept"
+  },
+  {
+    id: 103,
+    title: "Marble Essence",
+    category: "Kitchen Detail",
+    location: "Signature Concept",
+    mainImage: "/images/portfolio/03.png",
+    description: "천연 대리석의 질감을 살린 럭셔리한 주방 디테일입니다.",
+    year: "Concept"
+  },
+  {
+    id: 104,
+    title: "Architectural Path",
+    category: "Hallway",
+    location: "Signature Concept",
+    mainImage: "/images/portfolio/04.png",
+    description: "건축적 선형미를 강조한 복도 공간의 재해석입니다.",
+    year: "Concept"
+  },
+  {
+    id: 105,
+    title: "Sculptural Dining",
+    category: "Dining Area",
+    location: "Signature Concept",
+    mainImage: "/images/portfolio/05.png",
+    description: "조형적인 가구와 조명이 조화를 이루는 다이닝 공간입니다.",
+    year: "Concept"
+  },
+  {
+    id: 106,
+    title: "Zen Retreatment",
+    category: "Spa Bathroom",
+    location: "Signature Concept",
+    mainImage: "/images/portfolio/06.png",
+    description: "지친 일상을 치유하는 젠 스타일의 배스룸 제안입니다.",
+    year: "Concept"
+  }
+];
+
+export const constructionProjects: Project[] = [
   {
     id: 1,
     title: "구미 강아지목욕탕",

@@ -5,9 +5,9 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motio
 import Image from "next/image";
 import Link from "next/link";
 
-import { projects } from "@/data/projects";
+import { editorialProjects as projects } from "@/data/projects";
 
-const PortfolioItem = ({ project, index }: { project: typeof projects[0]; index: number }) => {
+const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; index: number }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovered, setIsHovered] = useState(false);

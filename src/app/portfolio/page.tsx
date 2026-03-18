@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { projects } from '@/data/projects';
+import { constructionProjects as projects } from '@/data/projects';
 import { ArrowUpRight } from 'lucide-react';
 
 export default function PortfolioPage() {
