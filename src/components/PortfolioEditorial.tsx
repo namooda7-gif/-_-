@@ -151,19 +151,22 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
 };
 
 export default function PortfolioEditorial() {
-  const containerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
+  // Calculate horizontal shift: 
+  // We have projects.length items + 1 archive link
+  // Let's make it move enough to see everything.
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
-    <section ref={containerRef} className="relative h-[400vh] bg-[#0A0A0A]">
+    <section ref={containerRef} className="relative h-[500vh] bg-[#0A0A0A]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         {/* Header Section */}
-        <div className="px-[10vw] mb-12">
+        <div className="px-[10vw] pt-20 mb-12">
           <div className="space-y-4">
             <motion.p 
               initial={{ opacity: 0, x: -20 }}
@@ -184,8 +187,8 @@ export default function PortfolioEditorial() {
         </div>
 
         {/* Horizontal Track */}
-        <div className="relative">
-          <motion.div style={{ x }} className="flex items-center">
+        <div className="flex-1 flex items-center">
+          <motion.div style={{ x }} className="flex items-center gap-12">
             {projects.map((project, index) => (
               <PortfolioItem 
                 key={project.id} 
@@ -195,28 +198,40 @@ export default function PortfolioEditorial() {
             ))}
             
             {/* View Full Archive Card at the end */}
-            <div className="shrink-0 w-[40vw] h-[400px] flex items-center justify-center ml-24 mr-[30vw]">
+            <div className="shrink-0 w-[60vw] h-[400px] flex items-center justify-center mr-[20vw]">
               <Link href="/portfolio" className="group text-center">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-32 h-32 rounded-full border border-white/20 flex items-center justify-center mb-6 group-hover:border-white transition-colors"
+                  className="w-40 h-40 rounded-full border border-white/10 flex items-center justify-center mb-8 group-hover:border-white transition-colors relative overflow-hidden"
                 >
-                  <div className="w-2 h-2 bg-white rounded-full group-hover:scale-150 transition-transform" />
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity" />
+                  <div className="w-3 h-3 bg-accent-pink rounded-full group-hover:scale-150 transition-transform shadow-[0_0_20px_rgba(255,139,167,0.5)]" />
                 </motion.div>
-                <span className="text-xl font-black text-white/40 uppercase tracking-[0.4em] group-hover:text-white transition-colors">
-                  Full Archive
-                </span>
+                <div className="space-y-2">
+                  <span className="text-2xl font-black text-white uppercase tracking-[0.5em] block group-hover:text-accent-pink transition-colors">
+                    Full Archive
+                  </span>
+                  <span className="text-[10px] text-white/30 uppercase tracking-[0.3em] font-medium block">
+                    Explore all projects
+                  </span>
+                </div>
               </Link>
             </div>
           </motion.div>
         </div>
 
         {/* Scroll Progress Bar */}
-        <div className="absolute bottom-12 left-[10vw] right-[10vw] h-px bg-white/10 overflow-hidden">
-          <motion.div 
-            style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
-            className="w-full h-full bg-accent-pink"
-          />
+        <div className="px-[10vw] pb-20">
+          <div className="h-px w-full bg-white/10 relative">
+            <motion.div 
+              style={{ scaleX: scrollYProgress, transformOrigin: "left" }}
+              className="absolute inset-0 bg-accent-pink shadow-[0_0_10px_rgba(255,139,167,0.5)]"
+            />
+          </div>
+          <div className="flex justify-between mt-4">
+            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">01 / {String(projects.length).padStart(2, '0')}</span>
+            <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">Archive</span>
+          </div>
         </div>
       </div>
     </section>
