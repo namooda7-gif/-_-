@@ -73,30 +73,33 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white dark:bg-slate-900 rounded-[3rem] p-12 md:p-20 shadow-2xl border border-border"
+          className="bg-neutral-900 rounded-[3rem] p-12 md:p-20 shadow-2xl border border-white/5"
         >
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div className="text-slate-900 dark:text-white">
+            <div className="text-white">
               <div className="flex items-center gap-3 text-accent-pink mb-6">
                 <Sparkles className="w-5 h-5" />
                 <span className="text-sm font-black tracking-widest uppercase">Philosophy</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
                 {style.nameKo} 스타일로 완성하는 <br />
-                <span className="text-slate-500 dark:text-slate-400">공간의 시그니처</span>
+                <span className="text-white/40">공간의 시그니처</span>
               </h2>
-              <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed mb-10">
+              <p className="text-xl text-white/60 leading-relaxed mb-10">
                 {style.description}
               </p>
               
-              <div className="p-8 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-border">
+              <div 
+                className="p-8 rounded-3xl border border-white/5"
+                style={{ backgroundColor: `${style.bgColor}08` }} // 3% - 5% opacity tint
+              >
                 <h4 className="font-bold mb-4 flex items-center gap-2">
                   <Hash className="w-4 h-4 text-accent-pink" />
                   디자인 키워드
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {style.keywords.map((kw, i) => (
-                    <div key={i} className="flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-slate-900 rounded-xl text-sm border border-border">
+                    <div key={i} className="flex items-center gap-1.5 px-4 py-2 bg-white/5 rounded-xl text-sm border border-white/5">
                       <div className="w-1.5 h-1.5 rounded-full bg-accent-pink" />
                       {kw}
                     </div>
@@ -115,16 +118,22 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-square rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center p-8 text-center border border-border">
-                  <div className="text-slate-900 dark:text-white">
+                <div 
+                  className="aspect-square rounded-2xl flex items-center justify-center p-8 text-center border border-white/5"
+                  style={{ backgroundColor: `${style.bgColor}15` }} // Higher opacity tint
+                >
+                  <div className="text-white">
                     <div className="text-3xl font-black text-accent-pink mb-1">01</div>
-                    <div className="text-xs font-bold uppercase tracking-widest opacity-60">Safety First</div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Safety First</div>
                   </div>
                 </div>
-                <div className="aspect-square rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center p-8 text-center border border-border">
-                  <div className="text-slate-900 dark:text-white">
+                <div 
+                  className="aspect-square rounded-2xl flex items-center justify-center p-8 text-center border border-white/5"
+                  style={{ backgroundColor: `${style.bgColor}15` }}
+                >
+                  <div className="text-white">
                     <div className="text-3xl font-black text-accent-pink mb-1">02</div>
-                    <div className="text-xs font-bold uppercase tracking-widest opacity-60">Premium Detail</div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Premium Detail</div>
                   </div>
                 </div>
               </div>
@@ -174,8 +183,11 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
 
       {/* CTA Section */}
       <section className="max-w-[1000px] mx-auto px-4 md:px-8 mt-40">
-        <div className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden ring-1 ring-border shadow-2xl">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-pink/20 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
+        <div 
+          className="text-white rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden border border-white/5 shadow-2xl"
+          style={{ backgroundColor: `${style.bgColor}05` }} // 5% tint
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent-pink/10 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" />
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -189,7 +201,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
               <Link href="/contact" className="px-10 py-5 bg-accent-pink text-white font-black rounded-full hover:scale-105 transition-all shadow-lg flex items-center justify-center gap-3">
                 상담 예약하기 <ChevronRight className="w-5 h-5" />
               </Link>
-              <Link href="/services" className="px-10 py-5 bg-slate-100 dark:bg-white/10 backdrop-blur-md border border-border dark:border-white/20 text-slate-900 dark:text-white font-black rounded-full hover:bg-slate-200 dark:hover:bg-white/20 transition-all flex items-center justify-center">
+              <Link href="/services" className="px-10 py-5 bg-white/5 backdrop-blur-md border border-white/10 text-white font-black rounded-full hover:bg-white/10 transition-all flex items-center justify-center">
                 서비스 가이드 보기
               </Link>
             </div>
