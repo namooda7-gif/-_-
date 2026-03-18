@@ -135,18 +135,59 @@ export default function ServicesPage() {
                       {service.tags.map((tag, tagIndex) => (
                         <button
                           key={tagIndex}
-                          onClick={() => setSelectedTag(tag)}
-                          className={`group relative px-6 py-3 text-xs md:text-sm font-bold tracking-widest uppercase border \${service.isAccent ? 'border-white/40 text-white hover:bg-white/10' : 'border-white/20 text-white/80 hover:bg-white/10 hover:text-white'} rounded-full backdrop-blur-sm bg-white/5 transition-all duration-300 flex items-center gap-3 overflow-hidden`}
+                          onClick={() => setSelectedTag(selectedTag?.name === tag.name ? null : tag)}
+                          className={`group relative px-6 py-3 text-xs md:text-sm font-bold tracking-widest uppercase border \${service.isAccent ? 'border-white/40 text-white' : 'border-white/20 text-white/80'} \${selectedTag?.name === tag.name ? 'bg-white text-black border-white' : 'hover:bg-white/10 hover:text-white bg-white/5'} rounded-full backdrop-blur-sm transition-all duration-300 flex items-center gap-3 overflow-hidden`}
                         >
                           <span className="relative z-10">{tag.name}</span>
-                          <span className="relative z-10 w-4 h-4 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">
-                            <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <span className={`relative z-10 w-4 h-4 rounded-full \${selectedTag?.name === tag.name ? 'bg-black/20 text-black' : 'bg-white/20 group-hover:bg-white group-hover:text-black'} flex items-center justify-center transition-colors`}>
+                            <motion.svg 
+                              animate={{ rotate: selectedTag?.name === tag.name ? 45 : 0 }}
+                              className="w-2.5 h-2.5" 
+                              fill="none" 
+                              stroke="currentColor" 
+                              viewBox="0 0 24 24" 
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
-                            </svg>
+                            </motion.svg>
                           </span>
                         </button>
                       ))}
                     </div>
+
+                    {/* Inline Detail Section - Dedicated space below tags */}
+                    <AnimatePresence mode="wait">
+                      {selectedTag && service.tags.some(t => t.name === selectedTag.name) && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0, y: 10 }}
+                          animate={{ height: "auto", opacity: 1, y: 0 }}
+                          exit={{ height: 0, opacity: 0, y: 10 }}
+                          transition={{ type: "spring", damping: 30, stiffness: 200 }}
+                          className="overflow-hidden mt-8"
+                        >
+                          <div className={`relative p-8 md:p-10 rounded-3xl border border-white/10 \${service.isAccent ? 'bg-white/10 backdrop-blur-md' : 'bg-white/5 backdrop-blur-sm'}`}>
+                            {/* Close Button */}
+                            <button 
+                              onClick={() => setSelectedTag(null)}
+                              className="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors border border-white/10 group"
+                            >
+                              <svg className="w-4 h-4 text-white/50 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+
+                            <div className="flex flex-col gap-4">
+                              <span className="text-[10px] tracking-[0.4em] font-black uppercase text-accent-pink">Service Detail</span>
+                              <h4 className="text-xl md:text-2xl font-bold text-white">{selectedTag.name}</h4>
+                              <div className="h-[1px] w-12 bg-white/20" />
+                              <p className="text-white/70 text-base md:text-lg leading-relaxed font-light max-w-2xl">
+                                {selectedTag.detail}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                 </motion.div>
                 
                 {service.isAccent && (
@@ -183,50 +224,6 @@ export default function ServicesPage() {
         <span className="text-[10px] uppercase tracking-widest text-white/50 font-bold">Scroll</span>
       </motion.div>
 
-      {/* Detail Popup Modal */}
-      <AnimatePresence>
-        {selectedTag && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedTag(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-lg bg-[#111111] border border-white/10 rounded-3xl p-8 md:p-12 overflow-hidden"
-            >
-              {/* Decorative accent */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-50" />
-              
-              <button 
-                onClick={() => setSelectedTag(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors border border-white/10"
-              >
-                <svg className="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-
-              <div className="mt-4">
-                <p className="text-[10px] tracking-[0.4em] font-black uppercase text-white/40 mb-3">Service Detail</p>
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
-                  {selectedTag.name}
-                </h3>
-                <div className="h-[1px] w-12 bg-white/20 mb-6" />
-                <p className="text-white/70 text-base leading-relaxed font-light">
-                  {selectedTag.detail}
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </main>
   );
 }
