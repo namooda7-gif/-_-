@@ -111,9 +111,8 @@ export default function StylesPage() {
           <p className="text-accent-pink text-[10px] md:text-xs tracking-[0.8em] font-black uppercase">
             Style Collections
           </p>
-          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
-            Editorial<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-transparent">Styles</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none whitespace-nowrap">
+            Editorial <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-transparent">Styles</span>
           </h1>
         </motion.div>
 
@@ -165,9 +164,7 @@ export default function StylesPage() {
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-baseline gap-2">
               <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">Style Board</span>
-              <motion.span className="text-accent-pink font-black text-sm">
-                {String(Math.min(10, Math.floor(scrollYProgress.get() * 11) + 1)).padStart(2, '0')}
-              </motion.span>
+              <StyleCounter progress={scrollYProgress} />
             </div>
             <span className="text-[10px] font-black text-white/10 uppercase tracking-[0.5em]">Laol Interior Design</span>
           </div>
@@ -182,3 +179,21 @@ export default function StylesPage() {
     </main>
   );
 }
+
+// Separate component to handle numerical update without re-rendering parent
+const StyleCounter = ({ progress }: { progress: any }) => {
+  const [val, setVal] = React.useState("01");
+  
+  React.useEffect(() => {
+    return progress.on("change", (latest: number) => {
+      const num = Math.min(10, Math.floor(latest * 11) + 1);
+      setVal(String(num).padStart(2, '0'));
+    });
+  }, [progress]);
+
+  return (
+    <span className="text-accent-pink font-black text-xl tabular-nums">
+      {val}
+    </span>
+  );
+};
