@@ -260,46 +260,48 @@ export default function HeroGallery() {
 
   return (
     <div
-      className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden"
+      className="relative w-full h-full bg-[#0A0A0A] overflow-hidden"
       style={{ 
-        zIndex: 50,
+        zIndex: 70,
         backgroundColor: currentStyle.bgColor || "#0A0A0A",
         transition: 'background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1)' 
       }}
     >
       {/* Step 2: Brand Identity Elements (Ticker & Marquee) */}
       {!isExpanded && (
-        <div className="absolute inset-0 pointer-events-none z-[60]">
+        <div className="absolute inset-0 z-[60] pointer-events-none">
           <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-full relative">
-            {/* Ticker - Positioned exactly under Logo */}
-            <div className="absolute top-20 left-4 md:left-8 pointer-events-auto">
-              <div className="flex gap-1.5 items-end h-8">
+            {/* CRITICAL DESIGN RULE: Ticker MUST remain Top-Left, Horizontal Row under Logo. DO NOT RELOCATE. */}
+            <div className="absolute top-24 left-4 md:left-10 pointer-events-auto">
+              <div className="flex flex-row gap-1.5 items-end h-4">
                 {interiorStyles.map((_, i) => (
                   <motion.div
                     key={i}
                     onClick={() => setActiveIndex(i)}
                     animate={{
-                      height: activeIndex === i ? 28 : 12,
-                      backgroundColor: activeIndex === i ? 'var(--accent-pink, #FF8BA7)' : 'rgba(255,255,255,0.2)',
-                      width: 2
+                      height: activeIndex === i ? 20 : 8,
+                      width: 1,
+                      backgroundColor: activeIndex === i ? (interiorStyles[i].bgColor || '#FF8BA7') : 'rgba(255,255,255,0.2)',
                     }}
-                    className="cursor-pointer hover:bg-neutral-500 transition-colors"
+                    className="cursor-pointer hover:bg-white/50 transition-colors"
                   />
                 ))}
               </div>
             </div>
 
-            {/* Horizontal Philosophy Marquee (Step 7) - Elegant editorial feel */}
-            <div className="fixed top-1/2 -translate-y-[120px] left-0 w-[25vw] hidden xl:block z-[40] opacity-40 hover:opacity-100 transition-all duration-1000 pl-4 md:pl-8 pointer-events-auto">
+            {/* Philosophy Marquee (Remaining) */}
+            <div className="absolute top-1/2 -translate-y-[120px] left-0 w-[25vw] hidden xl:block z-[100] opacity-30 hover:opacity-100 transition-all duration-1000 pl-4 md:pl-8 pointer-events-auto">
               <MarqueeBrand />
             </div>
           </div>
         </div>
       )}
 
+      {/* CRITICAL DESIGN RULE: Gallery MUST remain Vertically Centered and Pushed to the Right Edge. DO NOT RELOCATE. */}
       {!isExpanded && (
-        <div className="flex gap-2 lg:gap-4 items-center justify-start xl:justify-center w-full h-[50vh] z-10 pl-[25%] pr-8 transition-all mt-12">
-          {interiorStyles.map((style, i) => {
+        <div className="absolute inset-y-0 left-0 right-0 flex flex-col justify-center items-end z-10 pr-2 md:pr-4 lg:pr-6 pointer-events-none">
+          <div className="flex gap-2 lg:gap-4 items-center pointer-events-auto">
+            {interiorStyles.map((style, i) => {
             const isActive = activeIndex === i;
             return (
               <motion.button
@@ -327,7 +329,7 @@ export default function HeroGallery() {
                 onMouseEnter={() => isActive && setIsHoveringActive(true)}
                 onMouseLeave={() => isActive && setIsHoveringActive(false)}
                 animate={{
-                  width: isActive ? '45vw' : '5vw',
+                  width: isActive ? '45vw' : '3.5vw',
                   height: isActive ? '60vh' : '40vh',
                   y: isActive ? 0 : [0, -25, 0],
                 }}
@@ -412,21 +414,8 @@ export default function HeroGallery() {
               </motion.button>
             );
           })}
+          </div>
         </div>
-      )}
-
-      {!isExpanded && activeIndex >= 0 && (
-        <motion.p
-          key={`desc-${activeIndex}`}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={cn(
-            "mt-24 text-center text-[min(1.2vw,0.9rem)] font-black tracking-[0.4em] uppercase opacity-50 transition-colors duration-500 pl-[30%] pr-8 whitespace-nowrap",
-            interiorStyles[activeIndex].isDark ? "text-white" : "text-secondary"
-          )}
-        >
-          {interiorStyles[activeIndex].description}
-        </motion.p>
       )}
 
       {mounted && createPortal(overlayJSX, document.body)}

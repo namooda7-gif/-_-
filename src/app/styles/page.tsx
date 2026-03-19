@@ -3,14 +3,14 @@
 import React, { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import { interiorStyles } from '@/data/styles';
+import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
+import { interiorStyles, InteriorStyle } from '@/data/styles';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 
-const StyleHorizontalItem = ({ style, index }: { style: any; index: number }) => {
+const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: number }) => {
   return (
     <motion.div
-      className="relative shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw] h-[70vh] group ml-32 first:ml-0"
+      className="relative shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw] h-[60vh] lg:h-[70vh] group ml-32 first:ml-0"
     >
       <Link href={`/styles/${style.slug}`} className="block w-full h-full relative overflow-hidden rounded-[20px] lg:rounded-[40px] border border-white/5 hover:border-white/20 transition-colors duration-700">
         {/* Background Image with Parallax effect could be added here later */}
@@ -64,7 +64,7 @@ const StyleHorizontalItem = ({ style, index }: { style: any; index: number }) =>
                 className="w-4 h-4 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
                 style={{ backgroundColor: style.bgColor }}
               />
-              <span className="text-xl font-bold tracking-tight text-white">{style.nameKo}</span>
+              <span className="text-base lg:text-xl font-bold tracking-tight text-white">{style.nameKo}</span>
             </div>
           </div>
         </div>
@@ -95,38 +95,38 @@ export default function StylesPage() {
         {/* Background Ambient Text */}
         <motion.div 
           style={{ x: titleX }}
-          className="absolute top-1/2 left-0 -translate-y-1/2 whitespace-nowrap pointer-events-none z-0 select-none opacity-[0.02]"
+          className="absolute top-[35%] left-0 -translate-y-1/2 whitespace-nowrap pointer-events-none z-[-1] select-none opacity-[0.03]"
         >
-          <span className="text-[40vh] font-black uppercase tracking-tighter leading-none">
+          <span className="text-[30vh] font-black uppercase tracking-tighter leading-none text-white/10">
             Editorial Perspectives Style Collections Premium Design
           </span>
         </motion.div>
 
-        {/* Page Header (Fixed within the sticky container for first half) */}
+        {/* Page Header (Responsive & Flexible) */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="absolute top-24 left-[10vw] z-30 space-y-4"
+          className="relative z-30 px-[10vw] pt-20 lg:pt-32 pb-4 lg:pb-8 space-y-2 lg:space-y-4 shrink-0"
         >
-          <p className="text-accent-pink text-[10px] md:text-xs tracking-[0.8em] font-black uppercase">
+          <p className="text-accent-pink text-[9px] md:text-xs tracking-[0.8em] font-black uppercase">
             Style Collections
           </p>
-          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none whitespace-nowrap">
+          <h1 className="text-3xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none whitespace-nowrap">
             Editorial <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-transparent">Styles</span>
           </h1>
         </motion.div>
 
-        {/* Horizontal Track */}
-        <div className="relative z-20 flex-1 flex items-center">
+        {/* Horizontal Track Container */}
+        <div className="relative z-20 flex-1 flex items-center min-h-0">
           <motion.div 
             style={{ x }}
             className="flex items-center gap-16 px-[10vw] min-w-max"
           >
             {/* Introductory Slide */}
             <div className="w-[85vw] md:w-[50vw] shrink-0 mr-32 flex flex-col justify-center space-y-10">
-              <p className="text-lg md:text-2xl text-white/50 max-w-xl font-light leading-relaxed">
+              <p className="text-sm md:text-lg lg:text-2xl text-white/50 max-w-xl font-light leading-relaxed">
                 공간은 단순한 물리적 장소를 넘어 삶의 철학을 담는 그릇입니다. <br className="hidden md:block" />
-                라올실내건축이 제안하는 10가지 프리미엄 스타일 보드를 통해 당신만의 감각을 발견해 보세요.
+                라올실내건축이 제안하는 15가지 프리미엄 스타일 보드를 통해 당신만의 감각을 발견해 보세요.
               </p>
               <div className="flex gap-4 items-center text-accent-pink">
                 <span className="text-xs font-black tracking-[0.4em] uppercase">Scroll to explore</span>
@@ -152,7 +152,7 @@ export default function StylesPage() {
                   Start Your Project
                 </motion.div>
                 <p className="mt-8 text-white/30 text-xs font-medium tracking-[0.3em] uppercase">
-                  Let's reimagine your perspective
+                  Let&apos;s reimagine your perspective
                 </p>
               </Link>
             </div>
@@ -181,12 +181,12 @@ export default function StylesPage() {
 }
 
 // Separate component to handle numerical update without re-rendering parent
-const StyleCounter = ({ progress }: { progress: any }) => {
+const StyleCounter = ({ progress }: { progress: MotionValue<number> }) => {
   const [val, setVal] = React.useState("01");
   
   React.useEffect(() => {
     return progress.on("change", (latest: number) => {
-      const num = Math.min(10, Math.floor(latest * 11) + 1);
+      const num = Math.min(15, Math.floor(latest * 16) + 1);
       setVal(String(num).padStart(2, '0'));
     });
   }, [progress]);

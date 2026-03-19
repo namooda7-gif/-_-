@@ -2,16 +2,42 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
 export default function AboutPage() {
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
+  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <main className="bg-[#0A0A0A] min-h-screen text-white overflow-hidden pb-40">
+        <div className="h-[80vh] w-full flex items-center justify-center">
+          <div className="text-white/20 uppercase tracking-[1em] text-xs">Loading...</div>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="bg-[#0A0A0A] min-h-screen text-white overflow-hidden pb-40">
       {/* 1. Hero Section */}
-      <section className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden">
+      <section 
+        className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+        }}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
         <motion.div style={{ y }} className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"
@@ -21,8 +47,24 @@ export default function AboutPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] to-transparent opacity-90" />
         </motion.div>
+
+        {/* Sunlight Effect Overlay */}
+        <AnimatePresence>
+          {isHovering && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 z-10 pointer-events-none mix-blend-screen"
+              style={{
+                background: `radial-gradient(circle 600px at ${mousePos.x}px ${mousePos.y}px, rgba(255, 230, 150, 0.2), rgba(255, 200, 100, 0.05) 50%, transparent 100%)`,
+                filter: 'blur(40px)',
+              }}
+            />
+          )}
+        </AnimatePresence>
         
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto mt-20">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,7 +80,16 @@ export default function AboutPage() {
             className="text-5xl md:text-7xl font-black uppercase leading-[1.1] tracking-tighter"
           >
             단순히 머무는 곳이 아닌, <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/70 to-white/20">
+            <span 
+              className="text-transparent bg-clip-text transition-all duration-700 font-black"
+              style={{ 
+                backgroundImage: isHovering 
+                  ? `radial-gradient(circle at ${mousePos.x - (typeof window !== 'undefined' ? window.innerWidth/2 : 0)}px 0px, #FFFFFF, #FFE4B5 30%, rgba(255,255,255,0.2))` 
+                  : "linear-gradient(to right, white, rgba(255,255,255,0.4))",
+                WebkitBackgroundClip: "text",
+                filter: isHovering ? 'drop-shadow(0 0 20px rgba(255,220,150,0.4))' : 'none',
+              }}
+            >
               당신을 둥글게 감싸는 공간
             </span>
           </motion.h1>

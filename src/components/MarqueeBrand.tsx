@@ -14,7 +14,7 @@ export default function MarqueeBrand() {
 
   return (
     <div className="marquee-container w-full overflow-hidden py-4 select-none cursor-default pointer-events-auto group/marquee">
-      <div className="marquee-content flex whitespace-nowrap gap-20 items-center animate-[scroll_60s_linear_infinite] group-hover/marquee:[animation-play-state:paused] w-max">
+      <div className="marquee-content flex whitespace-nowrap gap-20 items-center animate-[scroll_60s_linear_infinite] w-max group-hover/marquee:[animation-play-state:running]">
         {marqueeItems.map((item, i) => (
           <div 
             key={i} 

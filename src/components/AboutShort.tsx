@@ -29,9 +29,9 @@ export default function AboutShort() {
           <h2 className="text-5xl md:text-7xl font-black text-white uppercase leading-tight mb-8">
             당신의 일상에 <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/70 to-white/30">
-              가장 안전한 아름다움
+              가장 안전한 아름다움을
             </span><br className="hidden md:block" />
-            을 설계합니다
+            설계합니다
           </h2>
           
           <p className="text-white/50 text-base md:text-lg leading-relaxed mb-16 max-w-2xl font-light">

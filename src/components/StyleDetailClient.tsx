@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ChevronRight, Hash, Sparkles } from 'lucide-react';
-import { InteriorStyle } from '@/data/styles';
+import { ArrowLeft, ArrowRight, ChevronRight, Hash, Sparkles } from 'lucide-react';
+import { InteriorStyle, interiorStyles } from '@/data/styles';
 
 interface StyleDetailClientProps {
   style: InteriorStyle;
@@ -15,10 +15,30 @@ interface StyleDetailClientProps {
 export default function StyleDetailClient({ style }: StyleDetailClientProps) {
   const router = useRouter();
 
+  // Find index for Prev/Next navigation
+  const currentIndex = interiorStyles.findIndex(s => s.slug === style.slug);
+  const prevStyle = interiorStyles[(currentIndex - 1 + interiorStyles.length) % interiorStyles.length];
+  const nextStyle = interiorStyles[(currentIndex + 1) % interiorStyles.length];
+
   return (
-    <main className="min-h-screen bg-background font-outfit pb-32 text-white">
+    <main 
+      className="min-h-screen font-outfit pb-32 transition-colors duration-1000 relative"
+      style={{ 
+        backgroundColor: style.bgColor,
+        color: style.isDark ? 'white' : 'black'
+      }}
+    >
+      {/* Dark to Transparent Reveal Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0" 
+        style={{ 
+          background: `linear-gradient(to bottom, #0A0A0A 0%, #0A0A0A 60vh, transparent 110vh, transparent 100%)`,
+          height: '200vh' // Extend enough to cover the transition
+        }} 
+      />
+      
       {/* Hero Section */}
-      <section className="relative h-[70vh] w-full overflow-hidden">
+      <section className="relative h-[100vh] w-full overflow-hidden">
         <motion.div 
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -32,8 +52,15 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-background" />
+          <div 
+            className="absolute inset-0 z-10" 
+            style={{ 
+              background: `linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 100%)` 
+            }} 
+          />
         </motion.div>
+
+        {/* Bottom Fade transition removed in favor of global overlay */}
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
           <motion.div
@@ -59,16 +86,44 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
 
         {/* Back Button */}
         <button 
-          onClick={() => router.back()}
-          className="absolute top-32 left-8 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all flex items-center gap-2 group"
+          onClick={() => router.push('/styles')}
+          className="absolute top-32 left-8 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all flex items-center gap-2 group z-30"
         >
           <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
-          <span className="pr-2 text-sm font-bold uppercase tracking-wider">Back</span>
+          <span className="pr-2 text-sm font-bold uppercase tracking-wider">Archive</span>
         </button>
+
+        {/* Style Navigation - Left (Prev) */}
+        <div className="fixed left-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-4 group/prev hidden xl:flex">
+          <Link 
+            href={`/styles/${prevStyle.slug}`}
+            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-pink hover:border-accent-pink transition-all duration-500 shadow-2xl"
+          >
+            <ArrowLeft className="w-6 h-6 group-hover/prev:-translate-x-1 transition-transform" />
+          </Link>
+          <div className="absolute left-20 opacity-0 group-hover/prev:opacity-100 -translate-x-4 group-hover/prev:translate-x-0 transition-all duration-500 pointer-events-none whitespace-nowrap">
+            <p className="text-accent-pink text-[10px] font-black uppercase tracking-[0.2em] mb-1">Previous</p>
+            <p className="text-white font-bold text-lg">{prevStyle.nameKo}</p>
+          </div>
+        </div>
+
+        {/* Style Navigation - Right (Next) */}
+        <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-4 group/next hidden xl:flex text-right">
+          <Link 
+            href={`/styles/${nextStyle.slug}`}
+            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-pink hover:border-accent-pink transition-all duration-500 shadow-2xl"
+          >
+            <ArrowRight className="w-6 h-6 group-hover/next:translate-x-1 transition-transform" />
+          </Link>
+          <div className="absolute right-20 opacity-0 group-hover/next:opacity-100 translate-x-4 group-hover/next:-translate-x-0 transition-all duration-500 pointer-events-none whitespace-nowrap">
+            <p className="text-accent-pink text-[10px] font-black uppercase tracking-[0.2em] mb-1">Next Style</p>
+            <p className="text-white font-bold text-lg">{nextStyle.nameKo}</p>
+          </div>
+        </div>
       </section>
 
       {/* Content Section */}
-      <section className="max-w-[1200px] mx-auto px-4 md:px-8 -mt-20 relative z-10">
+      <section className="max-w-[1200px] mx-auto px-4 md:px-8 -mt-40 relative z-20">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -156,36 +211,67 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
 
       {/* Gallery Section if exists */}
       {style.galleryImages.length > 0 && (
-        <section className="max-w-[1400px] mx-auto px-4 md:px-8 mt-32">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-            <div>
-              <p className="text-accent-pink text-xs tracking-[0.3em] font-bold mb-4">SHOWCASE</p>
-              <h2 className="text-4xl md:text-5xl font-bold">{style.nameKo} 갤러리</h2>
-            </div>
-            <p className="text-slate-400 max-w-sm">
-              공간별로 제안하는 {style.nameKo} 스타일의 다양한 구현 사례입니다.
-            </p>
-          </div>
-
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-            {style.galleryImages.map((img, idx) => (
-              <motion.div 
-                key={idx}
+        <section className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-24 mt-48">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+            <div className="flex-1">
+              <motion.p 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-accent-pink text-xs tracking-[0.5em] font-black mb-6 uppercase"
+              >
+                Showcase Archive
+              </motion.p>
+              <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="relative break-inside-avoid rounded-3xl overflow-hidden shadow-xl group border border-border"
+                className={`text-5xl md:text-7xl font-black leading-none tracking-tighter ${
+                  style.isDark ? 'text-white' : 'text-slate-900'
+                }`}
               >
-                <Image 
-                  src={img} 
-                  alt={`${style.nameKo} Gallery ${idx}`} 
-                  width={800}
-                  height={1000}
-                  className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105" 
-                />
-                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                   <p className="text-white text-sm font-medium">Style Concept {idx + 1}</p>
+                {style.nameKo} <span className={style.isDark ? 'text-white/20' : 'text-black/10'}>Gallery</span>
+              </motion.h2>
+            </div>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className={`max-w-md text-lg font-light leading-relaxed ${
+                style.isDark ? 'text-slate-400' : 'text-slate-600'
+              }`}
+            >
+              공간별로 제안하는 {style.nameKo} 스타일의 <br className="hidden lg:block"/>
+              다양한 컨셉과 감도 높은 구현 사례입니다.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+            {style.galleryImages.map((img, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: (idx % 2) * 0.2, duration: 1 }}
+                className={`relative rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl group border border-white/5 bg-white/5 ${
+                  idx % 4 === 1 || idx % 4 === 2 ? 'md:translate-y-20' : ''
+                }`}
+              >
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  <Image 
+                    src={img} 
+                    alt={`${style.nameKo} Gallery ${idx}`} 
+                    fill
+                    className="object-cover transform transition-transform duration-[2s] group-hover:scale-110 grayscale-[20%] group-hover:grayscale-0"
+                  />
+                  
+                  {/* Premium Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 p-12 flex flex-col justify-end">
+                    <p className="text-accent-pink text-xs font-black tracking-[0.3em] uppercase mb-2">Detailed View</p>
+                    <h4 className="text-2xl font-bold text-white uppercase tracking-tight">Concept Showcase {idx + 1}</h4>
+                  </div>
                 </div>
               </motion.div>
             ))}

@@ -35,46 +35,80 @@ export default function PortfolioPage() {
         </motion.p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
+      <div className="space-y-32 md:space-y-64">
         {projects.map((project, index) => (
           <motion.div 
             key={project.id}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className="group relative"
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-24`}
           >
-            <div className="aspect-[16/10] overflow-hidden rounded-[2rem] bg-white/5 border border-white/10 relative">
-              <Image 
-                src={project.mainImage}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-1000 group-hover:scale-105 grayscale-[30%] group-hover:grayscale-0"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-              
-              <div className="absolute top-8 right-8 w-14 h-14 rounded-full bg-white text-black flex items-center justify-center translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                <ArrowUpRight className="w-6 h-6" />
-              </div>
-
-              <div className="absolute bottom-10 left-10 right-10">
-                <p className="text-accent-pink text-xs font-black tracking-widest uppercase mb-2">
-                  {project.category} | {project.year}
-                </p>
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-white/60 text-sm font-light">
-                  {project.location}
-                </p>
-              </div>
+            {/* Image Container - Larger Scale */}
+            <div className="w-full lg:w-3/5 xl:w-[65%] group relative">
+              <motion.div 
+                whileHover={{ scale: 0.98 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="aspect-[16/9] md:aspect-[21/9] lg:aspect-[16/9] overflow-hidden rounded-[2rem] md:rounded-[3rem] bg-white/5 border border-white/10 relative overflow-hidden shadow-2xl shadow-black/50"
+              >
+                <Image 
+                  src={project.mainImage}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-[2s] group-hover:scale-110 grayscale-[20%] group-hover:grayscale-0"
+                  priority={index < 2}
+                />
+                
+                {/* Subtle Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-700" />
+                
+                {/* Floating Icon */}
+                <div className="absolute top-10 right-10 w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700 -rotate-45 group-hover:rotate-0">
+                  <ArrowUpRight className="w-7 h-7" />
+                </div>
+              </motion.div>
             </div>
             
-            <div className="mt-6 px-4">
-              <p className="text-white/40 leading-relaxed text-sm line-clamp-2">
-                {project.description}
-              </p>
+            {/* Text Content - Refined Staggered Typography */}
+            <div className={`w-full lg:w-2/5 xl:w-[35%] ${index % 2 === 0 ? 'lg:text-left' : 'lg:text-right'} px-4 md:px-0`}>
+              <motion.div
+                initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 1 }}
+              >
+                <div className={`flex items-center gap-3 mb-6 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+                  <span className="text-accent-pink/50 text-sm font-black tracking-widest">0{index + 1}</span>
+                  <div className="h-[1px] w-8 bg-accent-pink/30" />
+                  <p className="text-accent-pink text-[11px] font-black tracking-[0.4em] uppercase">
+                    {project.category}
+                  </p>
+                </div>
+                
+                <h3 className="text-4xl md:text-5xl xl:text-6xl font-black text-white mb-8 leading-[1.1] tracking-tighter">
+                  {project.title}
+                </h3>
+                
+                <div className={`flex flex-col gap-6 ${index % 2 === 0 ? 'items-start' : 'items-end'}`}>
+                  <p className="text-white/60 text-lg leading-relaxed font-light max-w-md">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-col gap-1">
+                    <span className="text-white/30 text-xs font-bold tracking-widest uppercase">{project.location}</span>
+                    <span className="text-accent-pink/40 text-[10px] font-black tracking-widest uppercase">{project.year}</span>
+                  </div>
+                  
+                  <motion.div 
+                    whileHover={{ x: index % 2 === 0 ? 10 : -10 }}
+                    className="mt-4 flex items-center gap-4 text-white/40 hover:text-white transition-colors cursor-pointer group/link"
+                  >
+                    <span className="text-xs font-black tracking-[0.2em] uppercase">View Project Detail</span>
+                    <div className="w-12 h-[1px] bg-white/20 group-hover/link:w-24 transition-all duration-500" />
+                  </motion.div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         ))}

@@ -8,6 +8,7 @@
   --text-secondary: #555555;
   --accent-gold: #C5A059;
   --text-dimmed: #E2E2E2; /* 화이트보다 차분한 소프트 그레이 */
+  --accent-pink: #FF8BA7;
 }
 
 [data-theme='dark'] {

@@ -97,7 +97,7 @@ export default function ServiceCards() {
               <div className="h-[1px] w-12 bg-accent-pink" />
               <p className="text-accent-pink text-xs tracking-[0.4em] font-bold uppercase">Precision in Execution</p>
             </div>
-            <h2 className="text-5xl lg:text-7xl font-black text-white leading-[1.1] mb-8 uppercase">
+            <h2 className="text-3xl md:text-5xl font-black text-white leading-[1.1] mb-8 uppercase">
               실체적 변화를 만드는<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">전문 서비스</span>
             </h2>

@@ -177,7 +177,7 @@ export default function PortfolioEditorial() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] bg-accent-pink/5 blur-[150px] rounded-full pointer-events-none" />
 
         {/* Header Section */}
-        <div className="px-[10vw] pt-24 mb-16 relative z-30 pointer-events-none">
+        <div className="px-[10vw] pt-24 mb-16 relative z-[60] pointer-events-none">
           <div className="space-y-6">
             <motion.p 
               className="text-xs font-black tracking-[0.8em] text-white/20 uppercase"
@@ -185,16 +185,15 @@ export default function PortfolioEditorial() {
               Selected Works
             </motion.p>
             <motion.h2 
-              className="text-6xl md:text-8xl font-black text-white uppercase leading-none tracking-tighter"
+              className="text-4xl md:text-6xl font-black text-white uppercase leading-none tracking-tighter"
             >
-              찾아가는 가치,<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white/10 uppercase">포트폴리오</span>
+              찾아가는 가치, <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white/10 uppercase">포트폴리오</span>
             </motion.h2>
           </div>
         </div>
 
         {/* Horizontal Track - THE CORE INTERACTION AREA */}
-        <div className="flex-1 flex items-center relative z-20 pointer-events-auto">
+        <div className="flex-1 flex items-center relative z-10 pointer-events-auto">
           <motion.div 
             style={{ x, opacity }} 
             className="flex items-center gap-32 min-w-max px-[10vw]"
