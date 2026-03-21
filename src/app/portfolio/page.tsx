@@ -13,7 +13,7 @@ export default function PortfolioPage() {
         <motion.p 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-accent-pink text-xs md:text-sm tracking-[0.5em] font-black uppercase mb-6"
+          className="text-accent-gold text-xs md:text-sm tracking-[0.5em] font-black uppercase mb-6"
         >
           Project Archive
         </motion.p>
@@ -79,9 +79,9 @@ export default function PortfolioPage() {
                 transition={{ delay: 0.4, duration: 1 }}
               >
                 <div className={`flex items-center gap-3 mb-6 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                  <span className="text-accent-pink/50 text-sm font-black tracking-widest">0{index + 1}</span>
-                  <div className="h-[1px] w-8 bg-accent-pink/30" />
-                  <p className="text-accent-pink text-[11px] font-black tracking-[0.4em] uppercase">
+                  <span className="text-accent-gold/50 text-sm font-black tracking-widest">0{index + 1}</span>
+                  <div className="h-[1px] w-8 bg-accent-gold/30" />
+                  <p className="text-accent-gold text-[11px] font-black tracking-[0.4em] uppercase">
                     {project.category}
                   </p>
                 </div>
@@ -97,7 +97,7 @@ export default function PortfolioPage() {
                   
                   <div className="flex flex-col gap-1">
                     <span className="text-white/30 text-xs font-bold tracking-widest uppercase">{project.location}</span>
-                    <span className="text-accent-pink/40 text-[10px] font-black tracking-widest uppercase">{project.year}</span>
+                    <span className="text-accent-gold/40 text-[10px] font-black tracking-widest uppercase">{project.year}</span>
                   </div>
                   
                   <motion.div 

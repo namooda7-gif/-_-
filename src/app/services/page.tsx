@@ -56,7 +56,7 @@ export default function ServicesPage() {
   const [selectedTag, setSelectedTag] = useState<TagType | null>(null);
 
   return (
-    <main className="h-screen w-full overflow-y-auto snap-y snap-mandatory bg-[#0A0A0A] text-white select-none relative">
+    <main className="h-screen w-full overflow-y-auto snap-y snap-proximity-container bg-[#0A0A0A] text-white select-none relative">
       {services.map((service) => (
         <section 
           key={service.id} 
@@ -68,10 +68,10 @@ export default function ServicesPage() {
               src={service.bgImage}
               alt={service.category}
               fill
-              className="object-cover opacity-40 mix-blend-luminosity scale-105"
+              className="object-cover opacity-60 mix-blend-luminosity scale-105"
             />
             {/* Gradient Overlay for Readability */}
-            <div className={`absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r \${service.isAccent ? 'from-[#bd3a5d]/90 via-[#0A0A0A]/90 to-[#0A0A0A]' : 'from-[#0A0A0A] via-[#0A0A0A]/80 to-transparent'}`} />
+            <div className={`absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r ${service.isAccent ? 'from-[#bd3a5d]/70 via-[#0A0A0A]/70 to-[#0A0A0A]' : 'from-[#0A0A0A]/80 via-[#0A0A0A]/50 to-transparent'}`} />
           </div>
 
           <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24 flex flex-col md:flex-row h-full pb-20 md:pb-0">
@@ -93,14 +93,14 @@ export default function ServicesPage() {
 
               {/* Mobile Only Header */}
               <div className="md:hidden flex flex-col justify-start w-full">
-                <p className="text-[10px] tracking-[0.4em] font-black uppercase text-accent-pink">{service.category}</p>
+                <p className="text-[10px] tracking-[0.4em] font-black uppercase text-accent-gold">{service.category}</p>
                 <p className="text-5xl font-black text-white/30 font-serif mt-2">{service.id}</p>
               </div>
             </div>
 
             {/* Main Content */}
             <div className="flex-1 md:w-3/4 flex flex-col justify-end md:justify-center p-0 md:pl-20 relative">
-                <p className="hidden md:block text-xs font-black tracking-[0.6em] text-accent-pink uppercase mb-8">
+                <p className="hidden md:block text-xs font-black tracking-[0.6em] text-accent-gold uppercase mb-8">
                   {service.category}
                 </p>
 
@@ -136,10 +136,10 @@ export default function ServicesPage() {
                         <button
                           key={tagIndex}
                           onClick={() => setSelectedTag(selectedTag?.name === tag.name ? null : tag)}
-                          className={`group relative px-6 py-3 text-xs md:text-sm font-bold tracking-widest uppercase border \${service.isAccent ? 'border-white/40' : 'border-white/20'} \${selectedTag?.name === tag.name ? 'bg-white/20 text-white border-white scale-[1.02]' : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'} rounded-full backdrop-blur-md transition-all duration-300 flex items-center gap-3 overflow-hidden shadow-lg`}
+                          className={`group relative px-6 py-3 text-xs md:text-sm font-bold tracking-widest uppercase border ${service.isAccent ? 'border-white/40' : 'border-white/20'} ${selectedTag?.name === tag.name ? 'bg-white/20 text-white border-white scale-[1.02]' : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'} rounded-full backdrop-blur-md transition-all duration-300 flex items-center gap-3 overflow-hidden shadow-lg`}
                         >
                           <span className="relative z-10">{tag.name}</span>
-                          <span className={`relative z-10 w-4 h-4 rounded-full \${selectedTag?.name === tag.name ? 'bg-white text-black' : 'bg-white/20 group-hover:bg-white group-hover:text-black'} flex items-center justify-center transition-colors`}>
+                          <span className={`relative z-10 w-4 h-4 rounded-full ${selectedTag?.name === tag.name ? 'bg-white text-black' : 'bg-white/20 group-hover:bg-white group-hover:text-black'} flex items-center justify-center transition-colors`}>
                             <motion.svg 
                               animate={{ rotate: selectedTag?.name === tag.name ? 45 : 0 }}
                               className="w-2.5 h-2.5" 
@@ -165,7 +165,7 @@ export default function ServicesPage() {
                           transition={{ type: "spring", damping: 30, stiffness: 200 }}
                           className="overflow-hidden mt-8"
                         >
-                          <div className={`relative p-8 md:p-10 rounded-3xl border border-white/10 \${service.isAccent ? 'bg-white/10 backdrop-blur-md' : 'bg-white/5 backdrop-blur-sm'}`}>
+                          <div className={`relative p-8 md:p-10 rounded-3xl border border-white/10 ${service.isAccent ? 'bg-white/10 backdrop-blur-md' : 'bg-white/5 backdrop-blur-sm'}`}>
                             {/* Close Button */}
                             <button 
                               onClick={() => setSelectedTag(null)}
@@ -177,7 +177,7 @@ export default function ServicesPage() {
                             </button>
 
                             <div className="flex flex-col gap-4">
-                              <span className="text-[10px] tracking-[0.4em] font-black uppercase text-accent-pink">Service Detail</span>
+                              <span className="text-[10px] tracking-[0.4em] font-black uppercase text-accent-gold">Service Detail</span>
                               <h4 className="text-xl md:text-2xl font-bold text-white">{selectedTag.name}</h4>
                               <div className="h-[1px] w-12 bg-white/20" />
                               <p className="text-white/70 text-base md:text-lg leading-relaxed font-light max-w-2xl">
@@ -195,10 +195,10 @@ export default function ServicesPage() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="mt-12 text-accent-pink text-sm font-black tracking-widest uppercase flex items-center gap-4"
+                    className="mt-12 text-accent-gold text-sm font-black tracking-widest uppercase flex items-center gap-4"
                   >
                     <span>Only at Laol</span>
-                    <div className="h-[1px] w-12 bg-accent-pink" />
+                    <div className="h-[1px] w-12 bg-accent-gold" />
                   </motion.div>
                 )}
             </div>

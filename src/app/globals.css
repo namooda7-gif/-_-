@@ -8,7 +8,6 @@
   --text-secondary: #555555;
   --accent-gold: #C5A059;
   --text-dimmed: #E2E2E2; /* 화이트보다 차분한 소프트 그레이 */
-  --accent-pink: #FF8BA7;
 }
 
 [data-theme='dark'] {
@@ -26,10 +25,6 @@ body {
 
 html {
   scroll-behavior: smooth;
-  /* 페이지 전체에 자석 효과(Scroll Snap) 적용 */
-  scroll-snap-type: y mandatory;
-  /* 스냅 시 헤더와 겹치지 않도록 상단 여백 확보 */
-  scroll-padding-top: 100px;
 }
 
 /* 히어로 확장 시 GNB 숨김 */
@@ -42,11 +37,17 @@ html {
 }
 
 
+/* 스크롤 스냅 컨테이너 - 필요한 페이지에서만 직접 호출 */
+.snap-mandatory-container {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-proximity-container {
+  scroll-snap-type: y proximity;
+}
+
 section {
   position: relative;
-  /* 스크롤 스냅 자석 효과: 노트북 보정 - 중앙 정렬로 변경 */
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
 }
 
 /* 스크롤 스냅 컨테이너 (필요 시 사용) */

@@ -20,7 +20,7 @@ export default function ThemeSwitcher() {
     const root = document.documentElement;
     
     root.style.setProperty('--bg-primary', theme.bg);
-    root.style.setProperty('--accent-pink', theme.id === 'cream' ? '#FF8BA7' : '#FFFFFF'); 
+    root.style.setProperty('--accent-gold', theme.id === 'cream' ? '#C5A059' : '#FFFFFF'); 
     root.setAttribute('data-theme', theme.dark ? 'light' : 'dark');
     localStorage.setItem('laol-theme', themeId);
     setCurrentTheme(themeId);
@@ -79,7 +79,7 @@ export default function ThemeSwitcher() {
         {/* Main Palette Toggler */}
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-14 h-14 bg-accent-pink text-white rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95 z-50"
+          className="w-14 h-14 bg-accent-gold text-white rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 active:scale-95 z-50"
           animate={{ rotate: isOpen ? -15 : 0 }}
         >
           <Palette size={28} />

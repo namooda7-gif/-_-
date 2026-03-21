@@ -21,6 +21,7 @@ export default function HeroGallery() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const carouselRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -66,18 +67,18 @@ export default function HeroGallery() {
     setCurrentImageIndex(0);
   };
 
-  const handleNextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const currentStyle = interiorStyles[activeIndex];
+  const handleNextImage = (e?: React.MouseEvent | Event | any) => {
+    if (e && e.stopPropagation) e.stopPropagation();
+    const currentStyle = interiorStyles[activeIndex >= 0 ? activeIndex : 0];
     const imgs = currentStyle.galleryImages || [];
     if (imgs.length > 0) {
       setCurrentImageIndex(prev => (prev + 1) % imgs.length);
     }
   };
 
-  const handlePrevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const currentStyle = interiorStyles[activeIndex];
+  const handlePrevImage = (e?: React.MouseEvent | Event | any) => {
+    if (e && e.stopPropagation) e.stopPropagation();
+    const currentStyle = interiorStyles[activeIndex >= 0 ? activeIndex : 0];
     const imgs = currentStyle.galleryImages || [];
     if (imgs.length > 0) {
       setCurrentImageIndex(prev => (prev - 1 + imgs.length) % imgs.length);
@@ -90,7 +91,9 @@ export default function HeroGallery() {
 
   const getTypography = (name: string) => {
     const len = name.length;
-    if (len > 11) return { fontSize: 'clamp(2rem, 5.5vw, 6.5rem)', spacing: '2vw' };
+    // Extra conservative for laptop (1280px) to ensure absolute single-line
+    if (len > 13) return { fontSize: 'clamp(1.2rem, 3.8vw, 5rem)', spacing: '1.5vw' };
+    if (len > 11) return { fontSize: 'clamp(1.8rem, 4.5vw, 6rem)', spacing: '2vw' };
     if (len > 8) return { fontSize: 'clamp(2.5rem, 8vw, 9rem)', spacing: '3vw' };
     if (len > 6) return { fontSize: 'clamp(3rem, 10vw, 11rem)', spacing: '4.5vw' };
     return { fontSize: 'clamp(3.5rem, 15vw, 14rem)', spacing: '8vw' };
@@ -125,18 +128,27 @@ export default function HeroGallery() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1, ease: "easeInOut" }}
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.8}
+                onDragEnd={(e, { offset }) => {
+                  const swipe = offset.x;
+                  if (swipe < -50) {
+                    handleNextImage(e);
+                  } else if (swipe > 50) {
+                    handlePrevImage(e);
+                  }
+                }}
               >
                 <Image
                   src={activeImage}
                   alt={currentStyle.nameEn}
                   fill
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover pointer-events-none"
                   priority
                 />
-                <div style={{ 
-                  position: 'absolute', 
-                  inset: 0, 
+                <div className="absolute inset-0 pointer-events-none" style={{ 
                   background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 50%, rgba(0,0,0,0.6) 100%)'
                 }} />
               </motion.div>
@@ -188,7 +200,7 @@ export default function HeroGallery() {
                 animate={{ letterSpacing: spacing, opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 className="text-white font-black uppercase text-center leading-[1] drop-shadow-2xl max-w-full"
-                style={{ fontSize: fontSize, lineHeight: '0.9', whiteSpace: currentStyle.nameEn.includes(' ') ? 'normal' : 'nowrap' }}
+                style={{ fontSize: fontSize, lineHeight: '0.9', whiteSpace: 'nowrap' }}
               >
                 {currentStyle.nameEn}
               </motion.h2>
@@ -281,7 +293,7 @@ export default function HeroGallery() {
                     animate={{
                       height: activeIndex === i ? 20 : 8,
                       width: 1,
-                      backgroundColor: activeIndex === i ? (interiorStyles[i].bgColor || '#FF8BA7') : 'rgba(255,255,255,0.2)',
+                      backgroundColor: activeIndex === i ? (interiorStyles[i].bgColor || '#C5A059') : 'rgba(255,255,255,0.2)',
                     }}
                     className="cursor-pointer hover:bg-white/50 transition-colors"
                   />
@@ -299,8 +311,16 @@ export default function HeroGallery() {
 
       {/* CRITICAL DESIGN RULE: Gallery MUST remain Vertically Centered and Pushed to the Right Edge. DO NOT RELOCATE. */}
       {!isExpanded && (
-        <div className="absolute inset-y-0 left-0 right-0 flex flex-col justify-center items-end z-10 pr-2 md:pr-4 lg:pr-6 pointer-events-none">
-          <div className="flex gap-2 lg:gap-4 items-center pointer-events-auto">
+        <div 
+          className="absolute inset-y-0 left-0 right-0 overflow-hidden flex flex-col justify-center items-end z-10 pr-2 md:pr-4 lg:pr-6 pointer-events-none" 
+          ref={carouselRef}
+        >
+          <motion.div 
+            drag="x"
+            dragConstraints={carouselRef}
+            dragElastic={0.2}
+            className="flex gap-2 lg:gap-4 items-center pointer-events-auto cursor-grab active:cursor-grabbing w-max mr-0 md:mr-0 pl-[50vw] md:pl-0"
+          >
             {interiorStyles.map((style, i) => {
             const isActive = activeIndex === i;
             return (
@@ -334,6 +354,7 @@ export default function HeroGallery() {
                   y: isActive ? 0 : [0, -25, 0],
                 }}
                 whileHover={!isActive ? { y: -50, scale: 1.05 } : {}}
+                whileTap={!isActive ? { scale: 0.95 } : {}}
                 transition={{
                   y: !isActive ? { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 } : { duration: 0.5 },
                   width: { type: "spring", stiffness: 200, damping: 25 },
@@ -369,7 +390,7 @@ export default function HeroGallery() {
                     src={style.previewImage}
                     alt={style.nameEn}
                     fill
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover w-full h-full transition-transform duration-700 md:group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority={i < 3}
                   />
@@ -394,7 +415,7 @@ export default function HeroGallery() {
                 {!isActive && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <span 
-                      className="[writing-mode:vertical-lr] rotate-180 text-[10px] font-bold tracking-[0.5em] text-white/40 uppercase transition-opacity duration-500 group-hover:opacity-100"
+                      className="[writing-mode:vertical-lr] rotate-180 text-[10px] font-bold tracking-[0.5em] text-white uppercase transition-opacity duration-500 opacity-100 md:opacity-40 md:group-hover:opacity-100"
                     >
                       {style.nameEn}
                     </span>
@@ -406,7 +427,7 @@ export default function HeroGallery() {
                     animate={{ opacity: 1, y: 0 }}
                     className="absolute inset-0 flex flex-col items-center justify-end pb-12 bg-black/20 pointer-events-none"
                   >
-                    <h2 className="text-white text-3xl lg:text-5xl font-black uppercase text-center leading-tight drop-shadow-lg px-4">
+                    <h2 className="text-white text-lg md:text-xl lg:text-4xl font-black uppercase text-center leading-tight drop-shadow-lg px-2 whitespace-nowrap overflow-hidden text-ellipsis">
                       {style.nameEn}
                     </h2>
                   </motion.div>
@@ -414,7 +435,7 @@ export default function HeroGallery() {
               </motion.button>
             );
           })}
-          </div>
+          </motion.div>
         </div>
       )}
 

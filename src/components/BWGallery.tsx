@@ -28,7 +28,7 @@ export default function BWGallery() {
     <section className="py-24 bg-background overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
         <div className="mb-16">
-          <p className="text-accent-pink text-xs tracking-[0.3em] font-bold mb-4">PORTFOLIO</p>
+          <p className="text-accent-gold text-xs tracking-[0.3em] font-bold mb-4">PORTFOLIO</p>
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground">
             내가 깨우는 <br />
             <span className="text-text-secondary">아름다운 공간들</span>

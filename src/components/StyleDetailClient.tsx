@@ -68,7 +68,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <p className="text-accent-pink text-sm tracking-[0.4em] font-bold mb-4 uppercase">
+            <p className="text-accent-gold text-sm tracking-[0.4em] font-bold mb-4 uppercase">
               {style.nameEn} Collection
             </p>
             <h1 className="text-5xl md:text-7xl font-black text-white mb-8 drop-shadow-2xl">
@@ -97,12 +97,12 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
         <div className="fixed left-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-4 group/prev hidden xl:flex">
           <Link 
             href={`/styles/${prevStyle.slug}`}
-            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-pink hover:border-accent-pink transition-all duration-500 shadow-2xl"
+            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-gold hover:border-accent-gold transition-all duration-500 shadow-2xl"
           >
             <ArrowLeft className="w-6 h-6 group-hover/prev:-translate-x-1 transition-transform" />
           </Link>
           <div className="absolute left-20 opacity-0 group-hover/prev:opacity-100 -translate-x-4 group-hover/prev:translate-x-0 transition-all duration-500 pointer-events-none whitespace-nowrap">
-            <p className="text-accent-pink text-[10px] font-black uppercase tracking-[0.2em] mb-1">Previous</p>
+            <p className="text-accent-gold text-[10px] font-black uppercase tracking-[0.2em] mb-1">Previous</p>
             <p className="text-white font-bold text-lg">{prevStyle.nameKo}</p>
           </div>
         </div>
@@ -111,19 +111,19 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
         <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-4 group/next hidden xl:flex text-right">
           <Link 
             href={`/styles/${nextStyle.slug}`}
-            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-pink hover:border-accent-pink transition-all duration-500 shadow-2xl"
+            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-gold hover:border-accent-gold transition-all duration-500 shadow-2xl"
           >
             <ArrowRight className="w-6 h-6 group-hover/next:translate-x-1 transition-transform" />
           </Link>
           <div className="absolute right-20 opacity-0 group-hover/next:opacity-100 translate-x-4 group-hover/next:-translate-x-0 transition-all duration-500 pointer-events-none whitespace-nowrap">
-            <p className="text-accent-pink text-[10px] font-black uppercase tracking-[0.2em] mb-1">Next Style</p>
+            <p className="text-accent-gold text-[10px] font-black uppercase tracking-[0.2em] mb-1">Next Style</p>
             <p className="text-white font-bold text-lg">{nextStyle.nameKo}</p>
           </div>
         </div>
       </section>
 
       {/* Content Section */}
-      <section className="max-w-[1200px] mx-auto px-4 md:px-8 -mt-40 relative z-20">
+      <section className="max-w-[1200px] mx-auto px-4 md:px-8 -mt-60 relative z-20">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,15 +136,14 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
         >
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div className={style.isDark ? 'text-white' : 'text-black'}>
-              <div className={`flex items-center gap-3 mb-6 ${style.isDark ? 'text-accent-pink' : 'text-black/60'}`}>
-                <Sparkles className="w-5 h-5" />
+              <div className={`flex items-center gap-3 mb-6 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`}>
                 <span className="text-sm font-black tracking-widest uppercase">Philosophy</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
+              <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight break-keep">
                 {style.nameKo} 스타일로 완성하는 <br />
                 <span className={style.isDark ? 'text-white/40' : 'text-black/40'}>공간의 시그니처</span>
               </h2>
-              <p className={`text-xl leading-relaxed mb-10 ${style.isDark ? 'text-white/60' : 'text-black/70'}`}>
+              <p className={`text-xl leading-relaxed mb-10 break-keep ${style.isDark ? 'text-white/60' : 'text-black/70'}`}>
                 {style.description}
               </p>
               
@@ -154,7 +153,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                 }`}
               >
                 <h4 className="font-black mb-4 flex items-center gap-2 opacity-80 uppercase tracking-widest text-xs">
-                  <Hash className={`w-4 h-4 ${style.isDark ? 'text-accent-pink' : 'text-black/60'}`} />
+                  <Hash className={`w-4 h-4 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`} />
                   Interior Keywords
                 </h4>
                 <div className="flex flex-wrap gap-2">
@@ -165,7 +164,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                         style.isDark ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
                       }`}
                     >
-                      <div className={`w-1.5 h-1.5 rounded-full ${style.isDark ? 'bg-accent-pink' : 'bg-black/60'}`} />
+                      <div className={`w-1.5 h-1.5 rounded-full ${style.isDark ? 'bg-accent-gold' : 'bg-black/60'}`} />
                       {kw}
                     </div>
                   ))}
@@ -218,7 +217,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-accent-pink text-xs tracking-[0.5em] font-black mb-6 uppercase"
+                className="text-accent-gold text-xs tracking-[0.5em] font-black mb-6 uppercase"
               >
                 Showcase Archive
               </motion.p>
@@ -247,30 +246,30 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+          <div className="grid grid-cols-1 gap-0">
             {style.galleryImages.map((img, idx) => (
               <motion.div 
                 key={idx}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: (idx % 2) * 0.2, duration: 1 }}
-                className={`relative rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl group border border-white/5 bg-white/5 ${
-                  idx % 4 === 1 || idx % 4 === 2 ? 'md:translate-y-20' : ''
-                }`}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="relative rounded-none overflow-hidden group border-none"
               >
-                <div className="aspect-[4/3] relative overflow-hidden">
+                <div className="aspect-[21/9] md:aspect-[24/10] relative overflow-hidden">
                   <Image 
                     src={img} 
                     alt={`${style.nameKo} Gallery ${idx}`} 
                     fill
-                    className="object-cover transform transition-transform duration-[2s] group-hover:scale-110 grayscale-[20%] group-hover:grayscale-0"
+                    className="object-cover transform transition-transform duration-[3s] group-hover:scale-105"
                   />
                   
                   {/* Premium Overlay on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 p-12 flex flex-col justify-end">
-                    <p className="text-accent-pink text-xs font-black tracking-[0.3em] uppercase mb-2">Detailed View</p>
-                    <h4 className="text-2xl font-bold text-white uppercase tracking-tight">Concept Showcase {idx + 1}</h4>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 p-12 flex flex-col justify-end">
+                    <p className="text-accent-gold text-xs font-black tracking-[0.5em] uppercase mb-4">Space Archetype {idx + 1}</p>
+                    <h4 className="text-3xl font-bold text-white uppercase tracking-tight">
+                      {idx === 0 ? 'Living Space' : idx === 1 ? 'Private Bath' : 'Gourmet Kitchen'}
+                    </h4>
                   </div>
                 </div>
               </motion.div>
@@ -289,7 +288,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
           }}
         >
           <div className={`absolute top-0 right-0 w-64 h-64 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 ${
-            style.isDark ? 'bg-accent-pink/10' : 'bg-black/10'
+            style.isDark ? 'bg-accent-gold/10' : 'bg-black/10'
           }`} />
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -301,7 +300,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
               나만의 공간을 완성하고 싶으신가요?
             </h2>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Link href="/contact" className="px-10 py-5 bg-accent-pink text-white font-black rounded-full hover:scale-105 transition-all shadow-lg flex items-center justify-center gap-3">
+              <Link href="/contact" className="px-10 py-5 bg-accent-gold text-white font-black rounded-full hover:scale-105 transition-all shadow-lg flex items-center justify-center gap-3">
                 상담 예약하기 <ChevronRight className="w-5 h-5" />
               </Link>
               <Link href="/services" className={`px-10 py-5 backdrop-blur-md border font-black rounded-full transition-all flex items-center justify-center ${

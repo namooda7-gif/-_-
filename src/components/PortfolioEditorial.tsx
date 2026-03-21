@@ -12,6 +12,14 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const colorImageRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
@@ -97,7 +105,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
-      className="relative shrink-0 w-[85vw] md:w-[48vw] lg:w-[48vw] aspect-[16/10] overflow-hidden bg-neutral-900 cursor-none ml-24 first:ml-[0vw] last:mr-[10vw] pointer-events-auto z-50 group"
+      className="relative shrink-0 w-[85vw] md:w-[48vw] lg:w-[48vw] aspect-[16/10] overflow-hidden bg-neutral-900 cursor-auto md:cursor-none ml-4 md:ml-24 first:ml-[0vw] last:mr-[10vw] pointer-events-auto z-50 group"
     >
       {/* Base grayscale layer */}
       <div className="absolute inset-0 z-0 grayscale contrast-125 brightness-75">
@@ -110,10 +118,10 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
         />
       </div>
 
-      {/* Color layer (Masked by Canvas) */}
+      {/* Color layer (Masked by Canvas on Desktop, visible on Mobile) */}
       <div 
         ref={colorImageRef}
-        className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="absolute inset-0 z-10 pointer-events-none opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
         style={{
           maskSize: "100% 100%",
           maskRepeat: "no-repeat",
@@ -149,16 +157,16 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
         )}
       </AnimatePresence>
 
-      {/* Text Info */}
-      <div className="absolute inset-0 z-20 p-10 flex flex-col justify-end pointer-events-none">
+      {/* Text Info (Always visible on mobile) */}
+      <div className="absolute inset-0 z-20 p-6 md:p-10 flex flex-col justify-end pointer-events-none">
         <motion.div className="overflow-hidden">
-          <span className="text-sm font-black tracking-[0.5em] text-white/60 uppercase block mb-2">
+          <span className="text-xs md:text-sm font-black tracking-[0.5em] text-white/60 uppercase block mb-1 md:mb-2">
             Showcase {index + 1}
           </span>
-          <h3 className="text-4xl font-black text-white uppercase tracking-tighter leading-none mb-4 translate-y-full group-hover:translate-y-0 transition-transform duration-700">
+          <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none mb-4 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-700">
             {project.title}
           </h3>
-          <div className="w-0 group-hover:w-16 h-1 bg-accent-gold transition-all duration-700 delay-100" />
+          <div className="w-16 md:w-0 md:group-hover:w-16 h-1 bg-accent-gold transition-all duration-700 md:delay-100" />
         </motion.div>
       </div>
     </motion.div>
@@ -167,6 +175,15 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
 
 export default function PortfolioEditorial() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const dragConstraintRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // High-reliability scroll tracking
   const { scrollYProgress } = useScroll({
@@ -185,10 +202,10 @@ export default function PortfolioEditorial() {
   return (
     <section 
       ref={containerRef} 
-      className="relative h-[1500vh] bg-[#0A0A0A] z-20"
+      className="relative h-[80vh] md:h-[1500vh] bg-[#0A0A0A] z-20 overflow-hidden md:overflow-visible"
       style={{ isolation: 'isolate' }}
     >
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden pointer-events-none">
+      <div className="md:sticky top-0 h-[80vh] md:h-screen w-full flex flex-col justify-center overflow-visible md:overflow-hidden pointer-events-none">
         {/* Background Highlight */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] bg-accent-gold/5 blur-[150px] rounded-full pointer-events-none" />
 
@@ -209,10 +226,13 @@ export default function PortfolioEditorial() {
         </div>
 
         {/* Horizontal Track - THE CORE INTERACTION AREA */}
-        <div className="flex-1 flex items-center relative z-10 pointer-events-auto">
+        <div className="flex-1 flex items-center relative z-10 pointer-events-auto overflow-hidden md:overflow-visible w-full" ref={dragConstraintRef}>
           <motion.div 
-            style={{ x, opacity }} 
-            className="flex items-center gap-40 min-w-max px-[10vw]"
+            style={isMobile ? {} : { x, opacity }} 
+            drag={isMobile ? "x" : false}
+            dragConstraints={dragConstraintRef}
+            dragElastic={0.1}
+            className="flex items-center gap-10 md:gap-40 min-w-max pl-4 md:px-[10vw] cursor-grab active:cursor-grabbing md:cursor-auto"
           >
             {projects.map((project, index) => (
               <PortfolioItem 

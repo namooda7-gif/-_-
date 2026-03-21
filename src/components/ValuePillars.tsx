@@ -22,7 +22,7 @@ const pillars = [
     description: "1mm의 마감 차이가 공간의 호흡을 결정합니다. 손끝에서 전해지는 질감과 빛의 흐름까지 세밀하게 설계하여 감동을 전합니다.",
     icon: Focus,
     image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800", // Detailed texture/interior
-    color: "from-purple-500/20 to-pink-500/20"
+    color: "from-purple-500/20 to-yellow-600/20"
   },
   {
     id: "03",
@@ -54,7 +54,7 @@ export default function ValuePillars() {
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <p className="text-accent-pink text-xs tracking-[0.3em] font-bold mb-4 uppercase text-center md:text-left">The Value of Laol</p>
+            <p className="text-accent-gold text-xs tracking-[0.3em] font-bold mb-4 uppercase text-center md:text-left">The Value of Laol</p>
             <h2 className="text-4xl lg:text-6xl font-black text-foreground mb-6 leading-tight text-center md:text-left">
               공간은 숫자로 증명되지 않습니다. <br />
               <span className="text-text-secondary">머무는 이의 평온함으로 증명됩니다.</span>

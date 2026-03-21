@@ -72,7 +72,7 @@ export default function SolutionGrid() {
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-1000 ease-out"
+                  className="object-cover opacity-40 md:group-hover:opacity-60 md:group-hover:scale-110 transition-all duration-1000 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-80" />
               </div>
@@ -80,10 +80,10 @@ export default function SolutionGrid() {
               {/* Content Overlay */}
               <div className="relative z-10 h-full p-8 md:p-10 flex flex-col justify-end">
                 <div className="mb-8 overflow-hidden">
-                  <span className="text-6xl font-serif text-white/10 block mb-4 group-hover:text-white/30 group-hover:-translate-y-2 transition-all duration-700">
+                  <span className="text-6xl font-serif text-white/10 block mb-4 md:group-hover:text-white/30 md:group-hover:-translate-y-2 transition-all duration-700">
                     {item.kanji}
                   </span>
-                  <h3 className="text-2xl font-black text-white mb-2 tracking-tight group-hover:text-[var(--accent-pink,#FF8BA7)] transition-colors">
+                  <h3 className="text-2xl font-black text-white mb-2 tracking-tight md:group-hover:text-[var(--accent-gold,#C5A059)] transition-colors">
                     {item.title}
                   </h3>
                   <p className="text-sm font-bold text-white/60 tracking-widest uppercase mb-6">
@@ -91,11 +91,11 @@ export default function SolutionGrid() {
                   </p>
                 </div>
 
-                <div className="h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out">
+                <div className="h-auto md:h-0 md:group-hover:h-auto opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 ease-in-out">
                   <p className="text-sm leading-relaxed text-white/40 mb-8 max-w-[280px]">
                     {item.desc}
                   </p>
-                  <div className="w-12 h-px bg-white/20 group-hover:w-full transition-all duration-1000 origin-left" />
+                  <div className="w-full md:w-12 h-px bg-white/20 md:group-hover:w-full transition-all duration-1000 origin-left" />
                 </div>
               </div>
             </motion.div>

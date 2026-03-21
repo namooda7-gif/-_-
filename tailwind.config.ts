@@ -12,7 +12,6 @@ const config: Config = {
         background: "var(--bg-primary)",
         foreground: "var(--text-primary)",
         accent: {
-          pink: "var(--accent-pink)",
           olive: "#4A5240",
           burgundy: "#5C1A2E",
           gold: "var(--accent-gold)",

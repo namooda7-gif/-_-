@@ -12,14 +12,14 @@ const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: nu
     <motion.div
       className="relative shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw] h-[60vh] lg:h-[70vh] group ml-32 first:ml-0"
     >
-      <Link href={`/styles/${style.slug}`} className="block w-full h-full relative overflow-hidden rounded-[20px] lg:rounded-[40px] border border-white/5 hover:border-white/20 transition-colors duration-700">
+      <Link href={`/styles/${style.slug}`} className="block w-full h-full relative overflow-hidden rounded-[20px] lg:rounded-[40px] border border-white/5 md:hover:border-white/20 transition-colors duration-700">
         {/* Background Image with Parallax effect could be added here later */}
         <div className="absolute inset-0 z-0">
           <Image
             src={style.previewImage}
             alt={style.nameEn}
             fill
-            className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-100 grayscale-[40%] group-hover:grayscale-0"
+            className="object-cover transition-transform duration-1000 md:group-hover:scale-110 opacity-100 md:opacity-60 md:group-hover:opacity-100 grayscale-0 md:grayscale-[40%] md:group-hover:grayscale-0"
             sizes="(max-width: 1200px) 100vw, 80vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
@@ -29,17 +29,18 @@ const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: nu
         <div className="absolute inset-0 z-10 p-8 md:p-16 flex flex-col justify-between pointer-events-none">
           <div className="flex justify-between items-start">
             <div className="space-y-2">
-              <span className="text-[10px] font-black tracking-[0.5em] text-accent-pink uppercase block">
+              <span className="text-[10px] font-black tracking-[0.5em] text-accent-gold uppercase block">
                 Style Case {String(index + 1).padStart(2, '0')}
               </span>
-              <h3 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none">
+              <h3 className="text-3xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none whitespace-nowrap">
                 {style.nameEn}
               </h3>
             </div>
             
             <motion.div 
               whileHover={{ scale: 1.1, rotate: 45 }}
-              className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-auto"
+              whileTap={{ scale: 0.95 }}
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white text-black flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 pointer-events-auto"
             >
               <ArrowUpRight size={32} />
             </motion.div>
@@ -54,7 +55,7 @@ const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: nu
                   </span>
                 ))}
               </div>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed font-light line-clamp-3">
+              <p className="text-white/80 md:text-white/60 text-xs md:text-base leading-relaxed font-light line-clamp-3">
                 {style.description}
               </p>
             </div>
@@ -64,7 +65,7 @@ const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: nu
                 className="w-4 h-4 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
                 style={{ backgroundColor: style.bgColor }}
               />
-              <span className="text-base lg:text-xl font-bold tracking-tight text-white">{style.nameKo}</span>
+              <span className="text-base lg:text-xl font-bold tracking-tight text-white whitespace-nowrap break-keep">{style.nameKo}</span>
             </div>
           </div>
         </div>
@@ -108,7 +109,7 @@ export default function StylesPage() {
           animate={{ opacity: 1, y: 0 }}
           className="relative z-30 px-[10vw] pt-20 lg:pt-32 pb-4 lg:pb-8 space-y-2 lg:space-y-4 shrink-0"
         >
-          <p className="text-accent-pink text-[9px] md:text-xs tracking-[0.8em] font-black uppercase">
+          <p className="text-accent-gold text-[9px] md:text-xs tracking-[0.8em] font-black uppercase">
             Style Collections
           </p>
           <h1 className="text-3xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none whitespace-nowrap">
@@ -128,7 +129,7 @@ export default function StylesPage() {
                 공간은 단순한 물리적 장소를 넘어 삶의 철학을 담는 그릇입니다. <br className="hidden md:block" />
                 라올실내건축이 제안하는 15가지 프리미엄 스타일 보드를 통해 당신만의 감각을 발견해 보세요.
               </p>
-              <div className="flex gap-4 items-center text-accent-pink">
+              <div className="flex gap-4 items-center text-accent-gold">
                 <span className="text-xs font-black tracking-[0.4em] uppercase">Scroll to explore</span>
                 <ArrowRight size={20} />
               </div>
@@ -147,7 +148,8 @@ export default function StylesPage() {
               <Link href="/contact" className="group text-center">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="inline-block px-12 py-6 rounded-full bg-white text-black font-black uppercase tracking-[0.4em] text-sm group-hover:bg-accent-pink group-hover:text-white transition-all duration-500 shadow-2xl"
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block px-8 py-5 md:px-12 md:py-6 rounded-full bg-white text-black font-black uppercase tracking-[0.4em] text-xs md:text-sm md:group-hover:bg-accent-gold md:group-hover:text-white transition-all duration-500 shadow-2xl"
                 >
                   Start Your Project
                 </motion.div>
@@ -171,7 +173,7 @@ export default function StylesPage() {
           <div className="h-px w-full bg-white/5 relative">
             <motion.div 
               style={{ scaleX: smoothProgress, transformOrigin: "left" }}
-              className="absolute inset-0 bg-accent-pink shadow-[0_0_15px_rgba(255,139,167,0.4)]"
+              className="absolute inset-0 bg-accent-gold shadow-[0_0_15px_rgba(197,160,89,0.4)]"
             />
           </div>
         </div>
@@ -192,7 +194,7 @@ const StyleCounter = ({ progress }: { progress: MotionValue<number> }) => {
   }, [progress]);
 
   return (
-    <span className="text-accent-pink font-black text-xl tabular-nums">
+    <span className="text-accent-gold font-black text-xl tabular-nums">
       {val}
     </span>
   );
