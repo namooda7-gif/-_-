@@ -248,7 +248,7 @@ export default function HeroGallery() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 1.2 }}
-              className="text-center text-xs md:text-sm font-medium tracking-[0.4em] text-white/50 max-w-3xl px-12 leading-relaxed uppercase"
+              className="text-center text-sm md:text-lg font-bold tracking-[0.4em] text-white/50 max-w-none px-12 leading-none uppercase whitespace-nowrap"
             >
               {currentStyle.description}
             </motion.p>

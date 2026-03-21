@@ -49,9 +49,9 @@ export const interiorStyles: InteriorStyle[] = [
     nameEn: "Industrial",
     keywords: ["거친 질감", "노출", "빈티지"],
     description: "원자재의 거친 느낌을 그대로 살려 도시적이고 감각적인 분위기를 자아냅니다.",
-    previewImage: "/styles/all-styles/Industrial_living_room_202603191156.jpeg",
+    previewImage: "/styles/all-styles/Industrial_living_new.jpeg",
     galleryImages: [
-      "/styles/all-styles/Industrial_living_room_202603191156.jpeg",
+      "/styles/all-styles/Industrial_living_new.jpeg",
       "/styles/all-styles/Industrial_bedroom_Korean_202603191156.jpeg",
       "/styles/all-styles/Industrial_kitchen_202603191156.jpeg",
       "/styles/all-styles/Industrial_bathroom_202603191156.jpeg"
@@ -163,9 +163,10 @@ export const interiorStyles: InteriorStyle[] = [
     description: "대칭적 구조와 절제된 화려함이 뉴트럴 톤과 만나 현대적인 고전미를 완성합니다.",
     previewImage: "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg",
     galleryImages: [
-      "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg",
-      "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg",
-      "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg"
+      "/styles/all-styles/Neutral_Art_Deco_livingroom.jpeg",
+      "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg", // Using original for bedroom
+      "/styles/all-styles/Neutral_Art_Deco_kitchen.jpeg",
+      "/styles/all-styles/Neutral_Art_Deco_bathroom.jpeg"
     ],
     bgColor: "#A68A46",
     isDark: true,
@@ -243,8 +244,9 @@ export const interiorStyles: InteriorStyle[] = [
     previewImage: "/styles/all-styles/Color_accent_modern_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Color_accent_modern_202603191156.jpeg",
-      "/styles/all-styles/Retro_contemporary_bedroom_202603191156.jpeg", // Placeholder if specific not found
-      "/styles/all-styles/Color_accent_modern_202603191156.jpeg"
+      "/styles/all-styles/Color_accent_modern_bedroom.jpeg",
+      "/styles/all-styles/Color_accent_modern_kitchen.jpeg",
+      "/styles/all-styles/Color_accent_modern_bathroom.jpeg"
     ],
     bgColor: "#1A1D21",
     isDark: true,

@@ -15,7 +15,7 @@ const config: Config = {
           pink: "var(--accent-pink)",
           olive: "#4A5240",
           burgundy: "#5C1A2E",
-          gold: "#B8860B",
+          gold: "var(--accent-gold)",
         }
       },
     },
