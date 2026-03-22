@@ -64,16 +64,16 @@ export default function PortfolioPage() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-0 md:gap-0">
+        <div className="flex flex-col gap-0">
           {/* Living Room Transformation */}
           <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
-             <div className="w-full h-full order-1 lg:order-1">
+             <div className="w-full h-full">
                <BeforeAfterSlider 
                  beforeImage="/images/portfolio/transformation_before_v2.png" 
                  afterImage="/images/portfolio/transformation_after_v2.png" 
                />
              </div>
-             <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center order-2 lg:order-2">
+             <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center">
                <div className="space-y-6">
                  <div className="space-y-2">
                    <span className="text-accent-gold text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 01 / LIVING ROOM</span>
@@ -93,14 +93,8 @@ export default function PortfolioPage() {
              </div>
           </div>
 
-          {/* Kitchen Transformation */}
-          <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
-             <div className="w-full h-full order-1 lg:order-2">
-               <BeforeAfterSlider 
-                 beforeImage="/images/portfolio/kitchen_before.png" 
-                 afterImage="/images/portfolio/kitchen_after.png" 
-               />
-             </div>
+          {/* Kitchen Transformation - Text Left, Image Right (1:2.5) */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.5fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
              <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center order-2 lg:order-1">
                <div className="space-y-6">
                  <div className="space-y-2">
@@ -119,17 +113,23 @@ export default function PortfolioPage() {
                  </div>
                </div>
              </div>
+             <div className="w-full h-full order-1 lg:order-2">
+               <BeforeAfterSlider 
+                 beforeImage="/images/portfolio/kitchen_before.png" 
+                 afterImage="/images/portfolio/kitchen_after.png" 
+               />
+             </div>
           </div>
 
           {/* Bathroom Transformation */}
           <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
-             <div className="w-full h-full order-1 lg:order-1">
+             <div className="w-full h-full">
                <BeforeAfterSlider 
                  beforeImage="/images/portfolio/bathroom_before.png" 
                  afterImage="/images/portfolio/bathroom_after.png" 
                />
              </div>
-             <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center order-2 lg:order-2">
+             <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center">
                <div className="space-y-6">
                  <div className="space-y-2">
                    <span className="text-accent-gold text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 03 / BATHROOM</span>
