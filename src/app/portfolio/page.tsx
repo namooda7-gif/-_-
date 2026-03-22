@@ -64,7 +64,7 @@ export default function PortfolioPage() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-0">
+        <div className="flex flex-col gap-32 md:gap-48 xl:gap-64">
           {/* Living Room Transformation */}
           <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
              <div className="w-full h-full">
