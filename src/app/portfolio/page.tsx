@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { constructionProjects as projects } from '@/data/projects';
 import { ArrowUpRight } from 'lucide-react';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 
 export default function PortfolioPage() {
   return (
@@ -34,6 +35,39 @@ export default function PortfolioPage() {
           상업 공간부터 주거 공간까지, 디테일의 차이가 만드는 공간의 가치를 확인해 보세요.
         </motion.p>
       </div>
+
+      {/* Featured Transformation Slider Section */}
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="mb-32 md:mb-64"
+      >
+        <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="h-[1px] w-8 bg-accent-gold" />
+              <p className="text-accent-gold text-[10px] font-black tracking-[0.4em] uppercase">The Transformation</p>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-white leading-tight uppercase tracking-tighter">
+              낡은 공간의<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/30">드라마틱한 변화</span>
+            </h2>
+          </div>
+          <div className="md:text-right">
+            <p className="text-white/40 text-sm md:text-base font-light max-w-sm">
+              정교한 설계와 책임 시공이 만드는 가치.<br />
+              평범한 일상이 예술로 변하는 순간을 직접 경험해 보세요.
+            </p>
+          </div>
+        </div>
+
+        <BeforeAfterSlider 
+          beforeImage="/images/portfolio/transformation_before_v2.png" 
+          afterImage="/images/portfolio/transformation_after_v2.png" 
+        />
+      </motion.div>
       
       <div className="space-y-32 md:space-y-64">
         {projects.map((project, index) => (
