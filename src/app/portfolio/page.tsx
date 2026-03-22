@@ -44,29 +44,61 @@ export default function PortfolioPage() {
         transition={{ duration: 1 }}
         className="mb-32 md:mb-64"
       >
-        <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-[1px] w-8 bg-accent-gold" />
-              <p className="text-accent-gold text-[10px] font-black tracking-[0.4em] uppercase">The Transformation</p>
+        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8 text-center md:text-left">
+          <div className="max-w-3xl mx-auto md:mx-0">
+            <div className="flex items-center justify-center md:justify-start gap-2 mb-6">
+              <div className="h-[1px] w-12 bg-accent-gold" />
+              <p className="text-accent-gold text-[12px] font-black tracking-[0.5em] uppercase">Transformation Gallery</p>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-white leading-tight uppercase tracking-tighter">
-              낡은 공간의<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/30">드라마틱한 변화</span>
+            <h2 className="text-4xl md:text-7xl font-black text-white leading-tight uppercase tracking-tighter">
+              평범한 일상이<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/50 to-white/10 italic">예술이 되는 순간</span>
             </h2>
           </div>
-          <div className="md:text-right">
-            <p className="text-white/40 text-sm md:text-base font-light max-w-sm">
-              정교한 설계와 책임 시공이 만드는 가치.<br />
-              평범한 일상이 예술로 변하는 순간을 직접 경험해 보세요.
+          <div className="hidden md:block">
+            <p className="text-white/40 text-lg font-light max-w-sm border-l border-white/10 pl-8">
+              오차 없는 설계와 최고급 자재가 만났을 때 생기는 공간의 기적을 확인하세요.
             </p>
           </div>
         </div>
 
-        <BeforeAfterSlider 
-          beforeImage="/images/portfolio/transformation_before_v2.png" 
-          afterImage="/images/portfolio/transformation_after_v2.png" 
-        />
+        <div className="grid grid-cols-1 gap-32 md:gap-48">
+          {/* Living Room Transformation */}
+          <div className="space-y-8">
+             <div className="flex items-baseline gap-4">
+               <span className="text-3xl font-black text-white/10">01</span>
+               <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-wider">Living Room: <span className="text-accent-gold font-light">Color Accent Modern</span></h3>
+             </div>
+             <BeforeAfterSlider 
+               beforeImage="/images/portfolio/transformation_before_v2.png" 
+               afterImage="/images/portfolio/transformation_after_v2.png" 
+             />
+          </div>
+
+          {/* Kitchen Transformation */}
+          <div className="space-y-8">
+             <div className="flex items-baseline gap-4">
+               <span className="text-3xl font-black text-white/10">02</span>
+               <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-wider">Kitchen: <span className="text-accent-gold font-light">Warm Minimalist</span></h3>
+             </div>
+             <BeforeAfterSlider 
+               beforeImage="/images/portfolio/kitchen_before.png" 
+               afterImage="/images/portfolio/kitchen_after.png" 
+             />
+          </div>
+
+          {/* Bathroom Transformation */}
+          <div className="space-y-8">
+             <div className="flex items-baseline gap-4">
+               <span className="text-3xl font-black text-white/10">03</span>
+               <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-wider">Bathroom: <span className="text-accent-gold font-light">Hotel-style Luxury</span></h3>
+             </div>
+             <BeforeAfterSlider 
+               beforeImage="/images/portfolio/bathroom_before.png" 
+               afterImage="/images/portfolio/bathroom_after.png" 
+             />
+          </div>
+        </div>
       </motion.div>
       
       <div className="space-y-32 md:space-y-64">
