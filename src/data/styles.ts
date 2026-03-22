@@ -47,7 +47,7 @@ export const interiorStyles: InteriorStyle[] = [
     nameEn: "Industrial",
     keywords: ["거친 질감", "노출", "빈티지"],
     description: "원자재의 거친 느낌을 그대로 살려 도시적이고 감각적인 분위기를 자아냅니다.",
-    previewImage: "/styles/all-styles/Industrial_bedroom_Korean_202603191156.jpeg",
+    previewImage: "/styles/all-styles/Industrial_bedroom.jpeg",
     galleryImages: [
       "/styles/all-styles/Industrial_living_new.jpeg",
       "/styles/all-styles/Industrial_bathroom_202603191156.jpeg",
