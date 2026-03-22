@@ -3,11 +3,15 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
+import ThemeManager from "@/components/ThemeManager";
+import ScrollIndicator from "@/components/ScrollIndicator";
+import { CursorProvider } from "@/context/CursorContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0A",
+  themeColor: "#0F0E0D",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -34,11 +38,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" data-theme="dark">
       <body className={inter.className}>
-        <Navigation />
-        <main>{children}</main>
-        <Footer />
+        <CursorProvider>
+          <CustomCursor />
+          <ThemeManager>
+            <Navigation />
+            {children}
+            <ScrollIndicator />
+            <Footer />
+          </ThemeManager>
+        </CursorProvider>
       </body>
     </html>
   );

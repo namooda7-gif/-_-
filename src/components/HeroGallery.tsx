@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
-import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import OptimizedImage from "./OptimizedImage";
 import { interiorStyles } from "@/data/styles";
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -49,7 +49,7 @@ export default function HeroGallery() {
   useEffect(() => {
     if (!mounted) return;
     const currentStyle = activeIndex >= 0 ? interiorStyles[activeIndex] : null;
-    const bgColor = currentStyle?.bgColor || "#0A0A0A";
+    const bgColor = currentStyle?.bgColor || "#0F0E0D";
     const isDark = currentStyle?.isDark ?? true;
     
     document.body.style.setProperty('background-color', bgColor, 'important');
@@ -107,7 +107,7 @@ export default function HeroGallery() {
         <motion.div
           id="HERO_ABSOLUTE_PORTAL"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, backgroundColor: currentStyle.bgColor || "#0A0A0A" }}
+          animate={{ opacity: 1, backgroundColor: currentStyle.bgColor || "#0F0E0D" }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
           style={{
@@ -141,7 +141,7 @@ export default function HeroGallery() {
                   }
                 }}
               >
-                <Image
+                <OptimizedImage
                   src={activeImage}
                   alt={currentStyle.nameEn}
                   fill
@@ -272,10 +272,10 @@ export default function HeroGallery() {
 
   return (
     <div
-      className="relative w-full h-full bg-[#0A0A0A] overflow-hidden"
+      className="relative w-full h-full bg-[#0F0E0D] overflow-hidden"
       style={{ 
         zIndex: 70,
-        backgroundColor: currentStyle.bgColor || "#0A0A0A",
+        backgroundColor: currentStyle.bgColor || "#0F0E0D",
         transition: 'background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1)' 
       }}
     >
@@ -386,7 +386,7 @@ export default function HeroGallery() {
                   }}
                   transition={{ type: "spring", stiffness: 50, damping: 20 }}
                 >
-                  <Image
+                  <OptimizedImage
                     src={style.previewImage}
                     alt={style.nameEn}
                     fill

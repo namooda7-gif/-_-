@@ -33,7 +33,7 @@ const solutions = [
 
 export default function SolutionGrid() {
   return (
-    <section className="py-32 px-4 md:px-8 bg-[#0A0A0A] overflow-hidden">
+    <section className="py-32 px-4 md:px-8 bg-[#0F0E0D] overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <div className="mb-20 space-y-4">
           <motion.span 
@@ -74,7 +74,7 @@ export default function SolutionGrid() {
                   fill
                   className="object-cover opacity-40 md:group-hover:opacity-60 md:group-hover:scale-110 transition-all duration-1000 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F0E0D] via-transparent to-transparent opacity-80" />
               </div>
 
               {/* Content Overlay */}
@@ -83,7 +83,7 @@ export default function SolutionGrid() {
                   <span className="text-6xl font-serif text-white/10 block mb-4 md:group-hover:text-white/30 md:group-hover:-translate-y-2 transition-all duration-700">
                     {item.kanji}
                   </span>
-                  <h3 className="text-2xl font-black text-white mb-2 tracking-tight md:group-hover:text-[var(--accent-gold,#C5A059)] transition-colors">
+                  <h3 className="text-2xl font-black text-white mb-2 tracking-tight md:group-hover:text-accent-page transition-colors">
                     {item.title}
                   </h3>
                   <p className="text-sm font-bold text-white/60 tracking-widest uppercase mb-6">

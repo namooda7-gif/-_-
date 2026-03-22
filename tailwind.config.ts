@@ -15,6 +15,7 @@ const config: Config = {
           olive: "#4A5240",
           burgundy: "#5C1A2E",
           gold: "var(--accent-gold)",
+          page: "var(--accent-page)",
         }
       },
     },

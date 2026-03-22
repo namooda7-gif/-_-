@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { motion, useMotionValue, useSpring, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
+import { motion, useMotionValue, useSpring, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import { useCursor } from "@/context/CursorContext";
+import OptimizedImage from "@/components/OptimizedImage";
 
 import { editorialProjects as projects } from "@/data/projects";
 
 const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; index: number }) => {
+  const { setCursorType } = useCursor();
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const colorImageRef = useRef<HTMLDivElement>(null);
@@ -16,8 +18,6 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
   
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
-  const springX = useSpring(pointerX, { stiffness: 150, damping: 20 });
-  const springY = useSpring(pointerY, { stiffness: 150, damping: 20 });
   const pointsRef = useRef<{ x: number, y: number, age: number }[]>([]);
 
   useEffect(() => {
@@ -95,14 +95,20 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
   return (
     <motion.div
       ref={containerRef}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => {
+        setIsHovered(true);
+        setCursorType("view");
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setCursorType("default");
+      }}
       onMouseMove={handleMouseMove}
       className="relative shrink-0 w-[85vw] md:w-[48vw] lg:w-[48vw] aspect-[16/10] overflow-hidden bg-neutral-900 cursor-auto md:cursor-none ml-4 md:ml-24 first:ml-[0vw] last:mr-[10vw] pointer-events-auto z-50 group"
     >
       {/* Base grayscale layer */}
       <div className="absolute inset-0 z-0 grayscale contrast-125 brightness-75">
-        <Image
+        <OptimizedImage
           src={project.mainImage}
           alt={project.title}
           fill
@@ -124,7 +130,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
           WebkitMaskPosition: "center",
         }}
       >
-        <Image
+        <OptimizedImage
           src={project.mainImage}
           alt={project.title}
           fill
@@ -135,21 +141,6 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
 
       <canvas ref={canvasRef} className="pointer-events-none opacity-0 absolute inset-0" />
 
-      {/* Pointer UI: Only Gold Border Line */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
-            className="absolute top-0 left-0 w-[400px] h-[400px] border border-accent-gold/40 rounded-full z-40 pointer-events-none flex items-center justify-center transition-colors"
-          >
-             <div className="w-1.5 h-1.5 bg-accent-gold rounded-full shadow-[0_0_15px_#D4AF37]" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Text Info (Always visible on mobile) */}
       <div className="absolute inset-0 z-20 p-6 md:p-10 flex flex-col justify-end pointer-events-none">
         <motion.div className="overflow-hidden">
@@ -159,7 +150,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
           <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none mb-4 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-700">
             {project.title}
           </h3>
-          <div className="w-16 md:w-0 md:group-hover:w-16 h-1 bg-accent-gold transition-all duration-700 md:delay-100" />
+          <div className="w-16 md:w-0 md:group-hover:w-16 h-1 bg-accent-page transition-all duration-700 md:delay-100" />
         </motion.div>
       </div>
     </motion.div>
@@ -195,12 +186,12 @@ export default function PortfolioEditorial() {
   return (
     <section 
       ref={containerRef} 
-      className="relative h-[80vh] md:h-[1500vh] bg-[#0A0A0A] z-20 overflow-hidden md:overflow-visible"
+      className="relative h-[80vh] md:h-[1500vh] bg-[#0F0E0D] z-20 overflow-hidden md:overflow-visible"
       style={{ isolation: 'isolate' }}
     >
       <div className="md:sticky top-0 h-[80vh] md:h-screen w-full flex flex-col justify-center overflow-visible md:overflow-hidden pointer-events-none">
         {/* Background Highlight */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] bg-accent-gold/5 blur-[150px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] bg-accent-page/5 blur-[150px] rounded-full pointer-events-none" />
 
         {/* Header Section */}
         <div className="px-[10vw] pt-24 mb-12 relative z-[60] pointer-events-none">
@@ -240,12 +231,12 @@ export default function PortfolioEditorial() {
               <Link href="/portfolio" className="group text-center pointer-events-auto">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="w-40 h-40 rounded-full border border-white/10 flex items-center justify-center mb-8 group-hover:border-accent-gold transition-colors relative"
+                  className="w-40 h-40 rounded-full border border-white/10 flex items-center justify-center mb-8 group-hover:border-accent-page transition-colors relative"
                 >
-                  <div className="w-3 h-3 bg-accent-gold rounded-full group-hover:scale-150 transition-transform shadow-[0_0_20px_rgba(212,175,55,0.8)]" />
+                  <div className="w-3 h-3 bg-accent-page rounded-full group-hover:scale-150 transition-transform shadow-[0_0_20px_var(--accent-page)]" />
                 </motion.div>
                 <div className="space-y-2">
-                  <span className="text-2xl font-black text-white uppercase tracking-[0.5em] block group-hover:text-accent-gold transition-colors">
+                  <span className="text-2xl font-black text-white uppercase tracking-[0.5em] block group-hover:text-accent-page transition-colors">
                     Full Archive
                   </span>
                   <span className="text-[10px] text-white/30 uppercase tracking-[0.3em] font-medium block">
@@ -261,7 +252,7 @@ export default function PortfolioEditorial() {
         <div className="px-[10vw] pb-20 relative z-30 pointer-events-none">
           <div className="flex justify-between items-end mb-4">
             <div className="space-y-1">
-              <span className="text-[10px] font-black text-accent-gold tracking-[0.4em] uppercase block">Progress</span>
+              <span className="text-[10px] font-black text-accent-page tracking-[0.4em] uppercase block">Progress</span>
               <div className="flex items-baseline gap-2">
                 <span className="text-xs font-bold text-white/20 uppercase tracking-widest">Active Insight</span>
               </div>
@@ -271,7 +262,7 @@ export default function PortfolioEditorial() {
           <div className="h-[2px] w-full bg-white/5 relative overflow-hidden">
             <motion.div 
               style={{ scaleX: smoothProgress, transformOrigin: "left" }}
-              className="absolute inset-0 bg-accent-gold shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+              className="absolute inset-0 bg-accent-page shadow-[0_0_20px_var(--accent-page)]"
             />
           </div>
         </div>

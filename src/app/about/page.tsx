@@ -33,7 +33,7 @@ export default function AboutPage() {
 
   if (!isMounted) {
     return (
-      <main className="bg-[#0A0A0A] min-h-screen text-white overflow-x-hidden">
+      <main className="bg-[#0F0E0D] min-h-screen text-white overflow-x-hidden">
         <div className="h-[80vh] w-full flex items-center justify-center">
           <div className="text-white/20 uppercase tracking-[1em] text-xs">Loading...</div>
         </div>
@@ -42,7 +42,7 @@ export default function AboutPage() {
   }
 
   return (
-    <main className="relative bg-[#0A0A0A] min-h-screen text-white overflow-x-hidden">
+    <main className="relative bg-transparent min-h-screen text-white overflow-x-hidden">
       {/* 1. Hero Section */}
       <section 
         className="relative min-h-screen w-full flex items-center justify-center overflow-hidden snap-start"
@@ -75,7 +75,7 @@ export default function AboutPage() {
               priority
             />
           </div>
-          <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/20 to-transparent opacity-90" />
+          <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#0F0E0D] via-[#0F0E0D]/20 to-transparent opacity-90" />
         </motion.div>
 
         {/* Sunlight Effect Overlay: Layered for intensity and realism */}
@@ -171,7 +171,7 @@ export default function AboutPage() {
                 />
                 {/* Highlight Box */}
                 <div className="absolute -bottom-10 -right-10 bg-[#141414] p-10 hidden md:block border border-white/5">
-                  <p className="text-accent-gold font-black text-4xl mb-2">01</p>
+                  <p className="text-accent-page font-black text-4xl mb-2">01</p>
                   <p className="text-[10px] tracking-[0.5em] uppercase text-white/40 font-bold">Ergonomics</p>
                 </div>
               </motion.div>
@@ -185,7 +185,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8 }}
               >
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-8 leading-tight">
-                  여성의 <span className="text-accent-gold">체형과 동선</span>에<br />
+                  여성의 <span className="text-accent-page">체형과 동선</span>에<br />
                   완벽히 맞춰진 디테일
                 </h2>
                 <div className="space-y-6 text-white/60 text-base md:text-lg font-light leading-relaxed">
@@ -209,7 +209,7 @@ export default function AboutPage() {
       </section>
 
       {/* 3. Core Values Grid */}
-      <section className="min-h-screen w-full relative flex flex-col snap-start scroll-mt-[120px] overflow-hidden bg-[#0A0A0A]">
+      <section className="min-h-screen w-full relative flex flex-col snap-start scroll-mt-[120px] overflow-hidden bg-[#0F0E0D]">
         <div className="flex-1 flex flex-col justify-center px-4 md:px-8 max-w-[1400px] mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -284,7 +284,7 @@ export default function AboutPage() {
                 transition={{ delay: idx * 0.2, duration: 0.8 }}
                 className="group"
               >
-                <div className="text-accent-gold font-serif text-4xl md:text-5xl mb-8 md:group-hover:-translate-y-2 transition-transform duration-500">
+                <div className="text-accent-page font-serif text-4xl md:text-5xl mb-8 md:group-hover:-translate-y-2 transition-transform duration-500">
                   {val.num}
                 </div>
                 <h3 className="text-2xl font-black mb-2 uppercase">{val.title}</h3>

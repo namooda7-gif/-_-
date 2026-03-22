@@ -2,18 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bg-primary: #F5F0E8;
-  --text-primary: #1E1E2E;
-  --text-secondary: #555555;
-  --accent-gold: #C5A059;
-  --text-dimmed: #E2E2E2; /* 화이트보다 차분한 소프트 그레이 */
-}
+  :root {
+    --bg-primary: #0F0E0D; /* Midnight Espresso */
+    --bg-secondary: #141312;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --accent-gold: #C5A059;
+    --accent-gold-rgb: 197, 160, 89;
+    --accent-sand: #D9C5B2;
+    --accent-sand-rgb: 217, 197, 178;
+    --accent-terracotta: #A67B5B;
+    --accent-terracotta-rgb: 166, 123, 91;
+    --accent-forest: #3D5A45;
+    --accent-forest-rgb: 61, 90, 69;
+    --accent-page: var(--accent-gold);
+    --accent-page-rgb: var(--accent-gold-rgb);
+  }
 
-[data-theme='dark'] {
-  --text-primary: #F5F5F0;
-  --text-secondary: #CCCCCC;
-}
+  .theme-portfolio { 
+    --accent-page: var(--accent-terracotta) !important; 
+    --accent-page-rgb: var(--accent-terracotta-rgb) !important;
+  }
+  .theme-services { 
+    --accent-page: var(--accent-sand) !important; 
+    --accent-page-rgb: var(--accent-sand-rgb) !important;
+  }
+  .theme-about { 
+    --accent-page: var(--accent-forest) !important; 
+    --accent-page-rgb: var(--accent-forest-rgb) !important;
+  }
+  .theme-home { 
+    --accent-page: var(--accent-gold) !important; 
+    --accent-page-rgb: var(--accent-gold-rgb) !important;
+  }
+
+  [data-theme='dark'] {
+    --bg-primary: #0F0E0D;
+    --bg-secondary: #141312;
+  }
 
 body {
   background-color: var(--bg-primary);
@@ -21,6 +47,13 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* 데스크탑에서 기본 커서 숨김 (터치 기기 제외) */
+@media (hover: hover) and (pointer: fine) {
+  body, a, button, [role="button"] {
+    cursor: none !important;
+  }
 }
 
 html {
@@ -55,4 +88,31 @@ section {
   scroll-snap-type: y mandatory;
   overflow-y: auto;
   height: 100vh;
+}
+/* Background Ambient Glow */
+.bg-theme-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle at 50% -20%, var(--accent-page), rgba(15, 14, 13, 0) 50%);
+  opacity: 0.12; /* Slightly more visible for confirmation */
+  transition: background 1.5s ease;
+}
+
+.bg-theme-glow-bottom {
+  position: fixed;
+  bottom: -20%;
+  left: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, var(--accent-page), rgba(15, 14, 13, 0) 70%);
+  opacity: 0.06;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 1;
+  transition: background 1.5s ease;
 }

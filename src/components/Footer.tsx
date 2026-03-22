@@ -43,7 +43,7 @@ export default function Footer() {
                   href={social.href}
                   variants={bounceVariants}
                   whileHover="hover"
-                  className="p-2 bg-foreground/5 rounded-full hover:bg-accent-gold hover:text-white transition-colors"
+                  className="p-2 bg-foreground/5 rounded-full hover:bg-accent-page hover:text-white transition-colors"
                   aria-label={social.name}
                 >
                   <social.icon size={20} />
@@ -58,7 +58,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {['About', 'Services', 'Styles', 'Portfolio', 'Contact'].map((item) => (
                 <li key={item}>
-                  <Link href={`/${item.toLowerCase()}`} className="text-text-secondary text-sm hover:text-accent-gold transition-colors">
+                  <Link href={`/${item.toLowerCase()}`} className="text-text-secondary text-sm hover:text-accent-page transition-colors">
                     {item}
                   </Link>
                 </li>
@@ -80,7 +80,7 @@ export default function Footer() {
 
           {/* Col 4: WomanFix App */}
           <div>
-            <h4 className="text-accent-gold font-bold mb-6 flex items-center">
+            <h4 className="text-accent-page font-bold mb-6 flex items-center">
               WomanFix <ExternalLink size={14} className="ml-2" />
             </h4>
             <p className="text-text-secondary text-sm mb-6">

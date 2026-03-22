@@ -5,11 +5,11 @@ import Link from 'next/link';
 
 export default function AboutShort() {
   return (
-    <section className="py-32 bg-[#0A0A0A] relative overflow-hidden">
+    <section className="py-32 bg-[#0F0E0D] relative overflow-hidden">
       {/* Background Effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[1000px] opacity-20 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A] z-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-transparent to-[#0A0A0A] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F0E0D] via-transparent to-[#0F0E0D] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0F0E0D] via-transparent to-[#0F0E0D] z-10" />
         <Image 
           src="/images/portfolio/06.png" 
           alt="Background Texture" 

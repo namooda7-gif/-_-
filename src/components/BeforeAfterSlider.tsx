@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useCursor } from '@/context/CursorContext';
 
 interface BeforeAfterSliderProps {
   beforeImage: string;
@@ -10,6 +11,7 @@ interface BeforeAfterSliderProps {
 }
 
 export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAfterSliderProps) {
+  const { setCursorType } = useCursor();
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -33,9 +35,13 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
     <div 
       ref={containerRef}
       className="relative w-full aspect-[16/9] md:aspect-[21/9] lg:aspect-[16/9] overflow-hidden cursor-ew-resize select-none border-y border-white/10 group shadow-2xl shadow-black/50"
+      onMouseEnter={() => setCursorType("drag")}
+      onMouseLeave={() => {
+        setCursorType("default");
+        setIsDragging(false);
+      }}
       onMouseDown={() => setIsDragging(true)}
       onMouseUp={() => setIsDragging(false)}
-      onMouseLeave={() => setIsDragging(false)}
       onMouseMove={onMouseMove}
       onTouchStart={() => setIsDragging(true)}
       onTouchEnd={() => setIsDragging(false)}

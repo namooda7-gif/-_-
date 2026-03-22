@@ -57,19 +57,32 @@ export default function Navigation() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                'text-[15px] font-medium transition-all hover:text-white',
-                pathname === link.href ? 'text-white/90 border-b border-white/50' : 'text-white/40',
-                link.highlight && 'px-4 py-2 bg-white/90 text-black rounded-full hover:bg-white hover:opacity-100'
-              )}
-            >
-              {link.name}
-            </Link>
-          ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      'text-[15px] font-medium transition-all duration-300 relative group',
+                      isActive 
+                        ? 'text-accent-page scale-105' 
+                        : 'text-white/60 hover:text-accent-page hover:scale-110',
+                      link.highlight 
+                        ? 'px-5 py-2.5 border border-accent-page/50 text-accent-page rounded-full hover:bg-accent-page hover:text-white shadow-[0_0_15px_rgba(var(--accent-page-rgb),0.15)] hover:shadow-[0_0_20px_rgba(var(--accent-page-rgb),0.4)]'
+                        : 'hover:opacity-100'
+                    )}
+                  >
+                    {link.name}
+                    {!link.highlight && (
+                      <span className={cn(
+                        "absolute -bottom-1 left-0 w-full h-0.5 bg-accent-page transition-all duration-300 origin-left",
+                        isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      )} />
+                    )}
+                  </Link>
+                );
+              })}
         </nav>
 
         {/* Mobile Toggle */}
@@ -88,20 +101,23 @@ export default function Navigation() {
           className="absolute top-full left-0 w-full bg-background border-b border-white/10 lg:hidden shadow-xl"
         >
             <div className="flex flex-col p-6 space-y-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    'text-lg font-medium py-2 border-b border-white/5 last:border-0',
-                    pathname === link.href ? 'text-white/90' : 'text-white/40',
-                    link.highlight && 'text-white/90 font-bold'
-                  )}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      'text-lg font-medium py-3 border-b border-white/10 last:border-0 transition-colors',
+                      isActive ? 'text-accent-page font-bold' : 'text-white/60',
+                      link.highlight && 'text-accent-page font-extrabold tracking-tight'
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </div>
           </nav>
         )}

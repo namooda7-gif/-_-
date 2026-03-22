@@ -67,7 +67,7 @@ function MagneticButton({ children, href }: { children: React.ReactNode, href: s
       style={{ x: mouseXSpring, y: mouseYSpring }}
       className="relative z-20"
     >
-      <Link href={href} className="flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black text-sm font-bold hover:bg-white/90 transition-all group/btn shadow-xl text-accent-gold">
+      <Link href={href} className="flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black text-sm font-bold hover:bg-white/90 transition-all group/btn shadow-xl text-accent-page">
         {children}
         <ArrowRight size={18} className="transition-transform group-hover/btn:translate-x-1" />
       </Link>
@@ -77,9 +77,9 @@ function MagneticButton({ children, href }: { children: React.ReactNode, href: s
 
 export default function ServiceCards() {
   return (
-    <section className="py-40 bg-[#0A0A0A] relative overflow-hidden">
+    <section className="py-40 bg-[#0F0E0D] relative overflow-hidden">
       {/* Dynamic Background Elements */}
-      <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-accent-gold/5 blur-[150px] rounded-full -z-10 animate-pulse" />
+      <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-accent-page/5 blur-[150px] rounded-full -z-10 animate-pulse" />
       
       <div className="max-w-[1600px] mx-auto px-6 md:px-12">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-10">
@@ -91,8 +91,8 @@ export default function ServiceCards() {
             className="flex-1"
           >
             <div className="flex items-center gap-2 mb-6">
-              <div className="h-[1px] w-12 bg-accent-gold" />
-              <p className="text-accent-gold text-xs tracking-[0.4em] font-bold uppercase">Precision in Execution</p>
+              <div className="h-[1px] w-12 bg-accent-page" />
+              <p className="text-accent-page text-xs tracking-[0.4em] font-bold uppercase">Precision in Execution</p>
             </div>
             <h2 className="text-3xl md:text-5xl font-black text-white leading-[1.1] mb-8 uppercase">
               실체적 변화를 만드는<br />
@@ -107,7 +107,7 @@ export default function ServiceCards() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-md"
           >
-            <p className="text-white/50 text-lg leading-relaxed mb-4 border-l-2 border-accent-gold/30 pl-6">
+            <p className="text-white/50 text-lg leading-relaxed mb-4 border-l-2 border-accent-page/30 pl-6">
               철학은 도면에 머물지 않습니다. 정교한 시공과 진심 어린 관리가 실제의 삶이 됩니다.
             </p>
           </motion.div>
@@ -139,7 +139,7 @@ export default function ServiceCards() {
               <div className="absolute inset-0 z-10 p-12 flex flex-col justify-end">
                 <div className="mb-8 flex items-center justify-between">
                   <div className="px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl transition-transform duration-500 md:group-hover:-translate-y-2">
-                    <span className="text-2xl font-black text-accent-gold tracking-tighter tabular-nums">
+                    <span className="text-2xl font-black text-accent-page tracking-tighter tabular-nums">
                       {service.id}
                     </span>
                   </div>
@@ -147,7 +147,7 @@ export default function ServiceCards() {
                     <motion.span 
                       animate={{ scale: [1, 1.05, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="px-4 py-1.5 rounded-full bg-accent-gold text-white text-[11px] font-black tracking-widest uppercase shadow-lg shadow-accent-gold/40"
+                      className="px-4 py-1.5 rounded-full bg-accent-page text-white text-[11px] font-black tracking-widest uppercase shadow-lg shadow-accent-page/40"
                     >
                       Signature
                     </motion.span>
