@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ChevronRight, Hash, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronRight, Hash } from 'lucide-react';
 import { InteriorStyle, interiorStyles } from '@/data/styles';
 
 interface StyleDetailClientProps {

@@ -12,14 +12,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const colorImageRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
   
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);

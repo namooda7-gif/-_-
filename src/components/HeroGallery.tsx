@@ -67,7 +67,7 @@ export default function HeroGallery() {
     setCurrentImageIndex(0);
   };
 
-  const handleNextImage = (e?: React.MouseEvent | Event | any) => {
+  const handleNextImage = (e?: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent | PointerEvent | Event) => {
     if (e && e.stopPropagation) e.stopPropagation();
     const currentStyle = interiorStyles[activeIndex >= 0 ? activeIndex : 0];
     const imgs = currentStyle.galleryImages || [];
@@ -76,7 +76,7 @@ export default function HeroGallery() {
     }
   };
 
-  const handlePrevImage = (e?: React.MouseEvent | Event | any) => {
+  const handlePrevImage = (e?: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent | PointerEvent | Event) => {
     if (e && e.stopPropagation) e.stopPropagation();
     const currentStyle = interiorStyles[activeIndex >= 0 ? activeIndex : 0];
     const imgs = currentStyle.galleryImages || [];
