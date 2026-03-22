@@ -36,67 +36,75 @@ export default function PortfolioPage() {
         </motion.p>
       </div>
 
-      {/* Featured Transformation Slider Section */}
+      {/* Featured Transformation Slider Section - Expanded to Full Width */}
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="mb-32 md:mb-64"
+        className="mb-32 md:mb-64 -mx-6 md:-mx-12 xl:-mx-24"
       >
-        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8 text-center md:text-left">
-          <div className="max-w-3xl mx-auto md:mx-0">
-            <div className="flex items-center justify-center md:justify-start gap-2 mb-6">
-              <div className="h-[1px] w-12 bg-accent-gold" />
-              <p className="text-accent-gold text-[12px] font-black tracking-[0.5em] uppercase">Transformation Gallery</p>
+        <div className="px-6 md:px-12 xl:px-24">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8 text-center md:text-left">
+            <div className="max-w-3xl mx-auto md:mx-0">
+              <div className="flex items-center justify-center md:justify-start gap-2 mb-6">
+                <div className="h-[1px] w-12 bg-accent-gold" />
+                <p className="text-accent-gold text-[12px] font-black tracking-[0.5em] uppercase">Transformation Gallery</p>
+              </div>
+              <h2 className="text-4xl md:text-7xl font-black text-white leading-tight uppercase tracking-tighter">
+                평범한 일상이<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/50 to-white/10 italic">예술이 되는 순간</span>
+              </h2>
             </div>
-            <h2 className="text-4xl md:text-7xl font-black text-white leading-tight uppercase tracking-tighter">
-              평범한 일상이<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/50 to-white/10 italic">예술이 되는 순간</span>
-            </h2>
-          </div>
-          <div className="hidden md:block">
-            <p className="text-white/40 text-lg font-light max-w-sm border-l border-white/10 pl-8">
-              오차 없는 설계와 최고급 자재가 만났을 때 생기는 공간의 기적을 확인하세요.
-            </p>
+            <div className="hidden md:block">
+              <p className="text-white/40 text-lg font-light max-w-sm border-l border-white/10 pl-8">
+                오차 없는 설계와 최고급 자재가 만났을 때 생기는 공간의 기적을 확인하세요.
+              </p>
+            </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-32 md:gap-48">
           {/* Living Room Transformation */}
           <div className="space-y-8">
-             <div className="flex items-baseline gap-4">
+             <div className="flex items-baseline gap-4 px-6 md:px-12 xl:px-24">
                <span className="text-3xl font-black text-white/10">01</span>
                <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-wider">Living Room: <span className="text-accent-gold font-light">Color Accent Modern</span></h3>
              </div>
-             <BeforeAfterSlider 
-               beforeImage="/images/portfolio/transformation_before_v2.png" 
-               afterImage="/images/portfolio/transformation_after_v2.png" 
-             />
+             <div className="w-full">
+               <BeforeAfterSlider 
+                 beforeImage="/images/portfolio/transformation_before_v2.png" 
+                 afterImage="/images/portfolio/transformation_after_v2.png" 
+               />
+             </div>
           </div>
 
           {/* Kitchen Transformation */}
           <div className="space-y-8">
-             <div className="flex items-baseline gap-4">
+             <div className="flex items-baseline gap-4 px-6 md:px-12 xl:px-24">
                <span className="text-3xl font-black text-white/10">02</span>
                <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-wider">Kitchen: <span className="text-accent-gold font-light">Warm Minimalist</span></h3>
              </div>
-             <BeforeAfterSlider 
-               beforeImage="/images/portfolio/kitchen_before.png" 
-               afterImage="/images/portfolio/kitchen_after.png" 
-             />
+             <div className="w-full">
+               <BeforeAfterSlider 
+                 beforeImage="/images/portfolio/kitchen_before.png" 
+                 afterImage="/images/portfolio/kitchen_after.png" 
+               />
+             </div>
           </div>
 
           {/* Bathroom Transformation */}
           <div className="space-y-8">
-             <div className="flex items-baseline gap-4">
+             <div className="flex items-baseline gap-4 px-6 md:px-12 xl:px-24">
                <span className="text-3xl font-black text-white/10">03</span>
                <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-wider">Bathroom: <span className="text-accent-gold font-light">Hotel-style Luxury</span></h3>
              </div>
-             <BeforeAfterSlider 
-               beforeImage="/images/portfolio/bathroom_before.png" 
-               afterImage="/images/portfolio/bathroom_after.png" 
-             />
+             <div className="w-full">
+               <BeforeAfterSlider 
+                 beforeImage="/images/portfolio/bathroom_before.png" 
+                 afterImage="/images/portfolio/bathroom_after.png" 
+               />
+             </div>
           </div>
         </div>
       </motion.div>

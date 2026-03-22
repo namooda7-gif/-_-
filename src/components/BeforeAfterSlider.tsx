@@ -32,7 +32,7 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
   return (
     <div 
       ref={containerRef}
-      className="relative w-full aspect-[16/9] md:aspect-[21/9] lg:aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden cursor-ew-resize select-none border border-white/10 group shadow-2xl shadow-black/50"
+      className="relative w-full aspect-[16/9] md:aspect-[21/9] lg:aspect-[16/9] overflow-hidden cursor-ew-resize select-none border-y border-white/10 group shadow-2xl shadow-black/50"
       onMouseDown={() => setIsDragging(true)}
       onMouseUp={() => setIsDragging(false)}
       onMouseLeave={() => setIsDragging(false)}
