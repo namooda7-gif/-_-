@@ -77,7 +77,7 @@ function MagneticButton({ children, href }: { children: React.ReactNode, href: s
 
 export default function ServiceCards() {
   return (
-    <section className="py-40 bg-[#0F0E0D] relative overflow-hidden">
+    <section className="py-48 bg-[#0F0E0D] relative overflow-hidden">
       {/* Dynamic Background Elements */}
       <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-accent-page/5 blur-[150px] rounded-full -z-10 animate-pulse" />
       
@@ -129,49 +129,53 @@ export default function ServiceCards() {
                   src={service.image} 
                   alt={service.title}
                   fill
-                  className="w-full h-full object-cover transition-transform duration-[2s] md:group-hover:scale-110 opacity-50 md:group-hover:opacity-100"
+                  className="w-full h-full object-cover transition-transform duration-[2s] md:group-hover:scale-110 opacity-100"
                 />
-                {/* Overlay Graident */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent transition-opacity duration-700 opacity-90 md:group-hover:opacity-100" />
+                {/* Remove dark gradient to let image shine through */}
+                <div className="absolute inset-0 bg-transparent opacity-100" />
               </div>
 
-              {/* Content Overlay */}
-              <div className="absolute inset-0 z-10 p-12 flex flex-col justify-end">
-                <div className="mb-8 flex items-center justify-between">
-                  <div className="px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl transition-transform duration-500 md:group-hover:-translate-y-2">
-                    <span className="text-2xl font-black text-accent-page tracking-tighter tabular-nums">
-                      {service.id}
-                    </span>
+              {/* Content Overlay - ULTRACLEAR GLASS SYSTEM */}
+              <div className="absolute inset-x-4 bottom-4 z-10 p-2 md:p-3 flex flex-col justify-end">
+                <motion.div 
+                  className="p-8 md:p-10 rounded-[2.5rem] bg-white/[0.01] backdrop-blur-[2px] border border-white/30 shadow-2xl transition-all duration-700 md:group-hover:bg-white/[0.05] md:group-hover:border-white/40 flex flex-col"
+                >
+                  <div className="mb-8 flex items-center justify-between">
+                    <div className="px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl transition-transform duration-500 md:group-hover:-translate-y-2">
+                      <span className="text-2xl font-black text-accent-page tracking-tighter tabular-nums">
+                        {service.id}
+                      </span>
+                    </div>
+                    {service.highlight && (
+                      <motion.span 
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="px-4 py-1.5 rounded-full bg-accent-page text-white text-[11px] font-black tracking-widest uppercase shadow-lg shadow-accent-page/40"
+                      >
+                        Signature
+                      </motion.span>
+                    )}
                   </div>
-                  {service.highlight && (
-                    <motion.span 
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="px-4 py-1.5 rounded-full bg-accent-page text-white text-[11px] font-black tracking-widest uppercase shadow-lg shadow-accent-page/40"
-                    >
-                      Signature
-                    </motion.span>
-                  )}
-                </div>
 
-                <div className="mb-10 transform transition-transform duration-700 md:group-hover:-translate-y-4">
-                  <p className="text-white/40 text-[10px] tracking-[0.3em] font-black uppercase mb-3">
-                    {service.subtitle}
-                  </p>
-                  <h3 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight tracking-tighter">
-                    {service.title}
-                  </h3>
-                  <div className="h-[2px] w-full md:w-0 bg-white/20 md:group-hover:w-full transition-all duration-700 mb-6" />
-                  <p className="text-white/80 md:text-white/60 text-[14px] md:text-[15px] leading-relaxed opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 md:delay-100 max-w-[300px]">
-                    {service.description}
-                  </p>
-                </div>
+                  <div className="mb-0 transform transition-transform duration-700 md:group-hover:-translate-y-2">
+                    <p className="text-white/40 text-[10px] tracking-[0.3em] font-black uppercase mb-3">
+                      {service.subtitle}
+                    </p>
+                    <h3 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight tracking-tighter">
+                      {service.title}
+                    </h3>
+                    <div className="h-[2px] w-full md:w-0 bg-white/20 md:group-hover:w-full transition-all duration-700 mb-6" />
+                    <p className="text-white/80 md:text-white/60 text-[14px] md:text-[15px] leading-relaxed opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 md:delay-100 max-w-[300px]">
+                      {service.description}
+                    </p>
+                  </div>
 
-                <div className="flex justify-start opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 translate-y-0 md:translate-y-8 md:group-hover:translate-y-0 md:delay-200">
-                  <MagneticButton href={service.link}>
-                    Discover More
-                  </MagneticButton>
-                </div>
+                  <div className="flex justify-start mt-8 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 md:delay-200">
+                    <MagneticButton href={service.link}>
+                      Discover More
+                    </MagneticButton>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           ))}

@@ -284,7 +284,7 @@ export default function HeroGallery() {
         <div className="absolute inset-0 z-[60] pointer-events-none">
           <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-full relative">
             {/* CRITICAL DESIGN RULE: Ticker MUST remain Top-Left, Horizontal Row under Logo. DO NOT RELOCATE. */}
-            <div className="absolute top-24 left-4 md:left-10 pointer-events-auto">
+            <div className="absolute top-28 md:top-32 left-4 md:left-10 pointer-events-auto">
               <div className="flex flex-row gap-1.5 items-end h-4">
                 {interiorStyles.map((_, i) => (
                   <motion.div
@@ -295,7 +295,7 @@ export default function HeroGallery() {
                       width: 1,
                       backgroundColor: activeIndex === i ? (interiorStyles[i].bgColor || '#C5A059') : 'rgba(255,255,255,0.2)',
                     }}
-                    className="cursor-pointer hover:bg-white/50 transition-colors"
+                    className="cursor-pointer hover:bg-white/50 transition-colors shrink-0 w-[2px]"
                   />
                 ))}
               </div>
@@ -361,8 +361,8 @@ export default function HeroGallery() {
                   height: { type: "spring", stiffness: 200, damping: 25 },
                 }}
                 className={cn(
-                  "relative cursor-pointer overflow-hidden rounded-none group shadow-2xl border-none outline-none p-0",
-                  isActive ? "z-20" : "z-10",
+                  "relative cursor-pointer overflow-hidden rounded-none group shadow-2xl border-none outline-none p-0 shrink-0",
+                  isActive ? "z-20 w-[45vw] h-[60vh]" : "z-10 w-[3.5vw] h-[40vh]",
                   style.isDark ? "bg-neutral-800" : "bg-neutral-100"
                 )}
                 style={{

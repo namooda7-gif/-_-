@@ -33,7 +33,7 @@ const solutions = [
 
 export default function SolutionGrid() {
   return (
-    <section className="py-32 px-4 md:px-8 bg-[#0F0E0D] overflow-hidden">
+    <section className="py-48 px-4 md:px-8 bg-[#0F0E0D] overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <div className="mb-20 space-y-4">
           <motion.span 

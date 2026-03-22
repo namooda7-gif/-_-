@@ -43,7 +43,7 @@ export default function OptimizedImage({
         alt={alt}
         {...props}
         className={`${props.className || ""} lg:transition-all lg:duration-[1.2s] ${
-          blur && !isLoaded ? "opacity-0 blur-xl scale-110" : "opacity-100 blur-0 scale-100"
+          !isLoaded ? "blur-xl scale-110 opacity-50" : "opacity-100 blur-0 scale-100"
         }`}
         onLoad={() => setIsLoaded(true)}
       />
