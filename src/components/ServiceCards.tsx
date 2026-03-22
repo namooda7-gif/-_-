@@ -28,7 +28,7 @@ const services = [
     title: "우먼픽스 홈케어",
     subtitle: "WomanFix Homecare",
     description: "공사가 끝난 후가 진짜 시작입니다. 여성 전문가의 섬세한 시선으로 공간의 건강을 지속적으로 유지하는 프리미엄 솔루션입니다.",
-    image: "/images/services/womanfix.png",
+    image: "/images/services/womanfix_v2.png",
     link: "/womanfix",
     highlight: true
   },

@@ -268,7 +268,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 p-12 flex flex-col justify-end">
                     <p className="text-accent-gold text-xs font-black tracking-[0.5em] uppercase mb-4">Space Archetype {idx + 1}</p>
                     <h4 className="text-3xl font-bold text-white uppercase tracking-tight">
-                      {idx === 0 ? 'Living Space' : idx === 1 ? 'Private Bath' : 'Gourmet Kitchen'}
+                      {idx === 0 ? 'Master Bedroom' : idx === 1 ? 'Living Space' : idx === 2 ? 'Private Bath' : 'Gourmet Kitchen'}
                     </h4>
                   </div>
                 </div>

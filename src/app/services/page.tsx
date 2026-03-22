@@ -47,7 +47,7 @@ const services = [
       { name: "타일/마루 부분 보수", detail: "깨지거나 들뜬 타일, 긁힌 마루 등 부분적인 훼손을 기존 인테리어와 이질감 없이 깔끔하게 복원합니다." },
       { name: "벽지 훼손 복구", detail: "오염되거나 찢어진 벽지의 부분 보수 및 교체를 통해 집안의 깔끔한 첫인상을 되찾아 드립니다." }
     ],
-    bgImage: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=2000",
+    bgImage: "/images/services/womanfix_v2.png",
     isAccent: true
   }
 ];
@@ -71,7 +71,7 @@ export default function ServicesPage() {
               className="object-cover opacity-60 mix-blend-luminosity scale-105"
             />
             {/* Gradient Overlay for Readability */}
-            <div className={`absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r ${service.isAccent ? 'from-[#bd3a5d]/70 via-[#0A0A0A]/70 to-[#0A0A0A]' : 'from-[#0A0A0A]/80 via-[#0A0A0A]/50 to-transparent'}`} />
+            <div className={`absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r ${service.isAccent ? 'from-[#0A0A0A]/90 via-[#0A0A0A]/70 to-[#0A0A0A]/30' : 'from-[#0A0A0A]/80 via-[#0A0A0A]/50 to-transparent'}`} />
           </div>
 
           <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24 flex flex-col md:flex-row h-full pb-20 md:pb-0">

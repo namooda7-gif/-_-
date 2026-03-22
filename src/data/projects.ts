@@ -69,7 +69,7 @@ export const editorialProjects: Project[] = [
     title: "Industrial Large Office",
     category: "Office Space",
     location: "Signature Concept",
-    mainImage: "/images/portfolio/인더스트리얼 (Industrial) 대형 오피스 층.png",
+    mainImage: "/images/portfolio/Industrial_Large_Office_New.png",
     description: "구조미와 거친 질감이 돋보이는 광활한 인더스트리얼 오피스입니다.",
     year: "2024"
   },

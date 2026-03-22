@@ -19,6 +19,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "불필요한 장식을 배제하고 본질에 집중하여 공간의 개방감을 극대화합니다.",
     previewImage: "/styles/all-styles/Minimalist_bedroom_Korean_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Minimalist_bedroom_Korean_202603191156.jpeg",
       "/styles/all-styles/Minimalist_living_room_202603191156.jpeg",
       "/styles/all-styles/Minimalist_bathroom_202603191156.jpeg",
       "/styles/all-styles/Minimalist_kitchen_202603191156.jpeg"
@@ -34,6 +35,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "북유럽의 실용적 사고와 따뜻한 감성이 만나 아늑하고 편안한 공간을 연출합니다.",
     previewImage: "/styles/all-styles/Scandinavian_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Scandinavian_bedroom_202603191156.jpeg",
       "/styles/all-styles/Scandinavian_living_room_202603191156.jpeg",
       "/styles/all-styles/Scandinavian_bathroom_202603191156.jpeg",
       "/styles/all-styles/Scandinavian_kitchen_202603191156.jpeg"
@@ -49,6 +51,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "원자재의 거친 느낌을 그대로 살려 도시적이고 감각적인 분위기를 자아냅니다.",
     previewImage: "/styles/all-styles/Industrial_bedroom.jpeg",
     galleryImages: [
+      "/styles/all-styles/Industrial_bedroom.jpeg",
       "/styles/all-styles/Industrial_living_new.jpeg",
       "/styles/all-styles/Industrial_bathroom_202603191156.jpeg",
       "/styles/all-styles/Industrial_kitchen_202603191156.jpeg"
@@ -64,6 +67,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "일본의 미니멀리즘과 스칸디나비아의 기능성이 조화를 이룬 평온한 공간입니다.",
     previewImage: "/styles/all-styles/Japandi_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Japandi_bedroom_202603191156.jpeg",
       "/styles/all-styles/Japandi_living_room_202603191156.jpeg",
       "/styles/all-styles/Japandi_bathroom_202603191156.jpeg",
       "/styles/all-styles/Japandi_kitchen_202603191156.jpeg"
@@ -79,6 +83,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "세련된 현대적 디자인에 고급 소재를 더해 품격 있는 공간을 완성합니다.",
     previewImage: "/styles/all-styles/Modern_luxury_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Modern_luxury_bedroom_202603191156.jpeg",
       "/styles/all-styles/Modern_luxury_living_202603191156.jpeg",
       "/styles/all-styles/Modern_luxury_bathroom_202603191156.jpeg",
       "/styles/all-styles/Modern_luxury_kitchen_202603191156.jpeg"
@@ -94,6 +99,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "다양한 색채와 패턴, 소품들이 어우러져 자유롭고 개성 넘치는 공간을 표현합니다.",
     previewImage: "/styles/all-styles/Bohemian_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Bohemian_bedroom_202603191156.jpeg",
       "/styles/all-styles/Bohemian_living_room_202603191156.jpeg",
       "/styles/all-styles/Bohemian_bathroom_202603191156.jpeg",
       "/styles/all-styles/Bohemian_kitchen_202603191156.jpeg"
@@ -109,6 +115,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "20세기 중반의 디자인 철학을 현대적으로 재해석한 유기적이고 실용적인 스타일입니다.",
     previewImage: "/styles/all-styles/Mid-century_modern_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Mid-century_modern_bedroom_202603191156.jpeg",
       "/styles/all-styles/Mid-century_modern_living_202603191156.jpeg",
       "/styles/all-styles/Mid-century_modern_bathroom_202603191156.jpeg",
       "/styles/all-styles/Mid-century_modern_kitchen_202603191156.jpeg"
@@ -124,6 +131,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "자연을 실내로 끌어들여 스트레스를 줄이고 삶의 활력을 불어넣는 건강한 공간입니다.",
     previewImage: "/styles/all-styles/Biophilic_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Biophilic_bedroom_202603191156.jpeg",
       "/styles/all-styles/Biophilic_living_room_202603191156.jpeg",
       "/styles/all-styles/Biophilic_bathroom_202603191156.jpeg",
       "/styles/all-styles/Biophilic_kitchen_202603191156.jpeg"
@@ -139,6 +147,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "부드러운 텍스처와 은은한 조명을 통해 몸과 마음이 이완되는 포근한 휴식처를 제안합니다.",
     previewImage: "/styles/all-styles/Cozy_hygge_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Cozy_hygge_bedroom_202603191156.jpeg",
       "/styles/all-styles/Cozy_hygge_living_202603191156.jpeg",
       "/styles/all-styles/Cozy_hygge_bathroom_202603191156.jpeg",
       "/styles/all-styles/Cozy_hygge_kitchen_202603191156.jpeg"
@@ -152,8 +161,9 @@ export const interiorStyles: InteriorStyle[] = [
     nameEn: "Neutral Art Deco",
     keywords: ["기하학적 패턴", "화려함", "대칭"],
     description: "대칭적 구조와 절제된 화려함이 뉴트럴 톤과 만나 현대적인 고전미를 완성합니다.",
-    previewImage: "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg", // This was already a bedroom image
+    previewImage: "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg",
       "/styles/all-styles/Neutral_Art_Deco_livingroom.jpeg",
       "/styles/all-styles/Neutral_Art_Deco_bathroom.jpeg",
       "/styles/all-styles/Neutral_Art_Deco_kitchen.jpeg"
@@ -169,6 +179,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "세월의 흔적과 자연스러운 불완전함 속에서 평온함을 찾는 절제된 디자인입니다.",
     previewImage: "/styles/all-styles/Wabi-Sabi_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Wabi-Sabi_bedroom_202603191156.jpeg",
       "/styles/all-styles/Wabi-Sabi_living_room_202603191156.jpeg",
       "/styles/all-styles/Wabi-Sabi_bathroom_202603191156.jpeg",
       "/styles/all-styles/Wabi-Sabi_kitchen_202603191156.jpeg"
@@ -184,6 +195,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "레트로한 컬러감과 현대적인 세련미가 어우러져 독특한 리듬감을 선사합니다.",
     previewImage: "/styles/all-styles/Retro_contemporary_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Retro_contemporary_bedroom_202603191156.jpeg",
       "/styles/all-styles/Retro_contemporary_living_202603191156.jpeg",
       "/styles/all-styles/Retro_contemporary_bathroom_202603191156.jpeg",
       "/styles/all-styles/Retro_contemporary_kitchen_202603191156.jpeg"
@@ -199,6 +211,7 @@ export const interiorStyles: InteriorStyle[] = [
     description: "다양한 입자들이 이루는 조형적인 패턴이 공간에 활기와 에너지를 불어넣습니다.",
     previewImage: "/styles/all-styles/Terrazzo_bedroom_202603191156.jpeg",
     galleryImages: [
+      "/styles/all-styles/Terrazzo_bedroom_202603191156.jpeg",
       "/styles/all-styles/Terrazzo_living_room_202603191156.jpeg",
       "/styles/all-styles/Terrazzo_bathroom_202603191156.jpeg",
       "/styles/all-styles/Terrazzo_kitchen_202603191156.jpeg"
@@ -212,12 +225,12 @@ export const interiorStyles: InteriorStyle[] = [
     nameEn: "Retreat Style",
     keywords: ["안식처", "치유", "편안함"],
     description: "외부의 소음에서 벗어나 오직 자신에게 집중할 수 있는 고요한 안식처를 지향합니다.",
-    previewImage: "/styles/all-styles/Retreat_look_living_202603191156.jpeg",
+    previewImage: "/styles/all-styles/Retreat_style_bedroom_202603191156.jpeg",
     galleryImages: [
-      "/styles/all-styles/Retreat_look_living_202603191156.jpeg",
       "/styles/all-styles/Retreat_style_bedroom_202603191156.jpeg",
-      "/styles/all-styles/Retreat_style_kitchen_202603191156.jpeg",
-      "/styles/all-styles/Retreat_spa_bathroom_202603191156.jpeg"
+      "/styles/all-styles/Retreat_look_living_202603191156.jpeg",
+      "/styles/all-styles/Retreat_spa_bathroom_202603191156.jpeg",
+      "/styles/all-styles/Retreat_style_kitchen_202603191156.jpeg"
     ],
     bgColor: "#2C332F",
     isDark: true,
@@ -228,12 +241,12 @@ export const interiorStyles: InteriorStyle[] = [
     nameEn: "Color Accent Modern",
     keywords: ["포인트 컬러", "생동감", "모던"],
     description: "절제된 모던함 속에 과감한 컬러 포인트를 더해 생동감 넘치는 공간을 완성합니다.",
-    previewImage: "/styles/all-styles/Color_accent_modern_202603191156.jpeg",
+    previewImage: "/styles/all-styles/Color_accent_modern_bedroom.jpeg",
     galleryImages: [
-      "/styles/all-styles/Color_accent_modern_202603191156.jpeg",
       "/styles/all-styles/Color_accent_modern_bedroom.jpeg",
-      "/styles/all-styles/Color_accent_modern_kitchen.jpeg",
-      "/styles/all-styles/Color_accent_modern_bathroom.jpeg"
+      "/styles/all-styles/Color_accent_modern_202603191156.jpeg",
+      "/styles/all-styles/Color_accent_modern_bathroom.jpeg",
+      "/styles/all-styles/Color_accent_modern_kitchen.jpeg"
     ],
     bgColor: "#1A1D21",
     isDark: true,
