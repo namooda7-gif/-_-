@@ -17,11 +17,12 @@ function cn(...inputs: ClassValue[]) {
 export default function HeroGallery() {
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHoveringActive, setIsHoveringActive] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const carouselRef = React.useRef<HTMLDivElement>(null);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -35,6 +36,14 @@ export default function HeroGallery() {
       return () => clearTimeout(timer);
     }
   }, [activeIndex, isExpanded]);
+
+  useEffect(() => {
+    if (videoRef.current && !isExpanded) {
+      videoRef.current.play().catch(err => {
+        console.warn("Video autoplay failed:", err);
+      });
+    }
+  }, [mounted, isExpanded]);
 
   useEffect(() => {
     if (isExpanded) {
@@ -159,33 +168,33 @@ export default function HeroGallery() {
           <div style={{ position: 'fixed', top: '40px', left: '40px', zIndex: 100 }}>
             <button 
               onClick={(e) => { e.stopPropagation(); setIsExpanded(false); }}
-              className="flex items-center gap-4 text-white hover:text-white/70 transition-all group pointer-events-auto"
+              className="flex items-center gap-5 glass-pill-premium px-6 py-3 rounded-full border-white/10 backdrop-blur-xl text-white hover:bg-white/10 transition-all group pointer-events-auto"
             >
-              <X size={28} strokeWidth={1.5} className="group-hover:rotate-90 transition-transform" />
-              <span className="text-xs font-black tracking-[0.4em] uppercase">Close</span>
+              <X size={20} strokeWidth={2} className="group-hover:rotate-90 transition-transform" />
+              <span className="text-[10px] font-black tracking-[0.5em] uppercase mt-0.5">Close</span>
             </button>
           </div>
 
           {/* Top-Right Style Switcher (User Request) */}
           <div style={{ position: 'fixed', top: '40px', right: '40px', zIndex: 100 }}>
-            <div className="flex gap-8 items-center text-white pointer-events-auto">
+            <div className="flex gap-6 items-center glass-pill-premium px-6 py-3 rounded-2xl border-white/10 backdrop-blur-xl text-white pointer-events-auto">
               <button 
                 onClick={(e) => { e.stopPropagation(); handlePrev(); }} 
-                className="hover:text-white/70 transition-transform hover:scale-125 p-2"
+                className="hover:text-accent-gold transition-all hover:scale-110 p-1"
                 title="Previous Style"
               >
-                <ChevronLeft size={32} strokeWidth={1.5} />
+                <ChevronLeft size={24} strokeWidth={2} />
               </button>
-              <div className="flex flex-col items-center min-w-[4em]">
-                <span className="text-[10px] font-black tracking-[0.4em] opacity-40 mb-1 leading-none uppercase">Style</span>
-                <span className="text-2xl font-black tracking-widest leading-none">{String(activeIndex + 1).padStart(2, '0')}</span>
+              <div className="flex flex-col items-center min-w-[4em] border-x border-white/10 px-6">
+                <span className="text-[9px] font-black tracking-[0.4em] text-accent-gold mb-1 leading-none uppercase">Style</span>
+                <span className="text-xl font-black tracking-widest leading-none">{String(activeIndex + 1).padStart(2, '0')}</span>
               </div>
               <button 
                 onClick={(e) => { e.stopPropagation(); handleNext(); }} 
-                className="hover:text-white/70 transition-transform hover:scale-125 p-2"
+                className="hover:text-accent-gold transition-all hover:scale-110 p-1"
                 title="Next Style"
               >
-                <ChevronRight size={32} strokeWidth={1.5} />
+                <ChevronRight size={24} strokeWidth={2} />
               </button>
             </div>
           </div>
@@ -214,40 +223,40 @@ export default function HeroGallery() {
               >
                 <button 
                   onClick={handlePrevImage} 
-                  className="hover:text-white transition-all hover:scale-125 p-4 group"
+                  className="glass-pill-premium p-6 rounded-full border-white/10 backdrop-blur-xl text-white hover:bg-white/10 transition-all hover:scale-110 group pointer-events-auto shadow-2xl"
                   title="Previous Scene"
                 >
-                  <ChevronLeft size={48} strokeWidth={1} className="group-hover:-translate-x-2 transition-transform" />
+                  <ChevronLeft size={32} strokeWidth={1.5} className="group-hover:-translate-x-1 transition-transform" />
                 </button>
                 
-                {/* Visual Ticker Indicator (Premium) */}
-                <div className="flex flex-col items-center min-w-[160px]">
-                  <span className="text-[10px] font-black tracking-[0.6em] opacity-40 mb-3 uppercase">Scene</span>
+                {/* Visual Ticker Indicator (Premium) - Glass Removed */}
+                <div className="flex flex-col items-center min-w-[180px] py-5">
+                  <span className="text-[9px] font-black tracking-[0.6em] text-accent-gold mb-4 uppercase leading-none opacity-40">Perspective</span>
                   <div className="flex items-center gap-6">
                     <div className="flex gap-1.5 h-1 items-end">
                       {Array.from({ length: Math.max(1, galleryImages.length) }).map((_, i) => (
                         <div 
                           key={i} 
                           className={cn(
-                            "w-8 h-px transition-all duration-500",
-                            i === currentImageIndex ? "bg-white h-0.5" : "bg-white/20"
+                            "w-6 h-px transition-all duration-500",
+                            i === currentImageIndex ? "bg-accent-gold h-1 w-8" : "bg-white/10"
                           )}
                         />
                       ))}
                     </div>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-5xl font-black tracking-tighter">{String(currentImageIndex + 1).padStart(2, '0')}</span>
-                      <span className="text-xs opacity-30 font-bold">/ {String(Math.max(1, galleryImages.length)).padStart(2, '0')}</span>
+                    <div className="flex items-baseline gap-1.5 pl-4 border-l border-white/10">
+                      <span className="text-4xl font-black tracking-tighter text-white leading-none">{String(currentImageIndex + 1).padStart(2, '0')}</span>
+                      <span className="text-[10px] text-white/20 font-black">/ {String(Math.max(1, galleryImages.length)).padStart(2, '0')}</span>
                     </div>
                   </div>
                 </div>
 
                 <button 
                   onClick={handleNextImage} 
-                  className="hover:text-white transition-all hover:scale-125 p-4 group"
+                  className="glass-pill-premium p-6 rounded-full border-white/10 backdrop-blur-xl text-white hover:bg-white/10 transition-all hover:scale-110 group pointer-events-auto shadow-2xl"
                   title="Next Scene"
                 >
-                  <ChevronRight size={48} strokeWidth={1} className="group-hover:translate-x-2 transition-transform" />
+                  <ChevronRight size={32} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
             </div>
@@ -272,36 +281,48 @@ export default function HeroGallery() {
 
   return (
     <div
-      className="relative w-full h-full bg-[#0F0E0D] overflow-hidden"
+      className="relative w-full h-full overflow-hidden"
       style={{ 
         zIndex: 70,
-        backgroundColor: currentStyle.bgColor || "#0F0E0D",
-        transition: 'background-color 0.6s cubic-bezier(0.22, 1, 0.36, 1)' 
+        backgroundColor: '#0F0E0D',
       }}
     >
-      {/* Step 2: Brand Identity Elements (Ticker & Marquee) */}
+      {/* Step 1: Premium Background Video & Fog Layers */}
       {!isExpanded && (
-        <div className="absolute inset-0 z-[60] pointer-events-none">
+        <div className="absolute inset-0 z-0">
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
+          >
+            <source src="/videos/hero/hero_bg_video.webm" type="video/webm" />
+            <source src="/videos/hero/hero_bg_video.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+        </div>
+      )}
+
+      {!isExpanded && (
+        <div className="absolute inset-0 z-[10] pointer-events-none">
           <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-full relative">
-            {/* CRITICAL DESIGN RULE: Ticker MUST remain Top-Left, Horizontal Row under Logo. DO NOT RELOCATE. */}
-            <div className="absolute top-28 md:top-32 left-4 md:left-10 pointer-events-auto">
-              <div className="flex flex-row gap-1.5 items-end h-4">
-                {interiorStyles.map((_, i) => (
-                  <motion.div
-                    key={i}
-                    onClick={() => setActiveIndex(i)}
-                    animate={{
-                      height: activeIndex === i ? 20 : 8,
-                      width: 1,
-                      backgroundColor: activeIndex === i ? (interiorStyles[i].bgColor || '#C5A059') : 'rgba(255,255,255,0.2)',
-                    }}
-                    className="cursor-pointer hover:bg-white/50 transition-colors shrink-0 w-[2px]"
-                  />
-                ))}
-              </div>
+            <div className="absolute top-28 md:top-32 left-4 md:left-10 pointer-events-auto flex flex-row gap-2.5 items-end h-8 px-4 py-2">
+              {interiorStyles.map((_, i) => (
+                <motion.div
+                  key={i}
+                  onClick={() => setActiveIndex(i)}
+                  animate={{
+                    height: activeIndex === i ? 24 : 12,
+                    width: activeIndex === i ? 4 : 2,
+                    backgroundColor: activeIndex === i ? (interiorStyles[i].bgColor || '#C5A059') : 'rgba(255,255,255,0.2)',
+                  }}
+                  whileHover={{ scaleY: 1.5, backgroundColor: 'rgba(255,255,255,0.5)' }}
+                  className="cursor-pointer transition-all shrink-0 rounded-full"
+                />
+              ))}
             </div>
 
-            {/* Philosophy Marquee (Remaining) */}
             <div className="absolute top-1/2 -translate-y-[120px] left-0 w-[25vw] hidden xl:block z-[100] opacity-30 hover:opacity-100 transition-all duration-1000 pl-4 md:pl-8 pointer-events-auto">
               <MarqueeBrand />
             </div>
@@ -342,12 +363,12 @@ export default function HeroGallery() {
                   if (!isActive) {
                     e.currentTarget.style.setProperty('--mouseX', x.toString());
                     e.currentTarget.style.setProperty('--mouseY', y.toString());
-                  } else {
-                    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
                   }
+                  
+                  setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
                 }}
-                onMouseEnter={() => isActive && setIsHoveringActive(true)}
-                onMouseLeave={() => isActive && setIsHoveringActive(false)}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
                 animate={{
                   width: isActive ? '45vw' : '3.5vw',
                   height: isActive ? '60vh' : '40vh',
@@ -395,41 +416,48 @@ export default function HeroGallery() {
                     priority={i < 3}
                   />
                 </motion.div>
-                {/* Explore Cursor Effect */}
-                {isActive && (
+                {/* Custom Cursor Effect for the hovered style bar */}
+                {hoveredIndex === i && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ 
-                      opacity: isHoveringActive ? 1 : 0, 
-                      scale: isHoveringActive ? 1 : 0.5,
+                      opacity: 1, 
+                      scale: 1,
                       x: mousePos.x - 50,
                       y: mousePos.y - 50
                     }}
-                    transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-                    className="absolute top-0 left-0 w-24 h-24 border border-white/50 rounded-full flex items-center justify-center backdrop-blur-sm z-50 pointer-events-none origin-center"
+                    transition={{ type: "spring", stiffness: 800, damping: 30, mass: 0.1 }}
+                    className="absolute top-0 left-0 w-28 h-28 border border-white/30 rounded-full flex flex-col items-center justify-center backdrop-blur-xl z-50 pointer-events-none origin-center shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                   >
-                    <span className="text-[10px] font-black tracking-[0.3em] text-white uppercase mt-1">Explore</span>
+                    <span className="text-[9px] font-black tracking-[0.4em] text-white uppercase mt-1 drop-shadow-md">
+                      {isActive ? "Explore" : "View More"}
+                    </span>
+                    <div className="w-6 h-px bg-white/40 mt-2" />
                   </motion.div>
                 )}
                 {/* Step 3: Vertical Label for IDLE (Restored) */}
                 {!isActive && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <span 
-                      className="[writing-mode:vertical-lr] rotate-180 text-[10px] font-bold tracking-[0.5em] text-white uppercase transition-opacity duration-500 opacity-100 md:opacity-40 md:group-hover:opacity-100"
-                    >
-                      {style.nameEn}
-                    </span>
+                    <div className="glass-pill-premium px-1.5 py-6 rounded-full border-white/5 backdrop-blur-[4px] transition-opacity duration-500 opacity-100 md:opacity-40 md:group-hover:opacity-100 flex items-center justify-center">
+                      <span 
+                        className="[writing-mode:vertical-lr] rotate-180 text-[10px] font-black tracking-[0.3em] text-white uppercase"
+                      >
+                        {style.nameEn}
+                      </span>
+                    </div>
                   </div>
                 )}
                 {isActive && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute inset-0 flex flex-col items-center justify-end pb-12 bg-black/20 pointer-events-none"
+                    className="absolute inset-0 flex flex-col items-center justify-end pb-12 z-20 pointer-events-none"
                   >
-                    <h2 className="text-white text-lg md:text-xl lg:text-4xl font-black uppercase text-center leading-tight drop-shadow-lg px-2 whitespace-nowrap overflow-hidden text-ellipsis">
-                      {style.nameEn}
-                    </h2>
+                    <div className="glass-pill-premium px-8 py-4 md:px-12 md:py-6 rounded-[1.5rem] border-white/10 backdrop-blur-xl">
+                      <h2 className="text-white text-lg md:text-xl lg:text-3xl font-black uppercase text-center leading-tight drop-shadow-lg px-2 whitespace-nowrap overflow-hidden text-ellipsis">
+                        {style.nameEn}
+                      </h2>
+                    </div>
                   </motion.div>
                 )}
               </motion.button>

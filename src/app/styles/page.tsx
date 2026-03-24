@@ -28,13 +28,15 @@ const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: nu
         {/* Content Overlay */}
         <div className="absolute inset-0 z-10 p-8 md:p-16 flex flex-col justify-between pointer-events-none">
           <div className="flex justify-between items-start">
-            <div className="space-y-2">
-              <span className="text-[10px] font-black tracking-[0.5em] text-accent-gold uppercase block">
+            <div className="space-y-4">
+              <span className="text-[10px] font-black tracking-[0.5em] text-accent-gold uppercase block ml-2">
                 Style Case {String(index + 1).padStart(2, '0')}
               </span>
-              <h3 className="text-3xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none whitespace-nowrap">
-                {style.nameEn}
-              </h3>
+              <div className="glass-pill-premium px-7 py-4 md:px-10 md:py-6 inline-block rounded-[2rem] md:rounded-[3rem] border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-700 group-hover:border-accent-gold/40">
+                <h3 className="text-3xl md:text-5xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-none whitespace-nowrap">
+                  {style.nameEn}
+                </h3>
+              </div>
             </div>
             
             <motion.div 
@@ -60,7 +62,7 @@ const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: nu
               </p>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="glass-pill-premium p-4 md:p-6 rounded-[2rem] border-white/5 backdrop-blur-lg flex items-center gap-6 shadow-xl transition-all duration-700 group-hover:border-white/20">
               <div 
                 className="w-4 h-4 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
                 style={{ backgroundColor: style.bgColor }}

@@ -49,15 +49,14 @@ body {
   overflow-x: hidden;
 }
 
-/* 데스크탑에서 기본 커서 숨김 (터치 기기 제외) */
-@media (hover: hover) and (pointer: fine) {
-  body, a, button, [role="button"] {
-    cursor: none !important;
-  }
+
+html, body {
+  cursor: url('/images/cursor-brand.svg') 16 16, auto;
+  scroll-behavior: smooth;
 }
 
-html {
-  scroll-behavior: smooth;
+a, button, [role="button"], .cursor-pointer {
+  cursor: url('/images/cursor-brand.svg') 16 16, pointer !important;
 }
 
 /* 히어로 확장 시 GNB 숨김 */
@@ -103,6 +102,7 @@ section {
   transition: background 1.5s ease;
 }
 
+
 .bg-theme-glow-bottom {
   position: fixed;
   bottom: -20%;
@@ -115,4 +115,62 @@ section {
   pointer-events: none;
   z-index: 1;
   transition: background 1.5s ease;
+}
+
+/* --- Premium Fog & Glass Effects --- */
+.hero-fog-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.hero-fog-layer {
+  position: absolute;
+  top: -10%;
+  left: -50%;
+  width: 200%;
+  height: 120%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: fogTranslate 35s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.hero-fog-layer-slow {
+  background: radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.1) 0%, transparent 80%);
+  animation: fogTranslate 50s ease-in-out infinite reverse;
+  filter: blur(80px);
+  opacity: 0.5;
+}
+
+@keyframes fogTranslate {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10%, 5%) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.glass-pill-premium {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }

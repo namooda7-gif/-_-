@@ -55,10 +55,10 @@ export default function Navigation() {
         <nav 
           className={cn(
             "hidden lg:flex items-center space-x-8 px-8 py-3 rounded-full transition-all duration-500 pointer-events-auto",
-            "border-t border-l border-white/20 border-r border-b border-white/5", // Specular edge highlights
+            "border-t border-l border-white/30 border-r border-b border-white/5", // Enhanced specular edge
             scrolled 
-              ? "bg-white/[0.12] backdrop-blur-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.5),0_1px_1px_rgba(255,255,255,0.1)_inset]" 
-              : "bg-white/[0.06] backdrop-blur-[12px] shadow-[0_10px_30px_rgba(0,0,0,0.3),0_1px_1px_rgba(255,255,255,0.05)_inset]"
+              ? "bg-white/[0.1] backdrop-blur-[24px] shadow-[0_25px_80px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)]" 
+              : "bg-white/[0.05] backdrop-blur-[16px] shadow-[0_15px_40px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.1)]"
           )}
         >
               {navLinks.map((link) => {
@@ -73,7 +73,7 @@ export default function Navigation() {
                         ? 'text-accent-page scale-105' 
                         : 'text-white/60 hover:text-accent-page hover:scale-110',
                       link.highlight 
-                        ? 'px-5 py-2 border border-accent-page/50 text-accent-page rounded-full hover:bg-accent-page hover:text-white shadow-[0_0_15px_rgba(var(--accent-page-rgb),0.15)] hover:shadow-[0_0_20px_rgba(var(--accent-page-rgb),0.4)] ml-2'
+                        ? 'px-5 py-2 border border-white/20 bg-white/5 backdrop-blur-md text-accent-page rounded-full hover:bg-accent-page hover:text-white shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-accent-page/40 ml-2'
                         : 'hover:opacity-100'
                     )}
                   >

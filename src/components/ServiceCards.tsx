@@ -67,9 +67,9 @@ function MagneticButton({ children, href }: { children: React.ReactNode, href: s
       style={{ x: mouseXSpring, y: mouseYSpring }}
       className="relative z-20"
     >
-      <Link href={href} className="flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black text-sm font-bold hover:bg-white/90 transition-all group/btn shadow-xl text-accent-page">
+      <Link href={href} className="flex items-center gap-3 px-8 py-3.5 rounded-full bg-white/[0.03] backdrop-blur-md text-white text-xs md:text-sm font-black border border-white/20 hover:bg-white/[0.08] hover:border-white/40 transition-all group/btn shadow-xl text-accent-page uppercase tracking-widest">
         {children}
-        <ArrowRight size={18} className="transition-transform group-hover/btn:translate-x-1" />
+        <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
       </Link>
     </motion.div>
   );
@@ -121,7 +121,7 @@ export default function ServiceCards() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
-              className="group relative h-[650px] rounded-[3rem] overflow-hidden bg-neutral-900 border border-white/5 shadow-2xl"
+              className="group relative h-[800px] rounded-[3rem] overflow-hidden glass-pill-premium border-white/5 shadow-[0_50px_100px_rgba(0,0,0,0.5)] transition-all duration-1000"
             >
               {/* Image Layer */}
               <div className="absolute inset-0 z-0">
@@ -129,50 +129,49 @@ export default function ServiceCards() {
                   src={service.image} 
                   alt={service.title}
                   fill
-                  className="w-full h-full object-cover transition-transform duration-[2s] md:group-hover:scale-110 opacity-100"
+                  className="w-full h-full object-cover transition-transform duration-[3s] md:group-hover:scale-110 opacity-70 md:opacity-40 md:group-hover:opacity-80"
                 />
-                {/* Remove dark gradient to let image shine through */}
-                <div className="absolute inset-0 bg-transparent opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100" />
               </div>
 
               {/* Content Overlay - ULTRACLEAR GLASS SYSTEM */}
-              <div className="absolute inset-x-4 bottom-4 z-10 p-2 md:p-3 flex flex-col justify-end">
+              <div className="absolute inset-x-6 bottom-6 z-10 p-2 md:p-4 flex flex-col justify-end">
                 <motion.div 
-                  className="p-8 md:p-10 rounded-[2.5rem] bg-white/[0.01] backdrop-blur-[2px] border border-white/30 shadow-2xl transition-all duration-700 md:group-hover:bg-white/[0.05] md:group-hover:border-white/40 flex flex-col"
+                  className="p-10 md:p-12 rounded-[2.5rem] bg-white/[0.03] backdrop-blur-3xl border border-white/10 shadow-2xl transition-all duration-1000 md:group-hover:bg-white/[0.08] md:group-hover:border-white/20 flex flex-col h-[640px]"
                 >
-                  <div className="mb-8 flex items-center justify-between">
-                    <div className="px-6 py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl transition-transform duration-500 md:group-hover:-translate-y-2">
-                      <span className="text-2xl font-black text-accent-page tracking-tighter tabular-nums">
+                  <div className="mb-10 flex items-center justify-between">
+                    <div className="px-8 py-4 rounded-3xl bg-white/5 backdrop-blur-3xl border border-white/10 shadow-2xl transition-all duration-700 md:group-hover:scale-110 md:group-hover:border-accent-page/40">
+                      <span className="text-3xl font-black text-accent-page tracking-tighter tabular-nums drop-shadow-[0_0_10px_rgba(197,160,89,0.3)]">
                         {service.id}
                       </span>
                     </div>
                     {service.highlight && (
                       <motion.span 
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="px-4 py-1.5 rounded-full bg-accent-page text-white text-[11px] font-black tracking-widest uppercase shadow-lg shadow-accent-page/40"
+                        animate={{ scale: [1, 1.05, 1], opacity: [0.7, 1, 0.7] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="px-5 py-2 rounded-full bg-accent-page/10 backdrop-blur-3xl border border-accent-gold/30 text-accent-gold text-[10px] font-black tracking-[0.3em] uppercase shadow-[0_0_20px_rgba(197,160,89,0.2)]"
                       >
                         Signature
                       </motion.span>
                     )}
                   </div>
 
-                  <div className="mb-0 transform transition-transform duration-700 md:group-hover:-translate-y-2">
-                    <p className="text-white/40 text-[10px] tracking-[0.3em] font-black uppercase mb-3">
+                  <div className="transform transition-transform duration-1000 md:group-hover:-translate-y-2">
+                    <p className="text-accent-gold/60 text-[10px] tracking-[0.4em] font-black uppercase mb-4">
                       {service.subtitle}
                     </p>
-                    <h3 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight tracking-tighter">
+                    <h3 className="text-3xl md:text-5xl font-black text-white mb-8 leading-[1.1] tracking-tighter drop-shadow-lg break-keep">
                       {service.title}
                     </h3>
-                    <div className="h-[2px] w-full md:w-0 bg-white/20 md:group-hover:w-full transition-all duration-700 mb-6" />
-                    <p className="text-white/80 md:text-white/60 text-[14px] md:text-[15px] leading-relaxed opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 md:delay-100 max-w-[300px]">
+                    <div className="h-[1px] w-full md:w-16 bg-white/20 md:group-hover:w-full transition-all duration-1000 mb-8" />
+                    <p className="text-white/60 text-base md:text-lg leading-relaxed font-light mb-10 max-w-[320px] break-keep">
                       {service.description}
                     </p>
                   </div>
 
-                  <div className="flex justify-start mt-8 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 md:delay-200">
+                  <div className="mt-auto flex justify-start opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 z-20 pointer-events-auto">
                     <MagneticButton href={service.link}>
-                      Discover More
+                      Discover
                     </MagneticButton>
                   </div>
                 </motion.div>

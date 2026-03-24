@@ -63,39 +63,47 @@ export default function SolutionGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
-              whileHover={{ y: -15 }}
-              className="group relative h-[600px] overflow-hidden bg-neutral-900 rounded-none cursor-pointer border border-white/5"
+              whileHover={{ y: -20 }}
+              className="group relative h-[650px] overflow-hidden glass-pill-premium rounded-[2.5rem] cursor-pointer border-white/5 shadow-2xl transition-all duration-700"
             >
-              {/* Background Image */}
+              {/* Background Image - Parallax and Opacity control */}
               <div className="absolute inset-0 z-0">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover opacity-40 md:group-hover:opacity-60 md:group-hover:scale-110 transition-all duration-1000 ease-out"
+                  className="object-cover opacity-30 md:group-hover:opacity-50 md:group-hover:scale-110 transition-all duration-1000 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F0E0D] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F0E0D] via-transparent to-transparent opacity-90" />
               </div>
 
-              {/* Content Overlay */}
-              <div className="relative z-10 h-full p-8 md:p-10 flex flex-col justify-end">
-                <div className="mb-8 overflow-hidden">
-                  <span className="text-6xl font-serif text-white/10 block mb-4 md:group-hover:text-white/30 md:group-hover:-translate-y-2 transition-all duration-700">
-                    {item.kanji}
-                  </span>
-                  <h3 className="text-2xl font-black text-white mb-2 tracking-tight md:group-hover:text-accent-page transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm font-bold text-white/60 tracking-widest uppercase mb-6">
-                    {item.subtitle}
-                  </p>
-                </div>
+              {/* Kanji Watermark - Refined transparency */}
+              <div className="absolute top-12 right-[-5%] z-0 pointer-events-none select-none overflow-hidden">
+                <span className="text-[14rem] md:text-[18rem] font-serif text-white/[0.08] leading-none block transform rotate-12">
+                  {item.kanji}
+                </span>
+              </div>
 
-                <div className="h-auto md:h-0 md:group-hover:h-auto opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 ease-in-out">
-                  <p className="text-sm leading-relaxed text-white/40 mb-8 max-w-[280px]">
-                    {item.desc}
-                  </p>
-                  <div className="w-full md:w-12 h-px bg-white/20 md:group-hover:w-full transition-all duration-1000 origin-left" />
+              {/* Content Overlay - ULTRACLEAR GLASS PLATE */}
+              <div className="relative z-10 h-full p-4 flex flex-col justify-end">
+                <div className="glass-pill-premium p-8 md:p-10 rounded-[2rem] border-white/10 h-[320px] flex flex-col justify-center backdrop-blur-2xl m-2 bg-white/[0.03] shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                  <div className="mb-0 relative py-4">
+                    <div className="relative z-10">
+                      <h3 className="text-3xl md:text-4xl font-black text-white mb-3 tracking-tighter md:group-hover:text-accent-gold transition-colors drop-shadow-md uppercase break-keep leading-[1.1]">
+                        {item.title}
+                      </h3>
+                      <p className="text-[11px] font-black text-accent-gold/60 tracking-[0.4em] uppercase mb-0">
+                        {item.subtitle}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out">
+                    <p className="text-base leading-relaxed text-white/60 mb-8 max-w-[320px] font-light break-keep">
+                      {item.desc}
+                    </p>
+                    <div className="w-0 group-hover:w-full h-[1px] bg-accent-gold/30 transition-all duration-1000 origin-left" />
+                  </div>
                 </div>
               </div>
             </motion.div>

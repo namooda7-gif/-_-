@@ -104,7 +104,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
         setCursorType("default");
       }}
       onMouseMove={handleMouseMove}
-      className="relative shrink-0 w-[85vw] md:w-[48vw] lg:w-[48vw] aspect-[16/10] overflow-hidden bg-neutral-900 cursor-auto md:cursor-none ml-4 md:ml-24 first:ml-[0vw] last:mr-[10vw] pointer-events-auto z-50 group"
+      className="relative shrink-0 w-[85vw] md:w-[48vw] lg:w-[48vw] aspect-[16/10] overflow-hidden bg-neutral-900 cursor-auto ml-4 md:ml-24 first:ml-[0vw] last:mr-[10vw] pointer-events-auto z-50 group"
     >
       {/* Base grayscale layer */}
       <div className="absolute inset-0 z-0 grayscale contrast-125 brightness-75">
@@ -142,15 +142,15 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
       <canvas ref={canvasRef} className="pointer-events-none opacity-0 absolute inset-0" />
 
       {/* Text Info (Always visible on mobile) */}
-      <div className="absolute inset-0 z-20 p-6 md:p-10 flex flex-col justify-end pointer-events-none">
-        <motion.div className="overflow-hidden">
-          <span className="text-xs md:text-sm font-black tracking-[0.5em] text-white/60 uppercase block mb-1 md:mb-2">
+      <div className="absolute inset-x-4 bottom-8 md:inset-x-10 md:bottom-12 z-20 flex flex-col justify-end pointer-events-none">
+        <motion.div className="overflow-hidden glass-pill-premium px-5 py-3 md:px-8 md:py-4 rounded-[1rem] border-white/20 w-[260px] md:w-[460px] min-h-[60px] md:min-h-[80px] flex flex-col justify-center backdrop-blur-md">
+          <span className="text-[9px] font-black tracking-[0.4em] text-white/30 uppercase block mb-0 italic">
             Showcase {index + 1}
           </span>
-          <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none mb-4 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-700">
+          <h3 className="text-[15px] md:text-[18px] font-black text-white uppercase tracking-tighter leading-none mb-1.5 translate-y-0 md:translate-y-full md:group-hover:translate-y-0 transition-transform duration-700">
             {project.title}
           </h3>
-          <div className="w-16 md:w-0 md:group-hover:w-16 h-1 bg-accent-page transition-all duration-700 md:delay-100" />
+          <div className="w-10 md:w-0 md:group-hover:w-10 h-0.5 bg-accent-page transition-all duration-700 md:delay-100" />
         </motion.div>
       </div>
     </motion.div>

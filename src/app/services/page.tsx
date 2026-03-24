@@ -238,79 +238,108 @@ export default function ServicesPage() {
         </section>
       ))}
 
-      {/* 4. The Narrative Process Section */}
-      <section className="relative min-h-screen w-full snap-start snap-always shrink-0 flex flex-col justify-center bg-[#050505] overflow-hidden py-20 px-6 md:px-12 xl:px-24">
-        <div className="max-w-[1400px] mx-auto w-full">
+      {/* 4. The Narrative Process Section (Cinematic Redesign) */}
+      <section className="relative min-h-screen w-full snap-start snap-always shrink-0 flex flex-col justify-center overflow-hidden py-20 px-6 md:px-12 xl:px-24">
+        {/* Full Section Background */}
+        <div className="absolute inset-0 z-0">
+          <OptimizedImage
+            src="/images/services/service_narrative_bg.png"
+            alt="Laol Process Narrative"
+            fill
+            className="object-cover"
+          />
+          {/* Subtle Darkening Overlay for Depth */}
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0F0E0D] via-transparent to-transparent" />
+        </div>
+
+        <div className="max-w-[1500px] mx-auto w-full relative z-10">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="mb-16 md:mb-24"
           >
-            <span className="text-[10px] font-black tracking-[1em] text-accent-gold uppercase block mb-4">The Laol Narrative</span>
-            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-6">
-              정석의 <span className="text-accent-gold italic font-light lowercase">미학</span>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-px bg-accent-gold" />
+              <span className="text-[10px] font-black tracking-[1em] text-accent-gold uppercase block">The Laol Narrative</span>
+            </div>
+            <h2 className="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none mb-8">
+              정석의 <span className="text-white/20 italic font-light lowercase">미학</span>
             </h2>
-            <div className="h-[1px] w-24 bg-accent-gold opacity-50 mb-8" />
-            <p className="text-white/40 text-sm md:text-lg max-w-2xl font-light leading-relaxed">
+            <p className="text-white/50 text-base md:text-xl max-w-2xl font-light leading-relaxed break-keep">
               라올실내건축은 보이지 않는 곳에서 더 치열합니다. <br className="hidden md:block" />
               첫 상담부터 평생의 파트너가 되는 사후관리까지, 모든 과정은 투명하고 정교하게 흐릅니다.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             {processSteps.map((step, idx) => (
               <motion.div
                 key={step.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: idx * 0.15 }}
+                transition={{ duration: 1.2, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative"
               >
-                {/* Image Container */}
-                <div className="relative aspect-[4/5] overflow-hidden rounded-lg mb-8 bg-[#111]">
-                  <OptimizedImage
-                    src={step.image}
-                    alt={step.title}
-                    fill
-                    className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale group-hover:grayscale-0"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                {/* Premium Glass Card */}
+                <div className="glass-pill-premium p-8 h-full rounded-[2.5rem] border-white/10 backdrop-blur-xl transition-all duration-700 hover:border-accent-gold/30 hover:bg-white/[0.05] flex flex-col shadow-2xl overflow-hidden min-h-[500px]">
                   
-                  {/* Step Number Badge */}
-                  <div 
-                    className="absolute top-6 left-6 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center font-black text-lg"
-                    style={{ color: step.isSand ? 'var(--accent-sand)' : 'var(--accent-gold)' }}
-                  >
-                    {step.id}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="space-y-4 px-2">
-                  <div className="space-y-1">
+                  {/* Step Number & Subtitle */}
+                  <div className="flex justify-between items-start mb-8">
+                    <span 
+                      className="text-4xl font-black tracking-tighter opacity-20"
+                      style={{ color: step.isSand ? 'var(--accent-sand)' : 'var(--accent-gold)' }}
+                    >
+                      {step.id}
+                    </span>
                     <p 
-                      className="text-[10px] font-bold tracking-widest uppercase opacity-60"
+                      className="text-[10px] font-black tracking-[0.4em] uppercase opacity-60 mt-2"
                       style={{ color: step.isSand ? 'var(--accent-sand)' : 'var(--accent-gold)' }}
                     >
                       {step.subtitle}
                     </p>
-                    <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tighter">
-                      {step.title}
-                    </h3>
                   </div>
-                  <p className="text-sm text-white/40 font-light leading-relaxed group-hover:text-white/60 transition-colors duration-500">
+
+                  {/* Header */}
+                  <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-6">
+                    {step.title}
+                  </h3>
+
+                  {/* Image with Silhouette Effect */}
+                  <div className="relative aspect-video w-full mb-8 overflow-hidden rounded-2xl bg-black/40">
+                    <OptimizedImage
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      className="object-cover opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000 grayscale group-hover:grayscale-0"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-sm text-white/50 font-light leading-relaxed group-hover:text-white/80 transition-colors duration-500 break-keep">
                     {step.desc}
                   </p>
+
+                  {/* Architectural Line Decoration */}
+                  <div className="mt-auto pt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                    <div className="w-12 h-0.5 bg-accent-gold" />
+                  </div>
                 </div>
 
                 {/* Arrow Connector (Desktop) */}
                 {idx < 3 && (
-                  <div className="hidden lg:block absolute top-[40%] -right-3 z-10">
-                    <svg className="w-6 h-6 text-accent-gold opacity-20 group-hover:opacity-50 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                  <div className="hidden lg:block absolute top-[20%] -right-5 z-10 pointer-events-none">
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <svg className="w-6 h-6 text-accent-gold opacity-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </motion.div>
                   </div>
                 )}
               </motion.div>
@@ -318,8 +347,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer Shortcut / CTA */}
+      {/* 5. Footer Shortcut / CTA */}
       <section className="relative h-[60vh] w-full snap-start snap-always shrink-0 flex items-center justify-center bg-[#050505] overflow-hidden px-6">
          <div className="text-center space-y-12">
             <motion.div
@@ -338,17 +366,15 @@ export default function ServicesPage() {
             </motion.div>
             
             <motion.button
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
               whileTap={{ scale: 0.95 }}
               onClick={() => window.location.href = "/contact"}
-              className="px-12 py-5 bg-accent-gold text-black font-black text-sm uppercase tracking-[0.2em] rounded-full hover:bg-white transition-all duration-500 shadow-[0_0_30px_rgba(212,175,55,0.2)]"
+              className="px-12 py-5 glass-pill-premium text-white font-black text-sm uppercase tracking-[0.3em] rounded-full border-white/20 transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(197,160,89,0.1)]"
             >
               상담 예약하기
             </motion.button>
          </div>
       </section>
-
-
     </main>
   );
 }

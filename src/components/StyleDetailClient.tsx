@@ -64,19 +64,20 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="glass-pill-premium py-10 px-12 md:py-14 md:px-24 rounded-[4rem] border-white/5 backdrop-blur-xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center max-w-[90vw] md:max-w-4xl"
           >
-            <p className="text-accent-gold text-sm tracking-[0.4em] font-bold mb-4 uppercase">
+            <p className="text-accent-gold text-xs md:text-sm tracking-[0.5em] font-black mb-6 uppercase">
               {style.nameEn} Collection
             </p>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 drop-shadow-2xl">
+            <h1 className="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-none">
               {style.nameKo}
             </h1>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-4">
               {style.keywords.map((keyword, idx) => (
-                <span key={idx} className="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white text-sm font-medium border border-white/20">
+                <span key={idx} className="px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full text-white text-xs md:text-sm font-black border border-white/20 uppercase tracking-widest">
                   #{keyword}
                 </span>
               ))}
@@ -128,40 +129,39 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-[3rem] p-12 md:p-20 shadow-2xl border border-white/10 transition-colors duration-700"
-          style={{ 
-            backgroundColor: style.bgColor,
-            color: style.isDark ? 'white' : 'black'
-          }}
+          className={`glass-pill-premium rounded-[3rem] p-12 md:p-24 shadow-[0_50px_100px_rgba(0,0,0,0.5)] border-white/10 backdrop-blur-3xl transition-all duration-1000 ${
+            style.isDark ? 'bg-white/5 text-white' : 'bg-black/5 text-black'
+          }`}
         >
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className={style.isDark ? 'text-white' : 'text-black'}>
-              <div className={`flex items-center gap-3 mb-6 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`}>
-                <span className="text-sm font-black tracking-widest uppercase">Philosophy</span>
+              <div className={`flex items-center gap-3 mb-8 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`}>
+                <div className="w-8 h-px bg-current" />
+                <span className="text-xs font-black tracking-[0.5em] uppercase">Philosophy</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight break-keep">
+              <h2 className="text-4xl md:text-5xl font-black mb-10 leading-tight tracking-tighter break-keep">
                 {style.nameKo} 스타일로 완성하는 <br />
-                <span className={style.isDark ? 'text-white/40' : 'text-black/40'}>공간의 시그니처</span>
+                <span className={style.isDark ? 'text-white/40 font-light italic' : 'text-black/40 font-light italic'}>공간의 시그니처</span>
               </h2>
-              <p className={`text-xl leading-relaxed mb-10 break-keep ${style.isDark ? 'text-white/60' : 'text-black/70'}`}>
+              <p className={`text-xl md:text-2xl leading-relaxed mb-12 font-light break-keep ${style.isDark ? 'text-white/60' : 'text-black/70'}`}>
                 {style.description}
               </p>
               
               <div 
-                className={`p-8 rounded-3xl border backdrop-blur-md ${
-                  style.isDark ? 'bg-white/5 border-white/10' : 'bg-black/5 border-black/10'
+                className={`p-10 rounded-3xl border backdrop-blur-md ${
+                  style.isDark ? 'bg-white/5 border-white/10 shadow-inner' : 'bg-black/5 border-black/10'
                 }`}
               >
-                <h4 className="font-black mb-4 flex items-center gap-2 opacity-80 uppercase tracking-widest text-xs">
+                <h4 className="font-black mb-6 flex items-center gap-3 opacity-80 uppercase tracking-widest text-[10px]">
                   <Hash className={`w-4 h-4 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`} />
                   Interior Keywords
                 </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-3">
                   {style.keywords.map((kw, i) => (
                     <div 
                       key={i} 
-                      className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold border ${
-                        style.isDark ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
+                      className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black border uppercase tracking-widest ${
+                        style.isDark ? 'bg-white/5 border-white/10 text-white/80' : 'bg-black/5 border-black/10 text-black/80'
                       }`}
                     >
                       <div className={`w-1.5 h-1.5 rounded-full ${style.isDark ? 'bg-accent-gold' : 'bg-black/60'}`} />
@@ -172,36 +172,15 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
               </div>
             </div>
 
-            <div className="space-y-8">
-              <div className="aspect-[4/3] rounded-3xl overflow-hidden relative shadow-lg">
+            <div className="relative group">
+              <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden relative shadow-2xl border border-white/10 group-hover:scale-[1.02] transition-transform duration-1000">
                 <Image 
                   src={style.previewImage} 
                   alt="Feature Area"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-[3s] group-hover:scale-110"
                 />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div 
-                  className={`aspect-square rounded-2xl flex items-center justify-center p-8 text-center border backdrop-blur-xl transition-transform hover:scale-[1.02] duration-500 ${
-                    style.isDark ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
-                  }`}
-                >
-                  <div>
-                    <div className={`text-4xl font-black mb-1 ${style.isDark ? 'text-white' : 'text-black'}`}>01</div>
-                    <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Safety First</div>
-                  </div>
-                </div>
-                <div 
-                  className={`aspect-square rounded-2xl flex items-center justify-center p-8 text-center border backdrop-blur-xl transition-transform hover:scale-[1.02] duration-500 ${
-                    style.isDark ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'
-                  }`}
-                >
-                  <div>
-                    <div className={`text-4xl font-black mb-1 ${style.isDark ? 'text-white' : 'text-black'}`}>02</div>
-                    <div className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Premium Detail</div>
-                  </div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               </div>
             </div>
           </div>
@@ -264,12 +243,18 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                     className="object-cover transform transition-transform duration-[3s] group-hover:scale-105"
                   />
                   
-                  {/* Premium Overlay on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 p-12 flex flex-col justify-end">
-                    <p className="text-accent-gold text-xs font-black tracking-[0.5em] uppercase mb-4">Space Archetype {idx + 1}</p>
-                    <h4 className="text-3xl font-bold text-white uppercase tracking-tight">
-                      {idx === 0 ? 'Master Bedroom' : idx === 1 ? 'Living Space' : idx === 2 ? 'Private Bath' : 'Gourmet Kitchen'}
-                    </h4>
+                  {/* Premium Glass Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 p-8 md:p-12 flex flex-col justify-end items-start">
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileHover={{ scale: 1.02 }}
+                      className="glass-pill-premium p-6 md:p-10 rounded-[2rem] border-white/10 backdrop-blur-2xl shadow-2xl flex flex-col items-start max-w-[90%]"
+                    >
+                      <p className="text-accent-gold text-[10px] font-black tracking-[0.5em] uppercase mb-4 opacity-80">Space Archetype {idx + 1}</p>
+                      <h4 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter leading-none break-keep">
+                        {idx === 0 ? 'Master Bedroom' : idx === 1 ? 'Living Space' : idx === 2 ? 'Private Bath' : 'Gourmet Kitchen'}
+                      </h4>
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>
@@ -278,17 +263,14 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="max-w-[1000px] mx-auto px-4 md:px-8 mt-40">
+      <section className="max-w-[1200px] mx-auto px-4 md:px-8 mt-48">
         <div 
-          className="rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden border border-white/10 shadow-2xl transition-colors duration-700"
-          style={{ 
-            backgroundColor: style.bgColor,
-            color: style.isDark ? 'white' : 'black'
-          }}
+          className={`glass-pill-premium rounded-[3rem] p-16 md:p-24 text-center relative overflow-hidden border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.5)] backdrop-blur-3xl transition-all duration-1000 ${
+            style.isDark ? 'bg-white/5 text-white' : 'bg-black/5 text-black'
+          }`}
         >
-          <div className={`absolute top-0 right-0 w-64 h-64 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 ${
-            style.isDark ? 'bg-accent-gold/10' : 'bg-black/10'
+          <div className={`absolute top-0 right-0 w-96 h-96 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-20 ${
+            style.isDark ? 'bg-accent-gold' : 'bg-black'
           }`} />
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -300,13 +282,24 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
               나만의 공간을 완성하고 싶으신가요?
             </h2>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Link href="/contact" className="px-10 py-5 bg-accent-gold text-white font-black rounded-full hover:scale-105 transition-all shadow-lg flex items-center justify-center gap-3">
-                상담 예약하기 <ChevronRight className="w-5 h-5" />
+              <Link 
+                href="/contact" 
+                className="glass-pill-premium px-12 py-6 bg-accent-gold/20 backdrop-blur-2xl border-accent-gold/50 text-white font-black rounded-full hover:scale-105 transition-all shadow-[0_20px_40px_rgba(197,160,89,0.3)] flex items-center justify-center gap-3 overflow-hidden group/btn"
+              >
+                <div className="absolute inset-0 bg-accent-gold opacity-0 group-hover/btn:opacity-20 transition-opacity duration-500" />
+                <span className="relative z-10 tracking-widest uppercase text-sm">상담 예약하기</span>
+                <ChevronRight className="w-5 h-5 relative z-10 transition-transform group-hover/btn:translate-x-1" />
               </Link>
-              <Link href="/services" className={`px-10 py-5 backdrop-blur-md border font-black rounded-full transition-all flex items-center justify-center ${
-                style.isDark ? 'bg-white/10 border-white/20 text-white hover:bg-white/20' : 'bg-black/5 border-black/10 text-black hover:bg-black/10'
-              }`}>
-                서비스 가이드 보기
+              <Link 
+                href="/services" 
+                className={`glass-pill-premium px-12 py-6 backdrop-blur-2xl border font-black rounded-full transition-all flex items-center justify-center overflow-hidden group/btn-sec ${
+                  style.isDark 
+                    ? 'bg-white/5 border-white/10 text-white/80 hover:bg-white/10' 
+                    : 'bg-black/5 border-black/10 text-black/80 hover:bg-black/10'
+                }`}
+              >
+                <div className="absolute inset-0 bg-current opacity-0 group-hover/btn-sec:opacity-5 transition-opacity duration-500" />
+                <span className="relative z-10 tracking-widest uppercase text-sm">서비스 가이드 보기</span>
               </Link>
             </div>
           </motion.div>

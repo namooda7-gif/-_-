@@ -9,7 +9,7 @@ export default function CustomCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  const springConfig = { damping: 25, stiffness: 200 };
+  const springConfig = { damping: 20, stiffness: 800 }; // Much snappier and responsive
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
@@ -38,24 +38,25 @@ export default function CustomCursor() {
 
   const variants = {
     default: {
-      width: 12,
-      height: 12,
-      backgroundColor: "var(--accent-page)",
-      border: "0px solid transparent",
+      width: 0,
+      height: 0,
+      opacity: 0,
+      backgroundColor: "transparent",
+      border: "0px solid transparent"
     },
     view: {
-      width: 120,
-      height: 120,
-      backgroundColor: "rgba(197, 160, 89, 0.15)", // Approximate gold but themed would be better. I'll use a class in a wrapper instead. Actually I'll just change the text below.
-      border: "1px solid var(--accent-page)",
-      backdropFilter: "blur(4px)",
+      width: 140,
+      height: 140,
+      backgroundColor: "rgba(197, 160, 89, 0.08)", 
+      border: "1px solid rgba(197, 160, 89, 0.4)",
+      backdropFilter: "blur(12px)",
     },
     drag: {
-      width: 100,
-      height: 100,
-      backgroundColor: "rgba(255, 255, 255, 0.1)",
-      border: "1px solid rgba(255, 255, 255, 0.4)",
-      backdropFilter: "blur(4px)",
+      width: 120,
+      height: 120,
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
+      border: "1px solid rgba(255, 255, 255, 0.2)",
+      backdropFilter: "blur(12px)",
     },
   };
 
@@ -90,7 +91,7 @@ export default function CustomCursor() {
                     exit={{ opacity: 0, scale: 0.8 }}
                     className="text-[10px] font-black tracking-[0.2em] text-accent-page"
                   >
-                    VIEW MORE
+                    REVEAL
                   </motion.span>
                 )}
                 {cursorType === "drag" && (

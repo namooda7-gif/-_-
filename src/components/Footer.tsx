@@ -24,8 +24,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-background border-t border-white/10 pt-16 pb-12">
-      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+    <footer className="relative z-50 py-24 px-4 md:px-8 overflow-hidden">
+      {/* Glass Backdrop */}
+      <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-3xl border-t border-white/[0.05] z-0" />
+      
+      {/* Top Accent Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-accent-gold/20 to-transparent z-10" />
+      
+      <div className="max-w-[1600px] mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Col 1: Brand */}
           <div className="space-y-6">

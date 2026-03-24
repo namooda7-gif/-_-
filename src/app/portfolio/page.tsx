@@ -7,31 +7,6 @@ import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 export default function PortfolioPage() {
   return (
     <main className="pt-32 pb-40 px-6 md:px-12 xl:px-24 max-w-[1800px] mx-auto min-h-screen bg-transparent text-white">
-      <div className="mb-24">
-        <motion.p 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-[var(--accent-page)] text-xs md:text-sm tracking-[0.5em] font-black uppercase mb-6"
-        >
-          Project Archive
-        </motion.p>
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-6xl md:text-8xl font-black text-white uppercase leading-none tracking-tighter"
-        >
-          시공 사례
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-xl text-white/50 max-w-2xl mt-8 font-light"
-        >
-          라올실내건축의 철학이 담긴 실제 시공 리스트입니다. <br />
-          상업 공간부터 주거 공간까지, 디테일의 차이가 만드는 공간의 가치를 확인해 보세요.
-        </motion.p>
-      </div>
 
       {/* Featured Transformation Slider Section - Expanded to Full Width */}
       <motion.div 
