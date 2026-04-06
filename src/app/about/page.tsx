@@ -22,14 +22,6 @@ export default function AboutPage() {
     setIsMounted(true);
   }, []);
 
-  // about 페이지에서는 글로벌 footer를 숨겨 3섹션 스냅 구조 유지
-  React.useEffect(() => {
-    const footer = document.querySelector('footer') as HTMLElement | null;
-    if (footer) footer.style.display = 'none';
-    return () => {
-      if (footer) footer.style.display = '';
-    };
-  }, []);
 
   if (!isMounted) {
     return (
