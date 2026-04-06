@@ -62,7 +62,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
 
         {/* Bottom Fade transition removed in favor of global overlay */}
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 md:justify-center md:pb-0 text-center px-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -127,7 +127,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
       </section>
 
       {/* Content Section */}
-      <section className="max-w-[1200px] mx-auto px-4 md:px-8 -mt-60 relative z-20">
+      <section className="max-w-[1200px] mx-auto px-4 md:px-8 mt-8 md:-mt-60 relative z-20">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
