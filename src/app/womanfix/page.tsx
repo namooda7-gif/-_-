@@ -1,8 +1,8 @@
 export default function WomanfixPage() {
   return (
-    <div className="pt-32 pb-20 px-4 md:px-8 max-w-[1200px] mx-auto min-h-screen">
-      <div className="mb-20 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">우먼픽스</h1>
+    <div className="pt-20 md:pt-32 pb-20 px-4 md:px-8 max-w-[1200px] mx-auto min-h-screen">
+      <div className="mb-12 md:mb-20 text-center">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tighter">우먼픽스</h1>
         <p className="text-xl md:text-2xl text-dimmed/80 font-light">여성을 위한 가장 안전하고 쾌적한 홈케어 서비스 앱 &apos;우먼픽스&apos;</p>
       </div>
 
@@ -26,7 +26,7 @@ export default function WomanfixPage() {
             </div>
           </div>
         </div>
-        <div className="aspect-square bg-white/5 rounded-[40px] border border-white/10 flex flex-col items-center justify-center p-12 gap-6">
+        <div className="aspect-square w-full max-w-sm mx-auto lg:max-w-none bg-white/5 rounded-[40px] border border-white/10 flex flex-col items-center justify-center p-8 md:p-12 gap-6">
           <div className="text-center space-y-3">
             <div className="text-5xl">🏠</div>
             <h3 className="text-2xl font-bold text-white">AI 3D 인테리어 렌더링</h3>

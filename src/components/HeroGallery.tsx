@@ -21,11 +21,16 @@ export default function HeroGallery() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const carouselRef = React.useRef<HTMLDivElement>(null);
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
@@ -164,8 +169,8 @@ export default function HeroGallery() {
             </AnimatePresence>
           </div>
 
-          {/* Close Button */}
-          <div style={{ position: 'fixed', top: '40px', left: '40px', zIndex: 100 }}>
+          {/* Close Button - 모바일: 하단 중앙, 데스크톱: 좌상단 */}
+          <div style={{ position: 'fixed', bottom: isMobile ? '40px' : 'auto', top: isMobile ? 'auto' : '40px', left: isMobile ? '50%' : '40px', transform: isMobile ? 'translateX(-50%)' : 'none', zIndex: 100 }}>
             <button 
               onClick={(e) => { e.stopPropagation(); setIsExpanded(false); }}
               className="flex items-center gap-5 glass-pill-premium px-6 py-3 rounded-full border-white/10 backdrop-blur-xl text-white hover:bg-white/10 transition-all group pointer-events-auto"
@@ -175,8 +180,8 @@ export default function HeroGallery() {
             </button>
           </div>
 
-          {/* Top-Right Style Switcher (User Request) */}
-          <div style={{ position: 'fixed', top: '40px', right: '40px', zIndex: 100 }}>
+          {/* Top-Right Style Switcher - 모바일: 상단 중앙, 데스크톱: 우상단 */}
+          <div style={{ position: 'fixed', top: '40px', left: isMobile ? '50%' : 'auto', right: isMobile ? 'auto' : '40px', transform: isMobile ? 'translateX(-50%)' : 'none', zIndex: 100 }}>
             <div className="flex gap-6 items-center glass-pill-premium px-6 py-3 rounded-2xl border-white/10 backdrop-blur-xl text-white pointer-events-auto">
               <button 
                 onClick={(e) => { e.stopPropagation(); handlePrev(); }} 
@@ -269,7 +274,7 @@ export default function HeroGallery() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 1.2 }}
-              className="text-center text-sm md:text-lg font-bold tracking-[0.4em] text-white/50 max-w-none px-12 leading-none uppercase whitespace-nowrap"
+              className="text-center text-xs md:text-lg font-bold tracking-[0.2em] md:tracking-[0.4em] text-white/50 max-w-[90vw] md:max-w-none px-6 md:px-12 leading-relaxed md:leading-none uppercase whitespace-normal md:whitespace-nowrap"
             >
               {currentStyle.description}
             </motion.p>
@@ -330,17 +335,18 @@ export default function HeroGallery() {
         </div>
       )}
 
-      {/* CRITICAL DESIGN RULE: Gallery MUST remain Vertically Centered and Pushed to the Right Edge. DO NOT RELOCATE. */}
+      {/* CRITICAL DESIGN RULE: Gallery MUST remain Vertically Centered below nav, Pushed to the Right Edge. DO NOT RELOCATE. */}
       {!isExpanded && (
         <div 
-          className="absolute inset-y-0 left-0 right-0 overflow-hidden flex flex-col justify-center items-end z-10 pr-2 md:pr-4 lg:pr-6 pointer-events-none" 
+          className="absolute top-[80px] md:top-[96px] bottom-0 left-0 right-0 overflow-x-auto overflow-y-hidden flex flex-col justify-center items-end z-10 pr-0 md:pr-2 lg:pr-4 pointer-events-none" 
           ref={carouselRef}
+          style={{ scrollbarWidth: 'none' }}
         >
           <motion.div 
             drag="x"
             dragConstraints={carouselRef}
             dragElastic={0.2}
-            className="flex gap-2 lg:gap-4 items-center pointer-events-auto cursor-grab active:cursor-grabbing w-max mr-0 md:mr-0 pl-[50vw] md:pl-0"
+            className="flex gap-1.5 lg:gap-2.5 items-center pointer-events-auto cursor-grab active:cursor-grabbing w-max mr-0 md:mr-0 pl-[8vw] md:pl-0"
           >
             {interiorStyles.map((style, i) => {
             const isActive = activeIndex === i;
@@ -370,9 +376,9 @@ export default function HeroGallery() {
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 animate={{
-                  width: isActive ? '45vw' : '3.5vw',
-                  height: isActive ? '60vh' : '40vh',
-                  y: isActive ? 0 : [0, -25, 0],
+                  width: isActive ? (isMobile ? '75vw' : '45vw') : (isMobile ? '6vw' : '4vw'),
+                  height: isActive ? (isMobile ? '58vh' : '72vh') : (isMobile ? '46vh' : '72vh'),
+                  y: isActive ? 0 : [0, -20, 0],
                 }}
                 whileHover={!isActive ? { y: -50, scale: 1.05 } : {}}
                 whileTap={!isActive ? { scale: 0.95 } : {}}
@@ -383,7 +389,7 @@ export default function HeroGallery() {
                 }}
                 className={cn(
                   "relative cursor-pointer overflow-hidden rounded-none group shadow-2xl border-none outline-none p-0 shrink-0",
-                  isActive ? "z-20 w-[45vw] h-[60vh]" : "z-10 w-[3.5vw] h-[40vh]",
+                  isActive ? "z-20 w-[45vw] h-[72vh]" : "z-10 w-[4vw] h-[72vh]",
                   style.isDark ? "bg-neutral-800" : "bg-neutral-100"
                 )}
                 style={{
@@ -440,7 +446,7 @@ export default function HeroGallery() {
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="glass-pill-premium px-1.5 py-6 rounded-full border-white/5 backdrop-blur-[4px] transition-opacity duration-500 opacity-100 md:opacity-40 md:group-hover:opacity-100 flex items-center justify-center">
                       <span 
-                        className="[writing-mode:vertical-lr] rotate-180 text-[10px] font-black tracking-[0.3em] text-white uppercase"
+                        className="[writing-mode:vertical-lr] rotate-180 text-[8px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.3em] text-white uppercase"
                       >
                         {style.nameEn}
                       </span>
@@ -463,6 +469,30 @@ export default function HeroGallery() {
               </motion.button>
             );
           })}
+          </motion.div>
+        </div>
+      )}
+
+      {/* 모바일 전용 — 하단 가로 스크롤 안내 티커 */}
+      {!isExpanded && isMobile && (
+        <div className="absolute bottom-16 left-0 right-0 z-30 overflow-hidden pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="flex items-center justify-center gap-3"
+          >
+            <div className="h-px w-8 bg-white/20" />
+            <motion.div
+              animate={{ x: [0, 8, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+                <path d="M1 6h16M11 1l5 5-5 5" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </motion.div>
+            <span className="text-[9px] font-black tracking-[0.4em] text-white/30 uppercase">scroll to explore</span>
+            <div className="h-px w-8 bg-white/20" />
           </motion.div>
         </div>
       )}

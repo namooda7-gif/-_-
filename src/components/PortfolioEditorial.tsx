@@ -143,7 +143,7 @@ const PortfolioItem = ({ project, index }: { project: (typeof projects)[0]; inde
 
       {/* Text Info (Always visible on mobile) */}
       <div className="absolute inset-x-4 bottom-8 md:inset-x-10 md:bottom-12 z-20 flex flex-col justify-end pointer-events-none">
-        <motion.div className="overflow-hidden glass-pill-premium px-5 py-3 md:px-8 md:py-4 rounded-[1rem] border-white/20 w-[260px] md:w-[460px] min-h-[60px] md:min-h-[80px] flex flex-col justify-center backdrop-blur-md">
+        <motion.div className="overflow-hidden glass-pill-premium px-5 py-3 md:px-8 md:py-4 rounded-[1rem] border-white/20 w-[min(260px,72vw)] md:w-[460px] min-h-[60px] md:min-h-[80px] flex flex-col justify-center backdrop-blur-md">
           <span className="text-[9px] font-black tracking-[0.4em] text-white/30 uppercase block mb-0 italic">
             Showcase {index + 1}
           </span>
@@ -186,15 +186,15 @@ export default function PortfolioEditorial() {
   return (
     <section 
       ref={containerRef} 
-      className="relative h-[80vh] md:h-[1500vh] bg-[#0F0E0D] z-20 overflow-hidden md:overflow-visible"
+      className="relative h-auto min-h-[60vh] md:h-[1000vh] bg-[#0F0E0D] z-20 overflow-hidden md:overflow-visible"
       style={{ isolation: 'isolate' }}
     >
-      <div className="md:sticky top-0 h-[80vh] md:h-screen w-full flex flex-col justify-center overflow-visible md:overflow-hidden pointer-events-none">
+      <div className="md:sticky top-0 h-auto md:h-screen w-full flex flex-col justify-center overflow-visible md:overflow-hidden pointer-events-none">
         {/* Background Highlight */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] bg-accent-page/5 blur-[150px] rounded-full pointer-events-none" />
 
         {/* Header Section */}
-        <div className="px-[10vw] pt-24 mb-12 relative z-[60] pointer-events-none">
+        <div className="px-[8vw] md:px-[10vw] pt-16 md:pt-24 mb-6 md:mb-12 relative z-[60] pointer-events-none">
           <div className="space-y-6">
             <motion.p 
               className="text-xs font-black tracking-[0.8em] text-white/20 uppercase"
@@ -202,7 +202,7 @@ export default function PortfolioEditorial() {
               Selected Works
             </motion.p>
             <motion.h2 
-              className="text-4xl md:text-6xl font-black text-white uppercase leading-none tracking-tighter"
+              className="text-3xl md:text-6xl font-black text-white uppercase leading-none tracking-tighter break-keep"
             >
               찾아가는 가치, <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white/10 uppercase">포트폴리오</span>
             </motion.h2>
@@ -249,7 +249,7 @@ export default function PortfolioEditorial() {
         </div>
 
         {/* Scroll Progress Bar */}
-        <div className="px-[10vw] pb-20 relative z-30 pointer-events-none">
+        <div className="px-[10vw] pb-8 md:pb-20 relative z-30 pointer-events-none">
           <div className="flex justify-between items-end mb-4">
             <div className="space-y-1">
               <span className="text-[10px] font-black text-accent-page tracking-[0.4em] uppercase block">Progress</span>

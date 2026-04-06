@@ -77,12 +77,12 @@ function MagneticButton({ children, href }: { children: React.ReactNode, href: s
 
 export default function ServiceCards() {
   return (
-    <section className="py-48 bg-[#0F0E0D] relative overflow-hidden">
+    <section className="py-24 md:py-48 bg-[#0F0E0D] relative overflow-hidden">
       {/* Dynamic Background Elements */}
       <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-accent-page/5 blur-[150px] rounded-full -z-10 animate-pulse" />
       
       <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-10">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 md:mb-24 gap-6 md:gap-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -121,7 +121,7 @@ export default function ServiceCards() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
-              className="group relative h-[800px] rounded-[3rem] overflow-hidden glass-pill-premium border-white/5 shadow-[0_50px_100px_rgba(0,0,0,0.5)] transition-all duration-1000"
+              className="group relative min-h-[520px] md:h-[800px] rounded-[2rem] md:rounded-[3rem] overflow-hidden glass-pill-premium border-white/5 shadow-[0_50px_100px_rgba(0,0,0,0.5)] transition-all duration-1000"
             >
               {/* Image Layer */}
               <div className="absolute inset-0 z-0">
@@ -137,7 +137,7 @@ export default function ServiceCards() {
               {/* Content Overlay - ULTRACLEAR GLASS SYSTEM */}
               <div className="absolute inset-x-6 bottom-6 z-10 p-2 md:p-4 flex flex-col justify-end">
                 <motion.div 
-                  className="p-10 md:p-12 rounded-[2.5rem] bg-white/[0.03] backdrop-blur-3xl border border-white/10 shadow-2xl transition-all duration-1000 md:group-hover:bg-white/[0.08] md:group-hover:border-white/20 flex flex-col h-[640px]"
+                  className="p-7 md:p-12 rounded-[1.8rem] md:rounded-[2.5rem] bg-white/[0.03] backdrop-blur-3xl border border-white/10 shadow-2xl transition-all duration-1000 md:group-hover:bg-white/[0.08] md:group-hover:border-white/20 flex flex-col h-auto min-h-[300px] md:h-[640px]"
                 >
                   <div className="mb-10 flex items-center justify-between">
                     <div className="px-8 py-4 rounded-3xl bg-white/5 backdrop-blur-3xl border border-white/10 shadow-2xl transition-all duration-700 md:group-hover:scale-110 md:group-hover:border-accent-page/40">
@@ -160,16 +160,16 @@ export default function ServiceCards() {
                     <p className="text-accent-gold/60 text-[10px] tracking-[0.4em] font-black uppercase mb-4">
                       {service.subtitle}
                     </p>
-                    <h3 className="text-3xl md:text-5xl font-black text-white mb-8 leading-[1.1] tracking-tighter drop-shadow-lg break-keep">
+                    <h3 className="text-2xl md:text-5xl font-black text-white mb-5 md:mb-8 leading-[1.1] tracking-tighter drop-shadow-lg break-keep">
                       {service.title}
                     </h3>
                     <div className="h-[1px] w-full md:w-16 bg-white/20 md:group-hover:w-full transition-all duration-1000 mb-8" />
-                    <p className="text-white/60 text-base md:text-lg leading-relaxed font-light mb-10 max-w-[320px] break-keep">
+                    <p className="text-white/60 text-sm md:text-lg leading-relaxed font-light mb-6 md:mb-10 max-w-[320px] break-keep">
                       {service.description}
                     </p>
                   </div>
 
-                  <div className="mt-auto flex justify-start opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 z-20 pointer-events-auto">
+                  <div className="mt-auto pt-4 md:pt-0 flex justify-start opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 z-20 pointer-events-auto">
                     <MagneticButton href={service.link}>
                       Discover
                     </MagneticButton>

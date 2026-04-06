@@ -85,7 +85,7 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
         className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-20 pointer-events-none"
         style={{ left: `${sliderPosition}%` }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center border-4 border-black/10 group-active:scale-110 transition-transform">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white shadow-xl flex items-center justify-center border-4 border-black/10 group-active:scale-110 transition-transform">
           <div className="flex gap-1">
             <div className="w-1 h-3 bg-black/20 rounded-full" />
             <div className="w-1 h-5 bg-black/40 rounded-full" />

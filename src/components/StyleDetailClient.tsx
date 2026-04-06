@@ -67,12 +67,15 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-pill-premium py-10 px-12 md:py-14 md:px-24 rounded-[4rem] border-white/5 backdrop-blur-xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center max-w-[90vw] md:max-w-4xl"
+            className="glass-pill-premium py-10 px-8 md:py-14 md:px-24 rounded-[4rem] border-white/5 backdrop-blur-xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center w-[92vw] md:max-w-4xl"
           >
             <p className="text-accent-gold text-xs md:text-sm tracking-[0.5em] font-black mb-6 uppercase">
               {style.nameEn} Collection
             </p>
-            <h1 className="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-none">
+            <h1
+              className="font-black text-white mb-10 tracking-tighter leading-none whitespace-nowrap"
+              style={{ fontSize: 'clamp(2rem, 10vw, 6rem)' }}
+            >
               {style.nameKo}
             </h1>
             <div className="flex flex-wrap justify-center gap-4">
@@ -95,28 +98,28 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
         </button>
 
         {/* Style Navigation - Left (Prev) */}
-        <div className="fixed left-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-4 group/prev hidden xl:flex">
+        <div className="fixed left-4 xl:left-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-4 group/prev">
           <Link 
             href={`/styles/${prevStyle.slug}`}
-            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-gold hover:border-accent-gold transition-all duration-500 shadow-2xl"
+            className="w-10 h-10 xl:w-16 xl:h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-gold hover:border-accent-gold transition-all duration-500 shadow-2xl"
           >
-            <ArrowLeft className="w-6 h-6 group-hover/prev:-translate-x-1 transition-transform" />
+            <ArrowLeft className="w-4 h-4 xl:w-6 xl:h-6 group-hover/prev:-translate-x-1 transition-transform" />
           </Link>
-          <div className="absolute left-20 opacity-0 group-hover/prev:opacity-100 -translate-x-4 group-hover/prev:translate-x-0 transition-all duration-500 pointer-events-none whitespace-nowrap">
+          <div className="absolute left-16 xl:left-20 opacity-0 group-hover/prev:opacity-100 -translate-x-4 group-hover/prev:translate-x-0 transition-all duration-500 pointer-events-none whitespace-nowrap hidden xl:block">
             <p className="text-accent-gold text-[10px] font-black uppercase tracking-[0.2em] mb-1">Previous</p>
             <p className="text-white font-bold text-lg">{prevStyle.nameKo}</p>
           </div>
         </div>
 
         {/* Style Navigation - Right (Next) */}
-        <div className="fixed right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-4 group/next hidden xl:flex text-right">
+        <div className="fixed right-4 xl:right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-4 group/next text-right">
           <Link 
             href={`/styles/${nextStyle.slug}`}
-            className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-gold hover:border-accent-gold transition-all duration-500 shadow-2xl"
+            className="w-10 h-10 xl:w-16 xl:h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-accent-gold hover:border-accent-gold transition-all duration-500 shadow-2xl"
           >
-            <ArrowRight className="w-6 h-6 group-hover/next:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 xl:w-6 xl:h-6 group-hover/next:translate-x-1 transition-transform" />
           </Link>
-          <div className="absolute right-20 opacity-0 group-hover/next:opacity-100 translate-x-4 group-hover/next:-translate-x-0 transition-all duration-500 pointer-events-none whitespace-nowrap">
+          <div className="absolute right-16 xl:right-20 opacity-0 group-hover/next:opacity-100 translate-x-4 group-hover/next:-translate-x-0 transition-all duration-500 pointer-events-none whitespace-nowrap hidden xl:block">
             <p className="text-accent-gold text-[10px] font-black uppercase tracking-[0.2em] mb-1">Next Style</p>
             <p className="text-white font-bold text-lg">{nextStyle.nameKo}</p>
           </div>
@@ -252,7 +255,7 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                     >
                       <p className="text-accent-gold text-[10px] font-black tracking-[0.5em] uppercase mb-4 opacity-80">Space Archetype {idx + 1}</p>
                       <h4 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter leading-none break-keep">
-                        {idx === 0 ? 'Master Bedroom' : idx === 1 ? 'Living Space' : idx === 2 ? 'Private Bath' : 'Gourmet Kitchen'}
+                        {(['Master Bedroom', 'Living Space', 'Private Bath', 'Gourmet Kitchen', 'Dining Area', 'Home Office', 'Entrance', 'Study Room'] as const)[idx] ?? `Space ${idx + 1}`}
                       </h4>
                     </motion.div>
                   </div>

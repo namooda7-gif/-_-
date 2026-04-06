@@ -5,15 +5,15 @@ import { motion } from 'framer-motion';
 
 export default function ContactPage() {
   return (
-    <div className="pt-48 pb-20 px-4 md:px-8 max-w-[1000px] mx-auto min-h-screen">
-      <h1 className="text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter">문의하기</h1>
+    <div className="pt-24 md:pt-48 pb-20 px-4 md:px-8 max-w-[1000px] mx-auto min-h-screen">
+      <h1 className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 uppercase tracking-tighter">문의하기</h1>
       <p className="text-xl text-white/40 mb-16 font-light">공간에 대한 고민을 들려주세요. <br className="md:hidden" />라올이 답을 찾아드립니다.</p>
       
       <motion.form 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="space-y-12 glass-pill-premium p-10 md:p-20 rounded-[3rem] border-white/10 backdrop-blur-3xl bg-white/[0.02] shadow-[0_50px_100px_rgba(0,0,0,0.5)]" 
+        className="space-y-8 md:space-y-12 glass-pill-premium p-6 md:p-20 rounded-[2rem] md:rounded-[3rem] border-white/10 backdrop-blur-3xl bg-white/[0.02] shadow-[0_50px_100px_rgba(0,0,0,0.5)]"
         onSubmit={(e: React.FormEvent) => e.preventDefault()}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

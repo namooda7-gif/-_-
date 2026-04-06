@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Instagram, Facebook, MessageCircle, ExternalLink } from 'lucide-react';
 
+// TODO: 실제 SNS 주소로 교체해주세요
 const socialLinks = [
   { name: 'Instagram', icon: Instagram, href: '#' },
   { name: 'Facebook', icon: Facebook, href: '#' },
@@ -47,6 +48,7 @@ export default function Footer() {
                 <motion.a
                   key={social.name}
                   href={social.href}
+                  onClick={(e) => social.href === '#' && e.preventDefault()}
                   variants={bounceVariants}
                   whileHover="hover"
                   className="p-2 bg-foreground/5 rounded-full hover:bg-accent-page hover:text-white transition-colors"

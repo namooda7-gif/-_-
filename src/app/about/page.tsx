@@ -6,7 +6,7 @@ import OptimizedImage from "@/components/OptimizedImage";
 
 export default function AboutPage() {
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
 
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = React.useState(false);
@@ -20,13 +20,14 @@ export default function AboutPage() {
 
   React.useEffect(() => {
     setIsMounted(true);
-    
-    // Hide global footer on this page to achieve exactly 3 snaps
-    const footer = document.querySelector('footer');
-    if (footer) footer.style.display = 'none';
+  }, []);
 
-    return () => { 
-      if (footer) footer.style.display = 'block'; 
+  // about 페이지에서는 글로벌 footer를 숨겨 3섹션 스냅 구조 유지
+  React.useEffect(() => {
+    const footer = document.querySelector('footer') as HTMLElement | null;
+    if (footer) footer.style.display = 'none';
+    return () => {
+      if (footer) footer.style.display = '';
     };
   }, []);
 
@@ -123,7 +124,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-7xl font-black uppercase leading-[1.1] tracking-tighter"
+            className="text-2xl sm:text-4xl md:text-7xl font-black uppercase leading-[1.1] tracking-tighter"
           >
             단순히 머무는 곳이 아닌, <br />
             <span 

@@ -27,25 +27,30 @@ const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: nu
 
         {/* Content Overlay */}
         <div className="absolute inset-0 z-10 p-8 md:p-16 flex flex-col justify-between pointer-events-none">
-          <div className="flex justify-between items-start">
-            <div className="space-y-4">
+          {/* 화살표: 항상 우상단 고정 — 이름 길이에 영향받지 않음 */}
+          <motion.div 
+            whileHover={{ scale: 1.1, rotate: 45 }}
+            whileTap={{ scale: 0.95 }}
+            className="absolute top-6 right-6 md:top-10 md:right-10 w-9 h-9 md:w-14 md:h-14 rounded-full bg-white text-black flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 pointer-events-auto z-20"
+          >
+            <ArrowUpRight size={16} className="md:hidden" />
+            <ArrowUpRight size={24} className="hidden md:block" />
+          </motion.div>
+
+          <div className="flex items-start">
+            <div className="space-y-4 min-w-0 max-w-[calc(100%-3.5rem)] md:max-w-[calc(100%-5rem)]">
               <span className="text-[10px] font-black tracking-[0.5em] text-accent-gold uppercase block ml-2">
                 Style Case {String(index + 1).padStart(2, '0')}
               </span>
-              <div className="glass-pill-premium px-7 py-4 md:px-10 md:py-6 inline-block rounded-[2rem] md:rounded-[3rem] border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-700 group-hover:border-accent-gold/40">
-                <h3 className="text-3xl md:text-5xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-none whitespace-nowrap">
+              <div className="glass-pill-premium px-5 py-3 md:px-10 md:py-6 inline-block rounded-[2rem] md:rounded-[3rem] border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-700 group-hover:border-accent-gold/40 max-w-full overflow-hidden">
+                <h3
+                  className="font-black text-white uppercase tracking-tighter leading-none"
+                  style={{ fontSize: 'clamp(1.1rem, 4.5vw, 4rem)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: '100%' }}
+                >
                   {style.nameEn}
                 </h3>
               </div>
             </div>
-            
-            <motion.div 
-              whileHover={{ scale: 1.1, rotate: 45 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white text-black flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 pointer-events-auto"
-            >
-              <ArrowUpRight size={32} />
-            </motion.div>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
@@ -67,7 +72,7 @@ const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: nu
                 className="w-4 h-4 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.3)]" 
                 style={{ backgroundColor: style.bgColor }}
               />
-              <span className="text-base lg:text-xl font-bold tracking-tight text-white whitespace-nowrap break-keep">{style.nameKo}</span>
+              <span className="text-sm lg:text-xl font-bold tracking-tight text-white break-keep line-clamp-1">{style.nameKo}</span>
             </div>
           </div>
         </div>
@@ -92,7 +97,7 @@ export default function StylesPage() {
   return (
     <main 
       ref={containerRef}
-      className="relative h-[800vh] bg-[#0A0A0A] text-white"
+      className="relative h-[600vh] bg-[#0A0A0A] text-white"
     >
       <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
         {/* Background Ambient Text */}
@@ -114,7 +119,7 @@ export default function StylesPage() {
           <p className="text-accent-gold text-[9px] md:text-xs tracking-[0.8em] font-black uppercase">
             Style Collections
           </p>
-          <h1 className="text-3xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none whitespace-nowrap">
+          <h1 className="text-2xl md:text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none">
             Editorial <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-transparent">Styles</span>
           </h1>
         </motion.div>

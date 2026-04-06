@@ -33,7 +33,7 @@ const solutions = [
 
 export default function SolutionGrid() {
   return (
-    <section className="py-48 px-4 md:px-8 bg-[#0F0E0D] overflow-hidden">
+    <section className="py-20 md:py-48 px-4 md:px-8 bg-[#0F0E0D] overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <div className="mb-20 space-y-4">
           <motion.span 
@@ -55,7 +55,7 @@ export default function SolutionGrid() {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
           {solutions.map((item, index) => (
             <motion.div
               key={item.id}
@@ -64,7 +64,7 @@ export default function SolutionGrid() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
               whileHover={{ y: -20 }}
-              className="group relative h-[650px] overflow-hidden glass-pill-premium rounded-[2.5rem] cursor-pointer border-white/5 shadow-2xl transition-all duration-700"
+              className="group relative h-auto min-h-[500px] md:h-[650px] overflow-hidden glass-pill-premium rounded-[2.5rem] cursor-pointer border-white/5 shadow-2xl transition-all duration-700"
             >
               {/* Background Image - Parallax and Opacity control */}
               <div className="absolute inset-0 z-0">
@@ -86,7 +86,7 @@ export default function SolutionGrid() {
 
               {/* Content Overlay - ULTRACLEAR GLASS PLATE */}
               <div className="relative z-10 h-full p-4 flex flex-col justify-end">
-                <div className="glass-pill-premium p-8 md:p-10 rounded-[2rem] border-white/10 h-[320px] flex flex-col justify-center backdrop-blur-2xl m-2 bg-white/[0.03] shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                <div className="glass-pill-premium p-7 md:p-10 rounded-[2rem] border-white/10 h-auto md:h-[320px] flex flex-col justify-center backdrop-blur-2xl m-2 bg-white/[0.03] shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                   <div className="mb-0 relative py-4">
                     <div className="relative z-10">
                       <h3 className="text-3xl md:text-4xl font-black text-white mb-3 tracking-tighter md:group-hover:text-accent-gold transition-colors drop-shadow-md uppercase break-keep leading-[1.1]">
@@ -98,11 +98,11 @@ export default function SolutionGrid() {
                     </div>
                   </div>
 
-                  <div className="h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-700 ease-in-out">
-                    <p className="text-base leading-relaxed text-white/60 mb-8 max-w-[320px] font-light break-keep">
+                  <div className="h-auto opacity-100 md:h-0 md:opacity-0 md:group-hover:h-auto md:group-hover:opacity-100 transition-all duration-700 ease-in-out">
+                    <p className="text-sm md:text-base leading-relaxed text-white/60 mb-6 md:mb-8 max-w-[320px] font-light break-keep">
                       {item.desc}
                     </p>
-                    <div className="w-0 group-hover:w-full h-[1px] bg-accent-gold/30 transition-all duration-1000 origin-left" />
+                    <div className="w-full md:w-0 md:group-hover:w-full h-[1px] bg-accent-gold/30 transition-all duration-1000 origin-left" />
                   </div>
                 </div>
               </div>
