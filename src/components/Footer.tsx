@@ -78,11 +78,15 @@ export default function Footer() {
           <div>
             <h4 className="text-foreground font-bold mb-6">Company</h4>
             <div className="text-text-secondary text-sm space-y-3">
-              <p>대표자: 홍길동 (여성대표팀)</p>
-              <p>사업자등록번호: 000-00-00000</p>
-              <p>주소: 서울특별시 강남구 어드메길 123, 라올빌딩</p>
-              <p>연락처: 02-1234-5678</p>
-              <p>이메일: hello@laol.co.kr</p>
+              <p>대표이사: 지은혜</p>
+              <p>사업자등록번호: 211-33-02983</p>
+              <p className="leading-relaxed">
+                본점: 경기도 남양주시 별내중앙로 30, 2층 204호
+              </p>
+              <p className="leading-relaxed">
+                지사: 경상북도 구미시 인동24길 17, 1층
+              </p>
+              <p>이메일: raolarch@gmail.com</p>
             </div>
           </div>
 
