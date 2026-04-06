@@ -17,7 +17,7 @@ const navLinks = [
   { name: '서비스', href: '/services' },
   { name: '인테리어 스타일', href: '/styles' },
   { name: '시공 사례', href: '/portfolio' },
-  { name: '3D 랜더링', href: '/rendering', highlight: true },
+  { name: '3D 랜더링', href: 'https://laol-ai-vision-3-d.vercel.app/#upload', highlight: true, external: true as const },
   { name: '우먼픽스', href: '/womanfix', highlight: true },
   { name: '문의하기', href: '/contact' },
 ];
@@ -62,20 +62,31 @@ export default function Navigation() {
           )}
         >
               {navLinks.map((link) => {
-                const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
-                return (
+                const isActive = !link.external && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)));
+                const className = cn(
+                  'text-[14px] md:text-[15px] font-medium transition-all duration-300 relative group',
+                  isActive
+                    ? 'text-accent-page scale-105'
+                    : 'text-white/60 hover:text-accent-page hover:scale-110',
+                  link.highlight
+                    ? 'px-5 py-2 border border-white/20 bg-white/5 backdrop-blur-md text-accent-page rounded-full hover:bg-accent-page hover:text-white shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-accent-page/40 ml-2'
+                    : 'hover:opacity-100'
+                );
+                return link.external ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={className}
+                  >
+                    {link.name}
+                  </a>
+                ) : (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={cn(
-                      'text-[14px] md:text-[15px] font-medium transition-all duration-300 relative group',
-                      isActive 
-                        ? 'text-accent-page scale-105' 
-                        : 'text-white/60 hover:text-accent-page hover:scale-110',
-                      link.highlight 
-                        ? 'px-5 py-2 border border-white/20 bg-white/5 backdrop-blur-md text-accent-page rounded-full hover:bg-accent-page hover:text-white shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:shadow-accent-page/40 ml-2'
-                        : 'hover:opacity-100'
-                    )}
+                    className={className}
                   >
                     {link.name}
                     {!link.highlight && (
@@ -108,21 +119,39 @@ export default function Navigation() {
 
       {/* Mobile Menu Overlay - Integrated Glass Style */}
       {isOpen && (
+        <>
+          {/* 배경 dimmer - 뒤 콘텐츠 완전 차단 */}
+          <div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm lg:hidden z-[150]"
+            onClick={() => setIsOpen(false)}
+          />
         <nav
-          className="absolute top-[110%] left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[2rem] lg:hidden shadow-2xl p-4 mt-2 pointer-events-auto"
+          className="absolute top-[110%] left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm bg-black/80 backdrop-blur-2xl border border-white/10 rounded-[2rem] lg:hidden shadow-2xl p-4 mt-2 pointer-events-auto z-[200]"
         >
             <div className="flex flex-col p-6 space-y-4">
               {navLinks.map((link) => {
-                const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
-                return (
+                const isActive = !link.external && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)));
+                const mobileClass = cn(
+                  'text-lg font-medium py-3 border-b border-white/10 last:border-0 transition-colors',
+                  isActive ? 'text-accent-page font-bold' : 'text-white/60',
+                  link.highlight && 'text-accent-page font-extrabold tracking-tight'
+                );
+                return link.external ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={mobileClass}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ) : (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={cn(
-                      'text-lg font-medium py-3 border-b border-white/10 last:border-0 transition-colors',
-                      isActive ? 'text-accent-page font-bold' : 'text-white/60',
-                      link.highlight && 'text-accent-page font-extrabold tracking-tight'
-                    )}
+                    className={mobileClass}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
@@ -131,6 +160,7 @@ export default function Navigation() {
               })}
             </div>
           </nav>
+        </>
         )}
       </header>
   );
