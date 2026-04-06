@@ -26,8 +26,23 @@ export default function WomanfixPage() {
             </div>
           </div>
         </div>
-        <div className="aspect-square bg-white/5 rounded-[40px] border border-white/10 flex items-center justify-center p-12">
-          <p className="text-2xl font-bold text-center leading-relaxed">준비 중인 서비스 내용이<br/>여기에 표시됩니다.</p>
+        <div className="aspect-square bg-white/5 rounded-[40px] border border-white/10 flex flex-col items-center justify-center p-12 gap-6">
+          <div className="text-center space-y-3">
+            <div className="text-5xl">🏠</div>
+            <h3 className="text-2xl font-bold text-white">AI 3D 인테리어 렌더링</h3>
+            <p className="text-dimmed/70 leading-relaxed">
+              내 공간 사진 한 장으로<br/>
+              AI가 3D 인테리어를 완성해드립니다
+            </p>
+          </div>
+          <a
+            href="https://laol-ai-vision-3-d.vercel.app/#upload"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 px-8 py-4 bg-white text-black font-bold rounded-full text-lg hover:bg-white/90 transition-colors"
+          >
+            3D 렌더링 체험하기 →
+          </a>
         </div>
       </div>
     </div>
