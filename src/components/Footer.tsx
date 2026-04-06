@@ -5,6 +5,12 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Instagram, Facebook, MessageCircle, ExternalLink } from 'lucide-react';
 
+const marqueeItems = Array(8).fill([
+  { kanji: '羅', title: 'LAOL實內建築', desc: '공간을 아름답게 펼쳐 완성하는 실내건축' },
+  { kanji: '樂', title: 'PREMIUM SPACE', desc: '공간에 즐거움과 행복을 담는 실내건축' },
+  { kanji: '來', title: 'WOMEN\'S TOUCH', desc: '좋은 공간과 좋은 일이 찾아오는 실내건축' },
+]).flat();
+
 // TODO: 실제 SNS 주소로 교체해주세요
 const socialLinks = [
   { name: 'Instagram', icon: Instagram, href: '#' },
@@ -116,6 +122,37 @@ export default function Footer() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Marquee */}
+        <div className="mb-10 overflow-hidden select-none" style={{
+          maskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
+        }}>
+          <div className="flex whitespace-nowrap gap-16 items-center w-max animate-[footerScroll_50s_linear_infinite]">
+            {marqueeItems.map((item, i) => (
+              <div key={i} className="flex items-center gap-5 group">
+                <span className="text-3xl font-serif text-white/20 group-hover:text-white/50 transition-colors duration-500">
+                  {item.kanji}
+                </span>
+                <div className="flex flex-col">
+                  <span className="text-[9px] font-black tracking-[0.5em] text-white/20 group-hover:text-accent-gold/60 uppercase leading-none mb-1.5 transition-colors duration-500">
+                    {item.title}
+                  </span>
+                  <span className="text-[12px] font-medium tracking-widest text-white/20 group-hover:text-white/50 leading-none transition-colors duration-500">
+                    {item.desc}
+                  </span>
+                </div>
+                <div className="ml-8 w-1 h-1 rounded-full bg-white/10" />
+              </div>
+            ))}
+          </div>
+          <style jsx global>{`
+            @keyframes footerScroll {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+          `}</style>
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">

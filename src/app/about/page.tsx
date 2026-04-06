@@ -298,20 +298,6 @@ export default function AboutPage() {
             ))}
           </div>
           
-          {/* 4. Refined Footer */}
-          <div className="mt-24 pt-12 border-t border-white/5 opacity-50">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-8 pb-12">
-              <div className="text-2xl font-black tracking-tighter uppercase grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-700 cursor-default">
-                LAOL <span className="font-light">| 실내건축</span>
-              </div>
-              <div className="flex gap-12">
-                {['Instagram', 'Blog', 'Contact'].map((link) => (
-                  <span key={link} className="text-[10px] tracking-[0.4em] uppercase text-white/30 hover:text-accent-gold transition-colors cursor-pointer font-black">{link}</span>
-                ))}
-              </div>
-              <p className="text-[9px] tracking-[0.2em] text-white/20 uppercase font-black tracking-widest text-center">© 2026 Laol Interior. Precision Planning, Premium Execution.</p>
-            </div>
-          </div>
         </div>
       </section>
     </main>
