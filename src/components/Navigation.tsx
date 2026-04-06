@@ -126,13 +126,13 @@ export default function Navigation() {
             onClick={() => setIsOpen(false)}
           />
         <nav
-          className="absolute top-[110%] left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm bg-black/80 backdrop-blur-2xl border border-white/10 rounded-[2rem] lg:hidden shadow-2xl p-4 mt-2 pointer-events-auto z-[200]"
+          className="absolute top-[110%] left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-xs bg-white/[0.08] backdrop-blur-[32px] border border-white/20 rounded-[1.5rem] lg:hidden shadow-[0_25px_80px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.15)] mt-2 pointer-events-auto z-[200]"
         >
-            <div className="flex flex-col p-6 space-y-4">
+            <div className="flex flex-col px-4 py-3 space-y-0">
               {navLinks.map((link) => {
                 const isActive = !link.external && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)));
                 const mobileClass = cn(
-                  'text-lg font-medium py-3 border-b border-white/10 last:border-0 transition-colors',
+                  'text-[15px] font-medium py-2.5 border-b border-white/10 last:border-0 transition-colors',
                   isActive ? 'text-accent-page font-bold' : 'text-white/60',
                   link.highlight && 'text-accent-page font-extrabold tracking-tight'
                 );
