@@ -17,7 +17,7 @@ const navLinks = [
   { name: '서비스', href: '/services' },
   { name: '인테리어 스타일', href: '/styles' },
   { name: '시공 사례', href: '/portfolio' },
-  { name: '3D 랜더링', href: 'https://laol-ai-vision-3-d.vercel.app/#upload', highlight: true, external: true as const },
+  { name: '3D 랜더링', href: 'https://onroom.kr/upload', highlight: true, external: true as const },
   { name: '우먼픽스', href: '/womanfix', highlight: true },
   { name: '문의하기', href: '/contact' },
 ];

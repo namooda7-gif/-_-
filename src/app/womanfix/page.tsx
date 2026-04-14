@@ -36,7 +36,7 @@ export default function WomanfixPage() {
             </p>
           </div>
           <a
-            href="https://laol-ai-vision-3-d.vercel.app/#upload"
+            href="https://onroom.kr/upload"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 px-8 py-4 bg-white text-black font-bold rounded-full text-lg hover:bg-white/90 transition-colors"
