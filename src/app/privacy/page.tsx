@@ -107,7 +107,7 @@ export default function PrivacyPage() {
           <ul className="list-disc pl-5 space-y-1">
             <li>성명: 지은혜 (대표)</li>
             <li>이메일: raolarch@gmail.com</li>
-            <li>전화: 010-5914-0508</li>
+            <li>전화: 010-4782-8934</li>
           </ul>
         </Article>
 

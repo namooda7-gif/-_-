@@ -100,7 +100,7 @@ export default function TermsPage() {
           <ul className="list-disc pl-5 space-y-1">
             <li>라올실내건축 (대표: 지은혜)</li>
             <li>이메일: raolarch@gmail.com</li>
-            <li>전화: 010-5914-0508</li>
+            <li>전화: 010-4782-8934</li>
           </ul>
         </Article>
 
