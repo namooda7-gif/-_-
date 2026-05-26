@@ -1,5 +1,18 @@
 {
   "terminal.integrated.cwd": "c:\\Users\\namoo\\Documents\\라올실내건축_신규",
   "files.autoSave": "afterDelay",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.watcherExclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true,
+    "**/out/**": true,
+    "**/build/**": true,
+    "**/.git/**": true
+  },
+  "search.exclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true,
+    "**/out/**": true,
+    "**/build/**": true
+  }
 }

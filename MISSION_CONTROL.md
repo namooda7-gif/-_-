@@ -21,6 +21,9 @@
 
 ## ✅ 도메인 연결 + SEO + 검색엔진 등록 모두 완료 — `https://laol.kr` 정상 서비스 중 (2026-05-26)
 
+## 📧 문의하기(EmailJS) 템플릿 설정
+- [x] **EmailJS 변수 매핑 완료**: 코드(React) 내의 input name(`from_name`, `from_phone`, `from_email`, `message`)과 EmailJS 템플릿 변수를 일치시키는 가이드 제공 완료.
+
 ## 🚀 사장님을 위한 넥스트 마일스톤
 1. **모바일/PC 최종 체감 점검**
    - `https://laol.kr` 접속 속도·렌더링을 실제 단말에서 확인 (파비콘은 브라우저 캐시 때문에 Ctrl+Shift+R 권장).
