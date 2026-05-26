@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Instagram, Facebook, MessageCircle, ExternalLink } from 'lucide-react';
+import { Instagram, Facebook, MessageCircle } from 'lucide-react';
 
 const marqueeItems = Array(8).fill([
   { kanji: '羅', title: 'LAOL實內建築', desc: '공간을 아름답게 펼쳐 완성하는 실내건축' },
@@ -96,31 +96,15 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 4: WomanFix App */}
-          <div>
-            <h4 className="text-accent-page font-bold mb-6 flex items-center">
-              WomanFix <ExternalLink size={14} className="ml-2" />
-            </h4>
-            <p className="text-text-secondary text-sm mb-6">
-              여성이 만들고 여성이 사용하는 <br />
-              홈케어 서비스 앱 &apos;우먼픽스&apos;
+          {/* Col 4: 성진건설 (설비 시공 — 좌측 브랜드 블록과 대칭) */}
+          <div className="space-y-6 flex flex-col md:items-end md:text-right">
+            <span className="text-2xl font-bold tracking-tighter text-dimmed uppercase">
+              성진건설
+            </span>
+            <p className="text-text-secondary text-sm leading-relaxed max-w-xs md:ml-auto">
+              라올의 설계를 현장에서 완성하는 주거·상업시설·유치원·초중고등학교
+              설비 시공 전문 회사입니다.
             </p>
-            <div className="flex flex-col space-y-3">
-              <div className="p-3 border border-white/10 rounded-lg flex items-center bg-foreground/5 cursor-pointer hover:bg-foreground/10 transition-all">
-                <div className="w-8 h-8 mr-3 bg-foreground rounded-md flex items-center justify-center text-white text-[10px] font-bold">App</div>
-                <div>
-                  <p className="text-[10px] text-text-secondary uppercase">Download on the</p>
-                  <p className="text-xs font-bold">App Store</p>
-                </div>
-              </div>
-              <div className="p-3 border border-white/10 rounded-lg flex items-center bg-foreground/5 cursor-pointer hover:bg-foreground/10 transition-all">
-                <div className="w-8 h-8 mr-3 bg-foreground rounded-md flex items-center justify-center text-white text-[10px] font-bold">Play</div>
-                <div>
-                  <p className="text-[10px] text-text-secondary uppercase">Get it on</p>
-                  <p className="text-xs font-bold">Google Play</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
