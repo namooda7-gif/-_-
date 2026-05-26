@@ -11,6 +11,7 @@ const PUBLIC_KEY = 'lsWFZ0-nu58Ir7jCx';
 export default function ContactPage() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorDetail, setErrorDetail] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +22,12 @@ export default function ContactPage() {
       await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY);
       setStatus('success');
       formRef.current.reset();
-    } catch {
+    } catch (err: unknown) {
+      // EmailJS 에러 상세 캡처 (원인 진단용)
+      const e = err as { status?: number; text?: string };
+      const detail = e?.status ? `[${e.status}] ${e.text ?? ''}` : String(err);
+      console.error('EmailJS send failed:', err);
+      setErrorDetail(detail);
       setStatus('error');
     }
   };
@@ -116,6 +122,11 @@ export default function ContactPage() {
                 010-4782-8934
               </a>
             </div>
+            {errorDetail && (
+              <p className="text-white/30 text-[11px] font-mono break-all pt-2">
+                진단정보: {errorDetail}
+              </p>
+            )}
           </motion.div>
         )}
 
