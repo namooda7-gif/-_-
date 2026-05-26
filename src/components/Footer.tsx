@@ -145,8 +145,8 @@ export default function Footer() {
             © 2026 Laol Interior Architecture. All rights reserved.
           </p>
           <div className="flex space-x-6 text-xs text-text-tertiary">
-            <Link href="#" className="hover:text-foreground">Terms of Service</Link>
-            <Link href="#" className="hover:text-foreground">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-foreground">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link>
           </div>
         </div>
       </div>
