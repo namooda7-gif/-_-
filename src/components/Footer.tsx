@@ -39,7 +39,7 @@ export default function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-accent-gold/20 to-transparent z-10" />
       
       <div className="max-w-[1600px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_0.8fr_1.5fr_1.5fr] gap-12 mb-16">
           {/* Col 1: Brand */}
           <div className="space-y-6">
             <Link href="/" className="text-2xl font-bold tracking-tighter text-dimmed uppercase flex items-center">
