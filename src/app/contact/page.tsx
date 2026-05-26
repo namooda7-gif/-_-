@@ -62,6 +62,16 @@ export default function ContactPage() {
           </div>
         </div>
         <div className="space-y-4">
+          <label className="text-xs font-black tracking-[0.4em] text-accent-gold/60 uppercase ml-2">Email</label>
+          <input
+            type="email"
+            name="from_email"
+            placeholder="회신받으실 이메일 주소를 입력해주세요"
+            required
+            className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-accent-gold/50 focus:bg-white/10 transition-all text-white placeholder:text-white/20"
+          />
+        </div>
+        <div className="space-y-4">
           <label className="text-xs font-black tracking-[0.4em] text-accent-gold/60 uppercase ml-2">Message</label>
           <textarea
             rows={6}
@@ -83,13 +93,30 @@ export default function ContactPage() {
           </motion.p>
         )}
         {status === 'error' && (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center text-red-400 font-black tracking-widest text-sm uppercase"
+            className="text-center space-y-3"
           >
-            ✕ 전송에 실패했습니다. 다시 시도해주세요
-          </motion.p>
+            <p className="text-red-400 font-black tracking-widest text-sm uppercase">
+              ✕ 전송에 실패했습니다
+            </p>
+            <p className="text-white/50 text-sm leading-relaxed font-light">
+              일시적인 오류가 발생했어요. 잠시 후 다시 시도하시거나,<br />
+              번거로우시더라도 아래 연락처로 직접 문의해 주세요.
+            </p>
+            <div className="flex flex-col items-center gap-1.5 text-accent-gold font-bold tracking-wider">
+              <a href="mailto:raolarch@gmail.com" className="hover:underline">
+                raolarch@gmail.com
+              </a>
+              <a href="tel:01059140508" className="hover:underline">
+                010-5914-0508
+              </a>
+              <a href="tel:01047828934" className="hover:underline">
+                010-4782-8934
+              </a>
+            </div>
+          </motion.div>
         )}
 
         <button

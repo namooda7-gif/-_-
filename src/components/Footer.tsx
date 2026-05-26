@@ -67,8 +67,8 @@ export default function Footer() {
           </div>
 
           {/* Col 2: Navigation */}
-          <div>
-            <h4 className="text-foreground font-bold mb-6">Menu</h4>
+          <div className="space-y-6">
+            <h4 className="text-foreground font-bold leading-8">Menu</h4>
             <ul className="space-y-3">
               {['About', 'Services', 'Styles', 'Portfolio', 'Contact'].map((item) => (
                 <li key={item}>
@@ -81,8 +81,8 @@ export default function Footer() {
           </div>
 
           {/* Col 3: Company Info */}
-          <div>
-            <h4 className="text-foreground font-bold mb-6">Company</h4>
+          <div className="space-y-6">
+            <h4 className="text-foreground font-bold leading-8">Company</h4>
             <div className="text-text-secondary text-sm space-y-3">
               <p>대표이사: 지은혜</p>
               <p>사업자등록번호: 211-33-02983</p>
@@ -101,9 +101,10 @@ export default function Footer() {
             <span className="text-2xl font-bold tracking-tighter text-dimmed uppercase">
               성진건설
             </span>
-            <p className="text-text-secondary text-sm leading-relaxed max-w-xs md:ml-auto">
-              라올의 설계를 현장에서 완성하는 주거·상업시설·유치원·초중고등학교
-              설비 시공 전문 회사입니다.
+            <p className="text-text-secondary text-sm leading-relaxed max-w-xs md:ml-auto break-keep">
+              라올의 설계를 현장에서 완성하는 설비 시공 전문 회사입니다.
+              아파트/빌라 등 주거, 카페/식당/미용실 등 상업시설,
+              유치원·초중고등학교까지 폭넓게 시공합니다.
             </p>
           </div>
         </div>
