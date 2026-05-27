@@ -37,6 +37,146 @@ export default function PortfolioPage() {
         </div>
 
         <div className="flex flex-col gap-32 md:gap-48 xl:gap-64">
+          {/* Case 01 / Seongshin Rooftop Waterproofing (Text Left, Image Right 1:2.5) */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.5fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
+             <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center order-2 lg:order-1">
+               <div className="space-y-6">
+                 <div className="space-y-2">
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 01 / ROOFTOP WATERPROOFING</span>
+                   <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">FLAWLESS<br /><span className="text-accent-page italic font-light lowercase">rooftop seal</span></h3>
+                 </div>
+                 <div className="h-[1px] w-12 bg-white/10" />
+                 <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">
+                   누수와 균열로 손상된 옥상을 정밀 방수 시공으로 완벽하게 복원했습니다. 균일한 우레탄 방수층 도포와 디테일한 마감 처리를 통해, 장마철에도 끄떡없는 견고한 보호막을 완성했습니다.
+                 </p>
+                 <div className="pt-4">
+                   <div className="inline-flex items-center gap-4 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
+                     <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Location</span>
+                     <span className="text-[10px] text-accent-page font-bold uppercase">성신빌</span>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div className="w-full h-full order-1 lg:order-2">
+               <BeforeAfterSlider
+                 beforeImage="/styles/시공사례/성신빌 옥상방수 시공사례_before.jpg"
+                 afterImage="/styles/시공사례/성신빌 옥상방수 시공사례_after.jpg"
+               />
+             </div>
+          </div>
+
+          {/* Case 02 / Shingi Elementary Banner Rail (Image Left, Text Right 2.5:1) */}
+          <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
+             <div className="w-full h-full">
+               <BeforeAfterSlider
+                 beforeImage="/styles/시공사례/신기초등학교 반자동 현수막걸이 설치 시공사례_before.jpg"
+                 afterImage="/styles/시공사례/신기초등학교 반자동 현수막걸이 설치 시공사례_after.jpg"
+               />
+             </div>
+             <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center">
+               <div className="space-y-6">
+                 <div className="space-y-2">
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 02 / BANNER RAIL SYSTEM</span>
+                   <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">SMART<br /><span className="text-accent-page italic font-light lowercase">banner system</span></h3>
+                 </div>
+                 <div className="h-[1px] w-12 bg-white/10" />
+                 <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">
+                   매번 사다리에 올라야 했던 번거롭고 위험한 현수막 교체 작업을, 반자동 현수막걸이 시스템 설치로 안전하고 간편하게 개선했습니다. 누구나 손쉽게 게시물을 교체할 수 있어 현장의 편의성과 안전성을 동시에 높였습니다.
+                 </p>
+                 <div className="pt-4">
+                   <div className="inline-flex items-center gap-4 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
+                     <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Location</span>
+                     <span className="text-[10px] text-accent-page font-bold uppercase">신기초등학교</span>
+                   </div>
+                 </div>
+               </div>
+             </div>
+          </div>
+
+          {/* Case 03 / Yehyang Daycare Artificial Turf (Text Left, Image Right 1:2.5) */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.5fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
+             <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center order-2 lg:order-1">
+               <div className="space-y-6">
+                 <div className="space-y-2">
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 03 / ARTIFICIAL TURF</span>
+                   <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">SAFE &amp; GREEN<br /><span className="text-accent-page italic font-light lowercase">artificial turf</span></h3>
+                 </div>
+                 <div className="h-[1px] w-12 bg-white/10" />
+                 <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">
+                   노후되고 거칠었던 어린이집 마당을, 아이들이 마음껏 뛰놀 수 있는 푹신한 인조잔디 놀이공간으로 새롭게 단장했습니다. 충격을 흡수하는 안전한 시공으로 부상 위험은 낮추고, 사계절 푸른 쾌적함을 더했습니다.
+                 </p>
+                 <div className="pt-4">
+                   <div className="inline-flex items-center gap-4 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
+                     <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Location</span>
+                     <span className="text-[10px] text-accent-page font-bold uppercase">예향어린이집</span>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div className="w-full h-full order-1 lg:order-2">
+               <BeforeAfterSlider
+                 beforeImage="/styles/시공사례/예향어린이집 인조잔디 시공사례_before.jpg"
+                 afterImage="/styles/시공사례/예향어린이집 인조잔디 시공사례_after.jpg"
+               />
+             </div>
+          </div>
+
+          {/* Case 04 / Taeyang Kindergarten Rubber Mat (Image Left, Text Right 2.5:1) */}
+          <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
+             <div className="w-full h-full">
+               <BeforeAfterSlider
+                 beforeImage="/styles/시공사례/태양유치원 고무매트 설치 시공사례_before.jpg"
+                 afterImage="/styles/시공사례/태양유치원 고무매트 설치 시공사례_after.jpg"
+               />
+             </div>
+             <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center">
+               <div className="space-y-6">
+                 <div className="space-y-2">
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 04 / SAFETY RUBBER MAT</span>
+                   <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">CUSHIONED<br /><span className="text-accent-page italic font-light lowercase">safety floor</span></h3>
+                 </div>
+                 <div className="h-[1px] w-12 bg-white/10" />
+                 <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">
+                   딱딱한 바닥을 탄성 좋은 고무매트로 교체하여, 아이들의 안전을 최우선으로 한 놀이 환경을 조성했습니다. 미끄럼과 충격을 효과적으로 완화하는 매트 시공으로, 활동성 높은 아이들도 안심하고 뛰어놀 수 있는 공간을 완성했습니다.
+                 </p>
+                 <div className="pt-4">
+                   <div className="inline-flex items-center gap-4 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
+                     <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Location</span>
+                     <span className="text-[10px] text-accent-page font-bold uppercase">태양유치원</span>
+                   </div>
+                 </div>
+               </div>
+             </div>
+          </div>
+
+          {/* Case 05 / Taeyang Kindergarten Playground Renewal (Text Left, Image Right 1:2.5) */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.5fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
+             <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center order-2 lg:order-1">
+               <div className="space-y-6">
+                 <div className="space-y-2">
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 05 / PLAYGROUND RENEWAL</span>
+                   <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">PLAYFUL<br /><span className="text-accent-page italic font-light lowercase">outdoor renewal</span></h3>
+                 </div>
+                 <div className="h-[1px] w-12 bg-white/10" />
+                 <p className="text-white/50 text-sm md:text-base font-light leading-relaxed">
+                   낡은 놀이터를 아이들의 상상력과 활동성을 자극하는 안전하고 즐거운 공간으로 재탄생시켰습니다. 동선과 안전 기준을 면밀히 고려한 설계로, 아이들이 매일 가고 싶어하는 활기찬 놀이 환경을 완성했습니다.
+                 </p>
+                 <div className="pt-4">
+                   <div className="inline-flex items-center gap-4 px-4 py-2 bg-white/5 border border-white/10 rounded-full">
+                     <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Location</span>
+                     <span className="text-[10px] text-accent-page font-bold uppercase">태양유치원</span>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div className="w-full h-full order-1 lg:order-2">
+               <BeforeAfterSlider
+                 beforeImage="/styles/시공사례/태양유치원 놀이터 개선 시공사례_before.jpg"
+                 afterImage="/styles/시공사례/태양유치원 놀이터 개선 시공사례_after.jpg"
+               />
+             </div>
+          </div>
+
           {/* Living Room Transformation */}
           <div className="grid grid-cols-1 lg:grid-cols-[2.5fr_1fr] items-stretch gap-0 overflow-hidden min-h-[500px] md:min-h-[600px] lg:min-h-[auto]">
              <div className="w-full h-full">
@@ -48,7 +188,7 @@ export default function PortfolioPage() {
              <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center">
                <div className="space-y-6">
                  <div className="space-y-2">
-                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 01 / LIVING ROOM</span>
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 06 / LIVING ROOM</span>
                    <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">COLOR ACCENT<br /><span className="text-accent-page italic font-light lowercase">modern</span></h3>
                  </div>
                  <div className="h-[1px] w-12 bg-white/10" />
@@ -70,7 +210,7 @@ export default function PortfolioPage() {
              <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center order-2 lg:order-1">
                <div className="space-y-6">
                  <div className="space-y-2">
-                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 02 / KITCHEN</span>
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 07 / KITCHEN</span>
                    <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">WARM<br /><span className="text-accent-page italic font-light lowercase">minimalist</span></h3>
                  </div>
                  <div className="h-[1px] w-12 bg-white/10" />
@@ -104,7 +244,7 @@ export default function PortfolioPage() {
              <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center">
                <div className="space-y-6">
                  <div className="space-y-2">
-                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 03 / BATHROOM</span>
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 08 / BATHROOM</span>
                    <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">HOTEL-STYLE<br /><span className="text-accent-page italic font-light lowercase">luxury</span></h3>
                  </div>
                  <div className="h-[1px] w-12 bg-white/10" />
@@ -126,7 +266,7 @@ export default function PortfolioPage() {
              <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center order-2 lg:order-1">
                <div className="space-y-6">
                  <div className="space-y-2">
-                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 04 / DOG BATH GUMI</span>
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 09 / DOG BATH GUMI</span>
                    <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">PREMIUM<br /><span className="text-accent-page italic font-light lowercase">pet care salon</span></h3>
                  </div>
                  <div className="h-[1px] w-12 bg-white/10" />
@@ -160,7 +300,7 @@ export default function PortfolioPage() {
              <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center">
                <div className="space-y-6">
                  <div className="space-y-2">
-                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 05 / DOG BATH BANPO</span>
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 10 / DOG BATH BANPO</span>
                    <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">HIGH-END<br /><span className="text-accent-page italic font-light lowercase">boutique bath</span></h3>
                  </div>
                  <div className="h-[1px] w-12 bg-white/10" />
@@ -182,7 +322,7 @@ export default function PortfolioPage() {
              <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center order-2 lg:order-1">
                <div className="space-y-6">
                  <div className="space-y-2">
-                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 06 / UNMANNED STUDIO</span>
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 11 / UNMANNED STUDIO</span>
                    <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">CREATIVE<br /><span className="text-accent-page italic font-light lowercase">unmanned space</span></h3>
                  </div>
                  <div className="h-[1px] w-12 bg-white/10" />
@@ -215,7 +355,7 @@ export default function PortfolioPage() {
              <div className="p-10 md:p-16 xl:p-20 bg-zinc-950 border-white/5 flex flex-col justify-center">
                <div className="space-y-6">
                  <div className="space-y-2">
-                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 07 / DOG BATH AMSA</span>
+                   <span className="text-accent-page text-[10px] font-black tracking-[0.3em] uppercase opacity-50">CASE 12 / DOG BATH AMSA</span>
                    <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-none">CLEAN & COZY<br /><span className="text-accent-page italic font-light lowercase">comfort wash</span></h3>
                  </div>
                  <div className="h-[1px] w-12 bg-white/10" />
