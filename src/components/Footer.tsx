@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
 
           {/* Col 2: Navigation */}
-          <div className="space-y-6 lg:pl-8">
+          <div className="space-y-6 lg:pl-16">
             <h4 className="text-foreground font-bold leading-8">Menu</h4>
             <ul className="space-y-3">
               {['About', 'Services', 'Styles', 'Portfolio', 'Contact'].map((item) => (
@@ -81,7 +81,7 @@ export default function Footer() {
           </div>
 
           {/* Col 3: Company Info */}
-          <div className="space-y-6 lg:pl-8">
+          <div className="space-y-6 lg:pl-16">
             <h4 className="text-foreground font-bold leading-8">Company</h4>
             <div className="text-text-secondary text-sm space-y-3">
               <p>대표이사: 지은혜</p>
