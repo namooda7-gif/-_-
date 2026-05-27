@@ -106,7 +106,7 @@ export default function PrivacyPage() {
         <Article title="제10조 (개인정보 보호책임자)">
           <ul className="list-disc pl-5 space-y-1">
             <li>성명: 지은혜 (대표)</li>
-            <li>이메일: raolarch@gmail.com</li>
+            <li>이메일: laolarch@gmail.com</li>
             <li>전화: 010-4782-8934</li>
           </ul>
         </Article>
@@ -120,7 +120,7 @@ export default function PrivacyPage() {
         <div className="pt-8 border-t border-white/10 text-text-tertiary text-xs leading-relaxed space-y-1">
           <p>부칙: 본 개인정보처리방침은 2026년 5월 27일부터 시행됩니다.</p>
           <p>라올실내건축 | 대표: 지은혜 | 사업자등록번호: 211-33-02983</p>
-          <p>경기도 남양주시 별내중앙로 30, 2층 204호 | raolarch@gmail.com</p>
+          <p>경기도 남양주시 별내중앙로 30, 2층 204호 | laolarch@gmail.com</p>
         </div>
       </div>
     </div>

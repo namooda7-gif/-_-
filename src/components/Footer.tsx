@@ -92,7 +92,7 @@ export default function Footer() {
               <p className="leading-relaxed">
                 지사: 경상북도 구미시 인동24길 17, 1층
               </p>
-              <p>이메일: raolarch@gmail.com</p>
+              <p>이메일: laolarch@gmail.com</p>
             </div>
           </div>
 

@@ -112,8 +112,8 @@ export default function ContactPage() {
               번거로우시더라도 아래 연락처로 직접 문의해 주세요.
             </p>
             <div className="flex flex-col items-center gap-1.5 text-accent-gold font-bold tracking-wider">
-              <a href="mailto:raolarch@gmail.com" className="hover:underline">
-                raolarch@gmail.com
+              <a href="mailto:laolarch@gmail.com" className="hover:underline">
+                laolarch@gmail.com
               </a>
               <a href="tel:01059140508" className="hover:underline">
                 010-5914-0508
