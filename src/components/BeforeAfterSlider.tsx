@@ -47,36 +47,36 @@ export default function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAft
       onTouchEnd={() => setIsDragging(false)}
       onTouchMove={onTouchMove}
     >
-      {/* Before Image (Bottom Layer) */}
+      {/* After Image (Bottom Layer — fills the right side) */}
       <div className="absolute inset-0">
-        <Image 
-          src={beforeImage}
-          alt="Before Transformation"
+        <Image
+          src={afterImage}
+          alt="After Transformation"
           fill
           className="object-cover"
           priority
         />
-        <div className="absolute bottom-10 right-10 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white text-[10px] font-black tracking-[0.3em] uppercase">
-          BEFORE
+        <div className="absolute bottom-10 right-10 px-4 py-2 rounded-full bg-accent-gold/80 backdrop-blur-md border border-white/30 text-white text-[10px] font-black tracking-[0.3em] uppercase min-w-[100px] text-center">
+          AFTER
         </div>
       </div>
 
-      {/* After Image (Top Layer with Mask) */}
-      <div 
+      {/* Before Image (Top Layer with Mask — revealed on the left) */}
+      <div
         className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{ width: `${sliderPosition}%` }}
       >
         <div className="absolute inset-0 w-[100vw] lg:w-[1400px]"> {/* Fixed width to prevent shrinking */}
-          <Image 
-            src={afterImage}
-            alt="After Transformation"
+          <Image
+            src={beforeImage}
+            alt="Before Transformation"
             fill
             className="object-cover"
             priority
           />
         </div>
-        <div className="absolute bottom-10 left-10 px-4 py-2 rounded-full bg-accent-gold/80 backdrop-blur-md border border-white/30 text-white text-[10px] font-black tracking-[0.3em] uppercase min-w-[100px] text-center">
-          AFTER
+        <div className="absolute bottom-10 left-10 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white text-[10px] font-black tracking-[0.3em] uppercase">
+          BEFORE
         </div>
       </div>
 
