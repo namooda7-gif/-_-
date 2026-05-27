@@ -23,7 +23,7 @@
 
 ## 📧 문의하기(EmailJS) 템플릿 설정
 - [x] **EmailJS 변수 매핑 완료**: 코드(React) 내의 input name(`from_name`, `from_phone`, `from_email`, `message`)과 EmailJS 템플릿 변수를 일치시키는 가이드 제공 완료.
-- [x] **EmailJS Service 연결 오류 해결**: 끊겨 있던 Gmail 서비스 재연결 및 새 발급된 Service ID(`service_3eagpfj`)로 React 코드 업데이트 완료.
+- [x] **EmailJS Service 연결 오류 해결**: 끊겨 있던 Gmail 서비스 재연결 및 새 발급된 Service ID(`service_87pe5ef`)로 React 코드 업데이트 완료.
 
 ## 🚀 사장님을 위한 넥스트 마일스톤
 1. **모바일/PC 최종 체감 점검**
