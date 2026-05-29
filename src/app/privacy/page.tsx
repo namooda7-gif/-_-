@@ -33,10 +33,10 @@ export default function PrivacyPage() {
         </p>
 
         <Article title="제1조 (수집하는 개인정보 항목 및 방법)">
-          <p>회사는 홈페이지 문의하기를 통해 아래와 같은 최소한의 개인정보를 수집합니다.</p>
+          <p>회사는 문의·상담 과정에서 아래와 같은 최소한의 개인정보를 수집합니다.</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>필수 항목: 성명, 휴대전화번호, 이메일 주소, 문의 내용</li>
-            <li>수집 방법: 홈페이지 문의 양식 입력</li>
+            <li>수집 항목: 성명, 휴대전화번호, 문의 내용 (이용자가 상담 시 제공하는 정보에 한함)</li>
+            <li>수집 방법: 카카오톡 채널 상담 및 전화 상담</li>
           </ul>
         </Article>
 
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
         <Article title="제5조 (개인정보 처리의 위탁)">
           <p>회사는 원활한 서비스 제공을 위해 아래와 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>EmailJS: 문의 양식 데이터의 이메일 전송 처리</li>
+            <li>카카오(주): 카카오톡 채널을 통한 상담 메시지 송수신</li>
             <li>Cloudflare: 웹사이트 호스팅 및 인프라 운영</li>
           </ul>
         </Article>
