@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import ThemeManager from "@/components/ThemeManager";
 import ScrollIndicator from "@/components/ScrollIndicator";
+import KakaoFloatingButton from "@/components/KakaoFloatingButton";
 import { CursorProvider } from "@/context/CursorContext";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -77,6 +78,7 @@ export default function RootLayout({
             <Navigation />
             {children}
             <ScrollIndicator />
+            <KakaoFloatingButton />
             <Footer />
           </ThemeManager>
         </CursorProvider>
