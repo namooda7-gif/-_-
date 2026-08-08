@@ -8,6 +8,7 @@ import ThemeManager from "@/components/ThemeManager";
 import ScrollIndicator from "@/components/ScrollIndicator";
 import KakaoFloatingButton from "@/components/KakaoFloatingButton";
 import { CursorProvider } from "@/context/CursorContext";
+import Maintenance from "@/components/Maintenance";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -64,6 +65,12 @@ export const metadata: Metadata = {
   },
 };
 
+// [OnRoom 서비스 임시 중단 설정]
+// - true: 홈페이지 서비스 중지 및 점검 안내 화면 표시
+// - false: 정상 서비스 운영
+// 일주일 후 서비스를 재개하려면 아래 값을 false로 변경하고 배포(커밋/푸시)해 주시면 됩니다.
+const MAINTENANCE_MODE = true;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -72,16 +79,20 @@ export default function RootLayout({
   return (
     <html lang="ko" data-theme="dark">
       <body className={inter.className}>
-        <CursorProvider>
-          <CustomCursor />
-          <ThemeManager>
-            <Navigation />
-            {children}
-            <ScrollIndicator />
-            <KakaoFloatingButton />
-            <Footer />
-          </ThemeManager>
-        </CursorProvider>
+        {MAINTENANCE_MODE ? (
+          <Maintenance />
+        ) : (
+          <CursorProvider>
+            <CustomCursor />
+            <ThemeManager>
+              <Navigation />
+              {children}
+              <ScrollIndicator />
+              <KakaoFloatingButton />
+              <Footer />
+            </ThemeManager>
+          </CursorProvider>
+        )}
       </body>
     </html>
   );
