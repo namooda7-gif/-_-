@@ -71,8 +71,6 @@ export default function Maintenance() {
           <div className="flex flex-col gap-2.5 items-center text-xs sm:text-sm text-white/50">
             <div className="flex items-center gap-2">
               <span className="text-white/30">T.</span>
-              <a href="tel:01059140508" className="text-white/80 hover:text-[#d4af37] transition-colors hover:underline">010-5914-0508</a>
-              <span className="text-white/20">|</span>
               <a href="tel:01047828934" className="text-white/80 hover:text-[#d4af37] transition-colors hover:underline">010-4782-8934</a>
             </div>
             <div className="flex items-center gap-2">
