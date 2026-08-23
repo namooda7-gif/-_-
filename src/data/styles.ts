@@ -19,6 +19,7 @@ export interface InteriorStyle {
   galleryImages: string[];
   bgColor: string;
   isDark: boolean;
+  isNew?: boolean;
 }
 
 export const interiorStyles: InteriorStyle[] = [
@@ -429,5 +430,145 @@ export const interiorStyles: InteriorStyle[] = [
     ],
     bgColor: "#1A1D21",
     isDark: true,
+  },
+  {
+    slug: "french-modern",
+    nameKo: "프렌치 모던",
+    nameEn: "French Modern",
+    keywords: ["헤링본 마루", "벽 패널", "절제된 무채색"],
+    description: "파리 아파르트망의 구조를 현대 가구로 다시 정리한, 화려하지 않지만 정성이 보이는 스타일입니다.",
+    goodFor: "층고가 넉넉히 확보된 공간에 잘 맞습니다. 벽 패널을 벽 전체 높이로 넣으면 낮은 층고에서는 오히려 눌려 보입니다.",
+    commonMistake: "패널 높이를 허리선 아래로 제한하지 않고 그대로 올리는 것. 원형은 3m 이상 층고를 전제로 한 양식이라 국내 아파트에 그대로 옮기면 답답해집니다.",
+    comparedTo: {
+      slug: "neutral-artdeco",
+      nameKo: "뉴트럴 아르데코",
+      note: "프렌치 모던은 밝고 가벼운 회백색 톤, 아르데코는 짙고 대칭적인 패턴이 중심입니다. 둘 다 유럽 클래식에서 왔지만 온도가 반대입니다.",
+    },
+    mbti: { group: "관리자형", types: ["ISTJ", "ISFJ", "ESTJ", "ESFJ"] },
+    previewImage: "/styles/all-styles/french-modern_1.jpeg",
+    galleryImages: [
+      "/styles/all-styles/french-modern_1.jpeg",
+      "/styles/all-styles/french-modern_2.jpeg",
+      "/styles/all-styles/french-modern_3.jpeg",
+      "/styles/all-styles/french-modern_4.jpeg",
+      "/styles/all-styles/french-modern_5.jpeg",
+      "/styles/all-styles/french-modern_6.jpeg",
+      "/styles/all-styles/french-modern_7.jpeg"
+    ],
+    bgColor: "#3A362F",
+    isDark: true,
+    isNew: true,
+  },
+  {
+    slug: "coastal",
+    nameKo: "코스탈",
+    nameEn: "Coastal",
+    keywords: ["회벽 마감", "라탄", "천연 소재"],
+    description: "지중해와 미국 동부 해안 주거에서 온 스타일로, 회벽과 천연 섬유가 빛을 받아 밝고 가벼운 인상을 만듭니다.",
+    goodFor: "채광이 강한 남향 고층에 잘 맞습니다. 빛이 부족하면 흰 회벽이 회색으로 죽어 스타일 자체가 성립하지 않습니다.",
+    commonMistake: "파란색과 바다 소품으로 접근하는 것. 닻이나 조개 장식을 넣으면 코스탈이 아니라 마린 테마가 됩니다. 실제로 이 스타일을 만드는 건 회벽의 질감과 밝기입니다.",
+    comparedTo: {
+      slug: "biophilic",
+      nameKo: "바이오필릭",
+      note: "코스탈은 회벽과 밝기로, 바이오필릭은 식물과 자연광으로 편안함을 만듭니다. 둘 다 자연을 들이지만 방법이 다릅니다.",
+    },
+    mbti: { group: "외교관형", types: ["INFJ", "INFP", "ENFJ", "ENFP"] },
+    previewImage: "/styles/all-styles/coastal_1.jpeg",
+    galleryImages: [
+      "/styles/all-styles/coastal_1.jpeg",
+      "/styles/all-styles/coastal_2.jpeg",
+      "/styles/all-styles/coastal_3.jpeg",
+      "/styles/all-styles/coastal_4.jpeg",
+      "/styles/all-styles/coastal_5.jpeg",
+      "/styles/all-styles/coastal_6.jpeg",
+      "/styles/all-styles/coastal_7.jpeg",
+      "/styles/all-styles/coastal_8.jpeg"
+    ],
+    bgColor: "#1E2A30",
+    isDark: true,
+    isNew: true,
+  },
+  {
+    slug: "organic-modern",
+    nameKo: "오가닉 모던",
+    nameEn: "Organic Modern",
+    keywords: ["트래버틴", "부클레", "둥근 형태"],
+    description: "미니멀리즘의 절제를 유지하면서 돌·석고 같은 물성 있는 소재로 온도를 올린 스타일입니다.",
+    goodFor: "창이 커서 옆에서 빛이 들어오는 공간에 잘 맞습니다. 이 스타일은 질감 위의 그림자로 완성되어, 천장등만 있는 공간에서는 소재가 평평하게 죽습니다.",
+    commonMistake: "조형적인 가구를 여러 개 두는 것. 형태가 강한 오브제는 한 공간에 하나가 상한선입니다. 두 개가 되면 서로 경쟁합니다.",
+    comparedTo: {
+      slug: "japandi",
+      nameKo: "재팬디",
+      note: "오가닉 모던은 돌과 석고의 물성으로, 재팬디는 우드의 따뜻함으로 온기를 만듭니다. 절제된 계열이지만 재료가 다릅니다.",
+    },
+    mbti: { group: "분석가형", types: ["INTJ", "INTP", "ENTJ", "ENTP"] },
+    previewImage: "/styles/all-styles/organic-modern_1.jpeg",
+    galleryImages: [
+      "/styles/all-styles/organic-modern_1.jpeg",
+      "/styles/all-styles/organic-modern_2.jpeg",
+      "/styles/all-styles/organic-modern_3.jpeg",
+      "/styles/all-styles/organic-modern_4.jpeg",
+      "/styles/all-styles/organic-modern_5.jpeg",
+      "/styles/all-styles/organic-modern_6.jpeg"
+    ],
+    bgColor: "#2B2620",
+    isDark: true,
+    isNew: true,
+  },
+  {
+    slug: "maximalism",
+    nameKo: "맥시멀리즘",
+    nameEn: "Maximalism",
+    keywords: ["패턴", "컬러", "수집품"],
+    description: "미니멀리즘의 반작용으로 다시 떠오른 스타일로, 물건 수를 줄이는 대신 색과 패턴에 질서를 부여합니다.",
+    goodFor: "수집하는 취미가 있고, 물건을 정리해서 넣기보다 꺼내 두고 보는 걸 좋아하는 경우에 잘 맞습니다.",
+    commonMistake: "색을 계획 없이 섞는 것. 실제로 통일감을 만드는 건 색 계열입니다. 물건이 많아도 같은 색 계열 안에 있으면 하나의 구성으로 읽히고, 색이 제각각이면 개수가 적어도 어지럽습니다.",
+    comparedTo: {
+      slug: "bohemian",
+      nameKo: "보헤미안",
+      note: "보헤미안은 시간이 쌓아 만든 자유로움, 맥시멀리즘은 계획된 밀도입니다. 둘 다 물건이 많지만 만들어지는 방식이 다릅니다.",
+    },
+    mbti: { group: "탐험가형", types: ["ISTP", "ISFP", "ESTP", "ESFP"] },
+    previewImage: "/styles/all-styles/maximalism_1.jpeg",
+    galleryImages: [
+      "/styles/all-styles/maximalism_1.jpeg",
+      "/styles/all-styles/maximalism_2.jpeg",
+      "/styles/all-styles/maximalism_3.jpeg",
+      "/styles/all-styles/maximalism_4.jpeg",
+      "/styles/all-styles/maximalism_5.jpeg",
+      "/styles/all-styles/maximalism_6.jpeg",
+      "/styles/all-styles/maximalism_7.jpeg",
+      "/styles/all-styles/maximalism_8.jpeg"
+    ],
+    bgColor: "#1F3B2E",
+    isDark: true,
+    isNew: true,
+  },
+  {
+    slug: "modern-hanok",
+    nameKo: "모던 한옥",
+    nameEn: "Modern Hanok",
+    keywords: ["한지", "격자", "낮은 시선"],
+    description: "한옥의 구성 원리를 현대 주거로 옮긴 스타일로, 목재와 창호, 빛을 걸러 쓰는 방식이 핵심입니다.",
+    goodFor: "거실과 서재처럼 벽을 세우지 않고 영역만 나누고 싶은 공간에 격자 파티션이 특히 효과적입니다.",
+    commonMistake: "전통 문양과 소품을 더하는 것. 자개장이나 병풍이 들어오면 모던 한옥이 아니라 전통 재현이 됩니다. 이 스타일은 재료와 빛으로 만들고 장식은 쓰지 않습니다.",
+    comparedTo: {
+      slug: "japandi",
+      nameKo: "재팬디",
+      note: "재팬디는 일본식 좌식 절제와 어두운 목재, 모던 한옥은 마루·온돌의 이원 구조와 한지를 통과한 확산광입니다. 격자와 한지의 조합은 한옥 쪽에만 있습니다.",
+    },
+    mbti: { group: "관리자형", types: ["ISTJ", "ISFJ", "ESTJ", "ESFJ"] },
+    previewImage: "/styles/all-styles/modern-hanok_5.jpeg",
+    galleryImages: [
+      "/styles/all-styles/modern-hanok_5.jpeg",
+      "/styles/all-styles/modern-hanok_1.jpeg",
+      "/styles/all-styles/modern-hanok_2.jpeg",
+      "/styles/all-styles/modern-hanok_3.jpeg",
+      "/styles/all-styles/modern-hanok_4.jpeg",
+      "/styles/all-styles/modern-hanok_6.jpeg"
+    ],
+    bgColor: "#2E2A20",
+    isDark: true,
+    isNew: true,
   },
 ];
