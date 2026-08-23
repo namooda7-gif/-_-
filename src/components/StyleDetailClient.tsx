@@ -190,6 +190,54 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
         </motion.div>
       </section>
 
+      {/* 잘 맞는 조건 / 흔한 실수 / 헷갈리는 스타일 구분 */}
+      <section className="max-w-[1200px] mx-auto px-4 md:px-8 mt-16 md:mt-24 relative z-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className={`glass-pill-premium rounded-[3rem] p-10 md:p-16 shadow-[0_50px_100px_rgba(0,0,0,0.5)] border-white/10 backdrop-blur-3xl transition-all duration-1000 ${
+            style.isDark ? 'bg-white/5 text-white' : 'bg-black/5 text-black'
+          }`}
+        >
+          <div className="grid md:grid-cols-3 gap-10 md:gap-12">
+            <div>
+              <p className={`text-[10px] font-black tracking-[0.4em] uppercase mb-4 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`}>
+                잘 맞는 조건
+              </p>
+              <p className={`text-base md:text-lg leading-relaxed font-light break-keep ${style.isDark ? 'text-white/70' : 'text-black/70'}`}>
+                {style.goodFor}
+              </p>
+            </div>
+            <div>
+              <p className={`text-[10px] font-black tracking-[0.4em] uppercase mb-4 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`}>
+                흔한 실수
+              </p>
+              <p className={`text-base md:text-lg leading-relaxed font-light break-keep ${style.isDark ? 'text-white/70' : 'text-black/70'}`}>
+                {style.commonMistake}
+              </p>
+            </div>
+            <div>
+              <p className={`text-[10px] font-black tracking-[0.4em] uppercase mb-4 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`}>
+                헷갈리는 스타일 구분
+              </p>
+              <p className={`text-base md:text-lg leading-relaxed font-light break-keep mb-5 ${style.isDark ? 'text-white/70' : 'text-black/70'}`}>
+                {style.comparedTo.note}
+              </p>
+              <Link
+                href={`/styles/${style.comparedTo.slug}`}
+                className={`inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest transition-colors ${
+                  style.isDark ? 'text-accent-gold hover:text-white' : 'text-black/60 hover:text-black'
+                }`}
+              >
+                {style.comparedTo.nameKo} 보기
+                <ChevronRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Gallery Section if exists */}
       {style.galleryImages.length > 0 && (
         <section className="max-w-[1600px] mx-auto px-4 md:px-12 xl:px-24 mt-48">
