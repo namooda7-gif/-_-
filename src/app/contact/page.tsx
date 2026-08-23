@@ -2,6 +2,16 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
+
+const ONROOM_URL = 'https://onroom.kr';
+
+const styleFinderCards = [
+  { title: '성향으로 찾기', desc: 'MBTI 기반 추천' },
+  { title: '취향으로 찾기', desc: '이미지 비교 5문항' },
+  { title: '구조로 찾기', desc: '우리 집 평면부터' },
+  { title: '현재로 찾기', desc: '지금 사는 공간 사진' },
+];
 
 // onroom.kr과 동일한 카카오톡 채널 (1:1 상담)
 const KAKAO_CHANNEL_URL = 'http://pf.kakao.com/_xhFQxlX';
@@ -48,6 +58,52 @@ export default function ContactPage() {
           </li>
         </ul>
       </motion.div>
+
+      {/* OnRoom 무료 스타일 찾기 — 카카오 상담 전 추천 단계 (기존 카카오 버튼/링크는 아래 그대로 유지) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+        className="glass-pill-premium p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] border-accent-terracotta/25 backdrop-blur-3xl bg-accent-terracotta/[0.05] shadow-[0_30px_70px_rgba(0,0,0,0.4)] text-center mb-6 md:mb-8"
+      >
+        <span className="inline-block px-3 py-1 rounded-full bg-accent-terracotta/15 border border-accent-terracotta/30 text-accent-terracotta text-[10px] font-black tracking-[0.2em] uppercase mb-6">
+          상담 전 먼저 확인하면 좋아요
+        </span>
+        <p className="text-2xl md:text-4xl font-black tracking-tight mb-4 text-white">
+          인테리어 시작하기 전에
+        </p>
+        <p className="text-base md:text-lg text-white/50 font-light leading-relaxed mb-10 max-w-xl mx-auto">
+          취향이 아직 정해지지 않았다면, 무료로 먼저 확인해보세요. <br className="hidden md:block" />
+          같은 공간이 스타일에 따라 어떻게 달라지는지 20초면 볼 수 있습니다.
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-10 text-left">
+          {styleFinderCards.map((card) => (
+            <div
+              key={card.title}
+              className="rounded-2xl md:rounded-3xl border border-accent-terracotta/20 bg-white/[0.02] p-5 md:p-6"
+            >
+              <p className="text-white font-bold text-sm md:text-base mb-1.5">{card.title}</p>
+              <p className="text-white/50 text-xs md:text-sm font-light leading-relaxed">{card.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <a
+          href={ONROOM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-full font-black text-sm md:text-base tracking-wide bg-accent-terracotta/20 border border-accent-terracotta/50 text-white hover:bg-accent-terracotta/30 hover:scale-[1.03] active:scale-[0.98] transition-all"
+        >
+          OnRoom에서 무료로 확인하기 →
+        </a>
+      </motion.div>
+
+      {/* 흐름 표시: OnRoom(선택) → 카카오 상담(다음 단계) */}
+      <div className="flex flex-col items-center gap-2 mb-6 md:mb-8 text-white/30">
+        <ChevronDown size={20} strokeWidth={1.5} />
+        <p className="text-xs md:text-sm font-light">그다음, 카카오톡으로 편하게 상담하세요</p>
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}

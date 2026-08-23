@@ -16,6 +16,8 @@ const config: Config = {
           burgundy: "#5C1A2E",
           gold: "var(--accent-gold)",
           page: "var(--accent-page)",
+          sand: "var(--accent-sand)",
+          terracotta: "var(--accent-terracotta)",
         }
       },
     },
