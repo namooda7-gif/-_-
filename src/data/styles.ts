@@ -36,7 +36,9 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Minimalist_bedroom_Korean_202603191156.jpeg",
       "/styles/all-styles/Minimalist_living_room_202603191156.jpeg",
       "/styles/all-styles/Minimalist_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Minimalist_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Minimalist_kitchen_202603191156.jpeg",
+      "/styles/all-styles/minimalism_extra1.jpeg",
+      "/styles/all-styles/minimalism_extra2.jpeg"
     ],
     bgColor: "#0D0D0D",
     isDark: true,
@@ -59,7 +61,9 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Scandinavian_bedroom_202603191156.jpeg",
       "/styles/all-styles/Scandinavian_living_room_202603191156.jpeg",
       "/styles/all-styles/Scandinavian_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Scandinavian_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Scandinavian_kitchen_202603191156.jpeg",
+      "/styles/all-styles/scandinavian_extra1.jpeg",
+      "/styles/all-styles/scandinavian_extra2.jpeg"
     ],
     bgColor: "#1D242B",
     isDark: true,
@@ -82,7 +86,12 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Industrial_bedroom.jpeg",
       "/styles/all-styles/Industrial_living_new.jpeg",
       "/styles/all-styles/Industrial_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Industrial_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Industrial_kitchen_202603191156.jpeg",
+      "/styles/all-styles/industrial_extra1.jpeg",
+      "/styles/all-styles/industrial_extra2.jpeg",
+      "/styles/all-styles/industrial_extra3.jpeg",
+      "/styles/all-styles/industrial_extra4.jpeg",
+      "/styles/all-styles/industrial_extra5.jpeg"
     ],
     bgColor: "#2B2D31",
     isDark: true,
@@ -105,7 +114,9 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Japandi_bedroom_202603191156.jpeg",
       "/styles/all-styles/Japandi_living_room_202603191156.jpeg",
       "/styles/all-styles/Japandi_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Japandi_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Japandi_kitchen_202603191156.jpeg",
+      "/styles/all-styles/japandi_extra1.jpeg",
+      "/styles/all-styles/japandi_extra2.jpeg"
     ],
     bgColor: "#2F2A26",
     isDark: true,
@@ -128,7 +139,10 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Modern_luxury_bedroom_202603191156.jpeg",
       "/styles/all-styles/Modern_luxury_living_202603191156.jpeg",
       "/styles/all-styles/Modern_luxury_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Modern_luxury_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Modern_luxury_kitchen_202603191156.jpeg",
+      "/styles/all-styles/modern-luxury_extra1.jpeg",
+      "/styles/all-styles/modern-luxury_extra2.jpeg",
+      "/styles/all-styles/modern-luxury_extra3.jpeg"
     ],
     bgColor: "#1F1A24",
     isDark: true,
@@ -151,7 +165,10 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Bohemian_bedroom_202603191156.jpeg",
       "/styles/all-styles/Bohemian_living_room_202603191156.jpeg",
       "/styles/all-styles/Bohemian_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Bohemian_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Bohemian_kitchen_202603191156.jpeg",
+      "/styles/all-styles/bohemian_extra1.jpeg",
+      "/styles/all-styles/bohemian_extra2.jpeg",
+      "/styles/all-styles/bohemian_extra3.jpeg"
     ],
     bgColor: "#42523C",
     isDark: true,
@@ -174,7 +191,10 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Mid-century_modern_bedroom_202603191156.jpeg",
       "/styles/all-styles/Mid-century_modern_living_202603191156.jpeg",
       "/styles/all-styles/Mid-century_modern_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Mid-century_modern_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Mid-century_modern_kitchen_202603191156.jpeg",
+      "/styles/all-styles/mid-century_extra1.jpeg",
+      "/styles/all-styles/mid-century_extra2.jpeg",
+      "/styles/all-styles/mid-century_extra3.jpeg"
     ],
     bgColor: "#7A412A",
     isDark: true,
@@ -197,7 +217,10 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Biophilic_bedroom_202603191156.jpeg",
       "/styles/all-styles/Biophilic_living_room_202603191156.jpeg",
       "/styles/all-styles/Biophilic_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Biophilic_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Biophilic_kitchen_202603191156.jpeg",
+      "/styles/all-styles/biophilic_extra1.jpeg",
+      "/styles/all-styles/biophilic_extra2.jpeg",
+      "/styles/all-styles/biophilic_extra3.jpeg"
     ],
     bgColor: "#142F2F",
     isDark: true,
@@ -220,7 +243,10 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Cozy_hygge_bedroom_202603191156.jpeg",
       "/styles/all-styles/Cozy_hygge_living_202603191156.jpeg",
       "/styles/all-styles/Cozy_hygge_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Cozy_hygge_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Cozy_hygge_kitchen_202603191156.jpeg",
+      "/styles/all-styles/cozy_extra1.jpeg",
+      "/styles/all-styles/cozy_extra2.jpeg",
+      "/styles/all-styles/cozy_extra3.jpeg"
     ],
     bgColor: "#24201E",
     isDark: true,
@@ -243,7 +269,10 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg",
       "/styles/all-styles/Neutral_Art_Deco_livingroom.jpeg",
       "/styles/all-styles/Neutral_Art_Deco_bathroom.jpeg",
-      "/styles/all-styles/Neutral_Art_Deco_kitchen.jpeg"
+      "/styles/all-styles/Neutral_Art_Deco_kitchen.jpeg",
+      "/styles/all-styles/neutral-artdeco_extra1.jpeg",
+      "/styles/all-styles/neutral-artdeco_extra2.jpeg",
+      "/styles/all-styles/neutral-artdeco_extra3.jpeg"
     ],
     bgColor: "#A68A46",
     isDark: true,
@@ -266,7 +295,12 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Wabi-Sabi_bedroom_202603191156.jpeg",
       "/styles/all-styles/Wabi-Sabi_living_room_202603191156.jpeg",
       "/styles/all-styles/Wabi-Sabi_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Wabi-Sabi_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Wabi-Sabi_kitchen_202603191156.jpeg",
+      "/styles/all-styles/wabi-sabi_extra1.jpeg",
+      "/styles/all-styles/wabi-sabi_extra2.jpeg",
+      "/styles/all-styles/wabi-sabi_extra3.jpeg",
+      "/styles/all-styles/wabi-sabi_extra4.jpeg",
+      "/styles/all-styles/wabi-sabi_extra5.jpeg"
     ],
     bgColor: "#36322E",
     isDark: true,
@@ -289,7 +323,12 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Retro_contemporary_bedroom_202603191156.jpeg",
       "/styles/all-styles/Retro_contemporary_living_202603191156.jpeg",
       "/styles/all-styles/Retro_contemporary_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Retro_contemporary_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Retro_contemporary_kitchen_202603191156.jpeg",
+      "/styles/all-styles/retro-contemporary_extra1.jpeg",
+      "/styles/all-styles/retro-contemporary_extra2.jpeg",
+      "/styles/all-styles/retro-contemporary_extra3.jpeg",
+      "/styles/all-styles/retro-contemporary_extra4.jpeg",
+      "/styles/all-styles/retro-contemporary_extra5.jpeg"
     ],
     bgColor: "#2D3E4E",
     isDark: true,
@@ -312,7 +351,12 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Terrazzo_bedroom_202603191156.jpeg",
       "/styles/all-styles/Terrazzo_living_room_202603191156.jpeg",
       "/styles/all-styles/Terrazzo_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Terrazzo_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Terrazzo_kitchen_202603191156.jpeg",
+      "/styles/all-styles/terrazzo_extra1.jpeg",
+      "/styles/all-styles/terrazzo_extra2.jpeg",
+      "/styles/all-styles/terrazzo_extra3.jpeg",
+      "/styles/all-styles/terrazzo_extra4.jpeg",
+      "/styles/all-styles/terrazzo_extra5.jpeg"
     ],
     bgColor: "#3C3A38",
     isDark: true,
@@ -335,7 +379,9 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Retreat_style_bedroom_202603191156.jpeg",
       "/styles/all-styles/Retreat_look_living_202603191156.jpeg",
       "/styles/all-styles/Retreat_spa_bathroom_202603191156.jpeg",
-      "/styles/all-styles/Retreat_style_kitchen_202603191156.jpeg"
+      "/styles/all-styles/Retreat_style_kitchen_202603191156.jpeg",
+      "/styles/all-styles/retreat-style_extra1.jpeg",
+      "/styles/all-styles/retreat-style_extra2.jpeg"
     ],
     bgColor: "#2C332F",
     isDark: true,
@@ -358,7 +404,9 @@ export const interiorStyles: InteriorStyle[] = [
       "/styles/all-styles/Color_accent_modern_bedroom.jpeg",
       "/styles/all-styles/Color_accent_modern_202603191156.jpeg",
       "/styles/all-styles/Color_accent_modern_bathroom.jpeg",
-      "/styles/all-styles/Color_accent_modern_kitchen.jpeg"
+      "/styles/all-styles/Color_accent_modern_kitchen.jpeg",
+      "/styles/all-styles/color-accent-modern_extra1.jpeg",
+      "/styles/all-styles/color-accent-modern_extra2.jpeg"
     ],
     bgColor: "#1A1D21",
     isDark: true,
