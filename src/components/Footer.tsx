@@ -86,6 +86,7 @@ export default function Footer() {
             <div className="text-text-secondary text-sm space-y-3">
               <p>대표이사: 지은혜</p>
               <p>사업자등록번호: 211-33-02983</p>
+              <p>통신판매업신고번호: 2026-별내-0981</p>
               <p className="leading-relaxed">
                 본점: 경기도 남양주시 별내중앙로 30, 2층 204호
               </p>
