@@ -87,6 +87,7 @@ const newStyles = interiorStyles.filter((s) => s.isNew);
 
 export default function StylesPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const newStylesTrackRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -136,7 +137,7 @@ export default function StylesPage() {
             className="flex items-center gap-16 px-[10vw] min-w-max"
           >
             {/* Introductory Slide */}
-            <div className="w-[85vw] md:w-[50vw] shrink-0 mr-32 flex flex-col justify-center space-y-10">
+            <div className="w-[85vw] md:w-[50vw] max-w-2xl shrink-0 mr-32 flex flex-col justify-center space-y-10">
               <p className="text-sm md:text-lg lg:text-2xl text-white/50 max-w-xl font-light leading-relaxed">
                 공간은 단순한 물리적 장소를 넘어 삶의 철학을 담는 그릇입니다. <br className="hidden md:block" />
                 라올실내건축이 제안하는 15가지 프리미엄 스타일 보드를 통해 당신만의 감각을 발견해 보세요.
@@ -192,50 +193,36 @@ export default function StylesPage() {
       </div>
     </main>
 
-    {/* 추가 스타일 5종 — 기존 15개짜리 가로 스크롤 트랙과는 분리된 정적 그리드 */}
-    <section className="relative bg-[#0A0A0A] text-white py-24 md:py-40 px-6 md:px-12">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="mb-16 md:mb-20">
-          <p className="text-accent-gold text-xs md:text-sm tracking-[0.6em] font-black uppercase mb-6">
-            More Styles
-          </p>
-          <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter leading-none">
-            추가로 만나보는 <span className="text-white/30">5가지 스타일</span>
-          </h2>
-        </div>
+    {/* 추가 스타일 5종 — 기존 15개짜리와 동일한 카드로, 독립된 두 번째 가로 스크롤 라인 */}
+    <section className="relative bg-[#0A0A0A] text-white py-24 md:py-40 overflow-hidden">
+      <div className="px-[10vw] mb-16 md:mb-20">
+        <p className="text-accent-gold text-xs md:text-sm tracking-[0.6em] font-black uppercase mb-6">
+          More Styles
+        </p>
+        <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+          추가로 만나보는 <span className="text-white/30">5가지 스타일</span>
+        </h2>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {newStyles.map((style) => (
-            <Link
+      <div
+        ref={newStylesTrackRef}
+        className="overflow-x-auto pb-4"
+        style={{ scrollbarWidth: 'none' }}
+      >
+        <motion.div
+          drag="x"
+          dragConstraints={newStylesTrackRef}
+          dragElastic={0.15}
+          className="flex items-center gap-16 px-[10vw] w-max cursor-grab active:cursor-grabbing"
+        >
+          {newStyles.map((style, index) => (
+            <StyleHorizontalItem
               key={style.slug}
-              href={`/styles/${style.slug}`}
-              className="group relative aspect-[4/5] rounded-[2rem] overflow-hidden block border border-white/5 hover:border-white/20 transition-colors duration-500"
-            >
-              <Image
-                src={style.previewImage}
-                alt={style.nameEn}
-                fill
-                className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-              <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {style.keywords.slice(0, 2).map((kw) => (
-                    <span
-                      key={kw}
-                      className="text-[10px] font-bold px-3 py-1 bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-white/80"
-                    >
-                      #{kw}
-                    </span>
-                  ))}
-                </div>
-                <h3 className="text-xl md:text-2xl font-black text-white tracking-tight">{style.nameKo}</h3>
-                <p className="text-white/40 text-xs md:text-sm mt-1 uppercase tracking-widest">{style.nameEn}</p>
-              </div>
-            </Link>
+              style={style}
+              index={flagshipStyles.length + index}
+            />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
     </>
