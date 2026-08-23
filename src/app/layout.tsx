@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://laol.kr"),
   title: "라올 실내건축 | Laol Interior Architecture",
   description: "여성의 섬세함으로, 당신의 공간을 가장 안전하고 아름답게 바꿉니다.",
-  keywords: ["라올실내건축", "인테리어", "여성대표인테리어", "홈케어", "우먼픽스"],
+  keywords: ["라올실내건축", "인테리어", "여성대표인테리어", "홈케어"],
   alternates: {
     canonical: "/",
   },

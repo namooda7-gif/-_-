@@ -23,15 +23,6 @@ const services = [
     image: "/images/services/construction.png",
     link: "/services#construction",
   },
-  {
-    id: "03",
-    title: "우먼픽스 홈케어",
-    subtitle: "WomanFix Homecare",
-    description: "공사가 끝난 후가 진짜 시작입니다. 여성 전문가의 섬세한 시선으로 공간의 건강을 지속적으로 유지하는 프리미엄 솔루션입니다.",
-    image: "/images/services/womanfix_v2.png",
-    link: "/womanfix",
-    highlight: true
-  },
 ];
 
 function MagneticButton({ children, href }: { children: React.ReactNode, href: string }) {
@@ -113,7 +104,7 @@ export default function ServiceCards() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {services.map((service, index) => (
             <motion.div
               key={index}

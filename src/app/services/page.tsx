@@ -35,21 +35,6 @@ const services = [
       { name: "조명 설계", detail: "공간의 분위기를 좌우하는 조도와 색온도를 계산하여, 상품이 돋보이고 방문객이 편안함을 느끼는 조명 환경을 구축합니다." }
     ],
     bgImage: "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&q=80&w=2000"
-  },
-  {
-    id: "03",
-    category: "Women Fix Service",
-    title: "여성 전문가가 찾아가는\n안심 홈 케어, 우먼픽스",
-    desc: "작은 수리부터 타일 교체, 조명 설치까지 집안에 생기는 다양한 문제를 여성 전문가가 직접 방문하여 안전하고 섬세하게 해결합니다. 혼자 사는 여성도 안심할 수 있는 라올만의 독보적인 서비스입니다.",
-    tags: [
-      { name: "조명/전기", detail: "까다로운 조명 기구 교체, 콘센트 개설 및 스위치 수리 등 안전이 최우선인 전기 관련 작업을 꼼꼼하게 해결합니다." },
-      { name: "수전/배관", detail: "물이 새거나 오래된 주방/욕실 수전 교체, 세면대 부속 수리 등 생활의 불편함을 즉시 해소해 드립니다." },
-      { name: "타일/마루 부분 보수", detail: "깨지거나 들뜬 타일, 긁힌 마루 등 부분적인 훼손을 기존 인테리어와 이질감 없이 깔끔하게 복원합니다." },
-      { name: "벽지 훼손 복구", detail: "오염되거나 찢어진 벽지의 부분 보수 및 교체를 통해 집안의 깔끔한 첫인상을 되찾아 드립니다." }
-    ],
-    bgImage: "/images/services/womanfix_v2.png",
-    isAccent: true,
-    accentColor: "var(--accent-page)"
   }
 ];
 
@@ -77,7 +62,7 @@ const processSteps = [
   },
   {
     id: "04",
-    title: "우먼픽스 사후관리",
+    title: "전문가 사후관리",
     subtitle: "Aftercare",
     desc: "시공 후에도 여성 전문가가 찾아가는 라올만의 안심 패키지입니다. 작은 불편함도 놓치지 않는 세심한 케어를 약속합니다.",
     image: "/images/services/process_04.png",

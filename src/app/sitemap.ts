@@ -6,7 +6,7 @@ const BASE_URL = 'https://laol.kr'
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
-  const staticRoutes = ['', '/about', '/services', '/styles', '/portfolio', '/womanfix', '/contact']
+  const staticRoutes = ['', '/about', '/services', '/styles', '/portfolio', '/contact']
 
   const staticPages: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${BASE_URL}${route}`,

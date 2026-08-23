@@ -15,6 +15,37 @@ export default function ContactPage() {
       <p className="text-xl text-white/40 mb-16 font-light">공간에 대한 고민을 들려주세요. <br className="md:hidden" />라올이 답을 찾아드립니다.</p>
 
       <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="glass-pill-premium p-8 md:p-14 rounded-[2rem] md:rounded-[3rem] border-accent-sand/20 backdrop-blur-3xl bg-accent-sand/[0.05] shadow-[0_30px_70px_rgba(0,0,0,0.4)] text-left mb-8 md:mb-10"
+      >
+        <p className="text-xl md:text-3xl font-black tracking-tight mb-8 text-white">
+          미팅 전, 이것만 준비해주세요
+        </p>
+        <ul className="space-y-6">
+          <li className="flex gap-4 items-start">
+            <span className="shrink-0 w-8 h-8 rounded-full bg-accent-sand/20 border border-accent-sand/40 text-accent-sand text-sm font-black flex items-center justify-center">1</span>
+            <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
+              <span className="text-white font-medium">원하는 방향 이미지 2~3장</span> — 많을수록 좋은 게 아니라 오히려 방향이 흐려집니다.
+            </p>
+          </li>
+          <li className="flex gap-4 items-start">
+            <span className="shrink-0 w-8 h-8 rounded-full bg-accent-sand/20 border border-accent-sand/40 text-accent-sand text-sm font-black flex items-center justify-center">2</span>
+            <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
+              <span className="text-white font-medium">절대 하기 싫은 것</span> — 원하는 것보다 싫은 걸 말하는 게 오차를 더 빨리 줄입니다.
+            </p>
+          </li>
+          <li className="flex gap-4 items-start">
+            <span className="shrink-0 w-8 h-8 rounded-full bg-accent-sand/20 border border-accent-sand/40 text-accent-sand text-sm font-black flex items-center justify-center">3</span>
+            <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
+              <span className="text-white font-medium">예산 우선순위</span> — 부족할 때 무엇부터 포기할지 미리 정해두면 현장 결정이 줄어듭니다.
+            </p>
+          </li>
+        </ul>
+      </motion.div>
+
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
