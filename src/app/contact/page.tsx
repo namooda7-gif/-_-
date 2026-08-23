@@ -27,7 +27,11 @@ export default function ContactPage() {
           <li className="flex gap-4 items-start">
             <span className="shrink-0 w-8 h-8 rounded-full bg-accent-sand/20 border border-accent-sand/40 text-accent-sand text-sm font-black flex items-center justify-center">1</span>
             <p className="text-white/70 text-sm md:text-base leading-relaxed font-light">
-              <span className="text-white font-medium">원하는 방향 이미지 2~3장</span> — 많을수록 좋은 게 아니라 오히려 방향이 흐려집니다.
+              <span className="text-white font-medium">원하는 방향 이미지 2~3장</span>
+              <span className="ml-2 inline-block align-middle px-2.5 py-0.5 rounded-full bg-accent-sand/15 border border-accent-sand/30 text-accent-sand text-[10px] font-black tracking-wide whitespace-nowrap">
+                말보다 이미지가 정확합니다
+              </span>
+              {' '}— 많을수록 좋은 게 아니라 오히려 방향이 흐려집니다.
             </p>
           </li>
           <li className="flex gap-4 items-start">
