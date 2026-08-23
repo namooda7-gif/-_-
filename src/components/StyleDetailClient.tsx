@@ -46,26 +46,46 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
       
       {/* Hero Section */}
       <section className="relative h-[100vh] w-full overflow-hidden">
-        <motion.div 
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
+        {/* Blurred full-bleed backdrop for atmosphere — avoids empty space around a 3:4 image */}
+        <motion.div
+          initial={{ scale: 1.15 }}
+          animate={{ scale: 1.1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute inset-0"
         >
-          <Image 
-            src={style.previewImage} 
-            alt={style.nameEn}
+          <Image
+            src={style.previewImage}
+            alt=""
             fill
-            className="object-cover"
-            priority
+            aria-hidden
+            className="object-cover blur-2xl scale-110 opacity-50"
           />
-          <div 
-            className="absolute inset-0 z-10" 
-            style={{ 
-              background: `linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 100%)` 
-            }} 
+          <div className="absolute inset-0" style={{ backgroundColor: style.bgColor, opacity: 0.55 }} />
+          <div
+            className="absolute inset-0 z-10"
+            style={{
+              background: `linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 40%, transparent 70%, rgba(0,0,0,0.5) 100%)`
+            }}
           />
         </motion.div>
+
+        {/* Sharp foreground image at its native 3:4 ratio — no cropping */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4" style={{ paddingTop: '5rem', paddingBottom: '5rem' }}>
+          <motion.div
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="relative h-full aspect-[3/4] max-w-full rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.6)] border border-white/10"
+          >
+            <Image
+              src={style.previewImage}
+              alt={style.nameEn}
+              fill
+              className="object-cover"
+              priority
+            />
+          </motion.div>
+        </div>
 
         {/* Bottom Fade transition removed in favor of global overlay */}
 
