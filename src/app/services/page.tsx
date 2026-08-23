@@ -9,7 +9,18 @@ type TagType = {
   detail: string;
 };
 
-const services = [
+type ServiceType = {
+  id: string;
+  category: string;
+  title: string;
+  desc: string;
+  tags: TagType[];
+  bgImage: string;
+  isAccent?: boolean;
+  accentColor?: string;
+};
+
+const services: ServiceType[] = [
   {
     id: "01",
     category: "Residential Architecture",

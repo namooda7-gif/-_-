@@ -6,7 +6,17 @@ import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const services = [
+type ServiceCard = {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  link: string;
+  highlight?: boolean;
+};
+
+const services: ServiceCard[] = [
   {
     id: "01",
     title: "인테리어 디자인",
