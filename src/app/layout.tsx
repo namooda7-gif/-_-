@@ -69,7 +69,7 @@ export const metadata: Metadata = {
 // - true: 홈페이지 서비스 중지 및 점검 안내 화면 표시
 // - false: 정상 서비스 운영
 // 일주일 후 서비스를 재개하려면 아래 값을 false로 변경하고 배포(커밋/푸시)해 주시면 됩니다.
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 export default function RootLayout({
   children,
