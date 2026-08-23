@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, ChevronRight, Hash } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronRight, Hash, Fingerprint } from 'lucide-react';
 import { InteriorStyle, interiorStyles } from '@/data/styles';
 
 interface StyleDetailClientProps {
@@ -169,6 +169,29 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                     >
                       <div className={`w-1.5 h-1.5 rounded-full ${style.isDark ? 'bg-accent-gold' : 'bg-black/60'}`} />
                       {kw}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div
+                className={`mt-6 p-10 rounded-3xl border backdrop-blur-md ${
+                  style.isDark ? 'bg-white/5 border-white/10 shadow-inner' : 'bg-black/5 border-black/10'
+                }`}
+              >
+                <h4 className="font-black mb-6 flex items-center gap-3 opacity-80 uppercase tracking-widest text-[10px]">
+                  <Fingerprint className={`w-4 h-4 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`} />
+                  이런 성향에게 잘 맞아요 · {style.mbti.group}
+                </h4>
+                <div className="flex flex-wrap gap-3">
+                  {style.mbti.types.map((t) => (
+                    <div
+                      key={t}
+                      className={`px-5 py-2.5 rounded-2xl text-xs font-black border uppercase tracking-widest ${
+                        style.isDark ? 'bg-white/5 border-white/10 text-white/80' : 'bg-black/5 border-black/10 text-black/80'
+                      }`}
+                    >
+                      {t}
                     </div>
                   ))}
                 </div>

@@ -11,6 +11,10 @@ export interface InteriorStyle {
     nameKo: string;
     note: string;
   };
+  mbti: {
+    group: string;
+    types: string[];
+  };
   previewImage: string;
   galleryImages: string[];
   bgColor: string;
@@ -31,6 +35,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "인더스트리얼",
       note: "미니멀리즘은 표면을 매끈하게 다듬고, 인더스트리얼은 마감을 드러냅니다. 둘 다 장식을 걷어내지만 무엇을 남기는지가 다릅니다.",
     },
+    mbti: { group: "분석가형", types: ["INTJ", "INTP", "ENTJ", "ENTP"] },
     previewImage: "/styles/all-styles/Minimalist_bedroom_Korean_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Minimalist_bedroom_Korean_202603191156.jpeg",
@@ -56,6 +61,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "코지",
       note: "스칸디나비안은 밝고 실용적인 낮의 톤, 코지는 어둡고 포근한 저녁의 톤입니다. 같은 북유럽 감성이지만 시간대가 다릅니다.",
     },
+    mbti: { group: "관리자형", types: ["ISTJ", "ISFJ", "ESTJ", "ESFJ"] },
     previewImage: "/styles/all-styles/Scandinavian_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Scandinavian_bedroom_202603191156.jpeg",
@@ -81,6 +87,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "테라조",
       note: "인더스트리얼은 무채색 콘크리트, 테라조는 알록달록한 조각 패턴입니다. 표면을 드러낸다는 점은 같지만 색감이 반대입니다.",
     },
+    mbti: { group: "분석가형", types: ["INTJ", "INTP", "ENTJ", "ENTP"] },
     previewImage: "/styles/all-styles/Industrial_bedroom.jpeg",
     galleryImages: [
       "/styles/all-styles/Industrial_bedroom.jpeg",
@@ -109,6 +116,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "와비사비",
       note: "재팬디는 정돈된 균형, 와비사비는 의도된 불완전함입니다. 낮은 채도의 우드톤을 공유하지만 마감의 완성도 기준이 반대입니다.",
     },
+    mbti: { group: "분석가형", types: ["INTJ", "INTP", "ENTJ", "ENTP"] },
     previewImage: "/styles/all-styles/Japandi_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Japandi_bedroom_202603191156.jpeg",
@@ -134,6 +142,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "뉴트럴 아르데코",
       note: "모던 럭셔리는 소재의 격으로 고급감을 내고, 아르데코는 대칭과 패턴으로 냅니다. 같은 고급 지향이지만 만드는 방법이 다릅니다.",
     },
+    mbti: { group: "탐험가형", types: ["ISTP", "ISFP", "ESTP", "ESFP"] },
     previewImage: "/styles/all-styles/Modern_luxury_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Modern_luxury_bedroom_202603191156.jpeg",
@@ -160,6 +169,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "컬러 액센트 모던",
       note: "보헤미안은 색과 패턴을 겹겹이 쌓고, 컬러 액센트는 한 가지 포인트 컬러만 씁니다. 색을 다루는 양이 정반대입니다.",
     },
+    mbti: { group: "외교관형", types: ["INFJ", "INFP", "ENFJ", "ENFP"] },
     previewImage: "/styles/all-styles/Bohemian_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Bohemian_bedroom_202603191156.jpeg",
@@ -186,6 +196,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "레트로 컨템포러리",
       note: "미드센추리는 5,60년대 원형을 그대로 가져오고, 레트로 컨템포러리는 그 감성을 지금 가구 비례로 재해석합니다.",
     },
+    mbti: { group: "분석가형", types: ["INTJ", "INTP", "ENTJ", "ENTP"] },
     previewImage: "/styles/all-styles/Mid-century_modern_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Mid-century_modern_bedroom_202603191156.jpeg",
@@ -212,6 +223,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "리트리트 스타일",
       note: "바이오필릭은 식물과 자연광이 중심이고, 리트리트는 낮은 채도와 마감의 질감이 중심입니다. 둘 다 안정감을 지향하지만 만드는 재료가 다릅니다.",
     },
+    mbti: { group: "외교관형", types: ["INFJ", "INFP", "ENFJ", "ENFP"] },
     previewImage: "/styles/all-styles/Biophilic_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Biophilic_bedroom_202603191156.jpeg",
@@ -238,6 +250,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "스칸디나비안",
       note: "코지는 스칸디나비안의 저녁 버전에 가깝습니다. 같은 북유럽 감성에서 조도와 채도만 낮췄습니다.",
     },
+    mbti: { group: "관리자형", types: ["ISTJ", "ISFJ", "ESTJ", "ESFJ"] },
     previewImage: "/styles/all-styles/Cozy_hygge_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Cozy_hygge_bedroom_202603191156.jpeg",
@@ -264,6 +277,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "모던 럭셔리",
       note: "아르데코는 대칭과 패턴으로 고급감을 내고, 모던 럭셔리는 소재의 격으로 냅니다. 같은 고급 지향이지만 만드는 방법이 다릅니다.",
     },
+    mbti: { group: "탐험가형", types: ["ISTP", "ISFP", "ESTP", "ESFP"] },
     previewImage: "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Neutral_Art_Deco_202603191156.jpeg",
@@ -290,6 +304,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "리트리트 스타일",
       note: "와비사비는 거친 흔적을 남기는 마감, 리트리트는 매끈하게 다듬은 스파 마감입니다. 채도는 비슷해도 표면의 완성도가 다릅니다.",
     },
+    mbti: { group: "외교관형", types: ["INFJ", "INFP", "ENFJ", "ENFP"] },
     previewImage: "/styles/all-styles/Wabi-Sabi_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Wabi-Sabi_bedroom_202603191156.jpeg",
@@ -318,6 +333,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "미드센추리 모던",
       note: "레트로 컨템포러리는 옛 감성을 지금 비례로 재해석하고, 미드센추리는 5,60년대 원형을 그대로 가져옵니다.",
     },
+    mbti: { group: "탐험가형", types: ["ISTP", "ISFP", "ESTP", "ESFP"] },
     previewImage: "/styles/all-styles/Retro_contemporary_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Retro_contemporary_bedroom_202603191156.jpeg",
@@ -346,6 +362,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "인더스트리얼",
       note: "테라조는 알록달록한 조각 패턴, 인더스트리얼은 무채색 콘크리트입니다. 표면을 드러낸다는 점은 같지만 색감이 반대입니다.",
     },
+    mbti: { group: "관리자형", types: ["ISTJ", "ISFJ", "ESTJ", "ESFJ"] },
     previewImage: "/styles/all-styles/Terrazzo_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Terrazzo_bedroom_202603191156.jpeg",
@@ -374,6 +391,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "와비사비",
       note: "리트리트는 매끈하게 다듬은 스파 마감, 와비사비는 거친 흔적을 남기는 마감입니다. 채도는 비슷해도 표면의 완성도가 다릅니다.",
     },
+    mbti: { group: "외교관형", types: ["INFJ", "INFP", "ENFJ", "ENFP"] },
     previewImage: "/styles/all-styles/Retreat_style_bedroom_202603191156.jpeg",
     galleryImages: [
       "/styles/all-styles/Retreat_style_bedroom_202603191156.jpeg",
@@ -399,6 +417,7 @@ export const interiorStyles: InteriorStyle[] = [
       nameKo: "보헤미안",
       note: "컬러 액센트는 한 가지 포인트 컬러만 쓰고, 보헤미안은 색과 패턴을 겹겹이 쌓습니다. 색을 다루는 양이 정반대입니다.",
     },
+    mbti: { group: "탐험가형", types: ["ISTP", "ISFP", "ESTP", "ESFP"] },
     previewImage: "/styles/all-styles/Color_accent_modern_bedroom.jpeg",
     galleryImages: [
       "/styles/all-styles/Color_accent_modern_bedroom.jpeg",
