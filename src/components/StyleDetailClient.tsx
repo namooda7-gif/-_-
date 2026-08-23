@@ -12,6 +12,13 @@ interface StyleDetailClientProps {
   style: InteriorStyle;
 }
 
+const MBTI_GROUP_DESC: Record<string, string> = {
+  분석가형: '기능이 곧 미학인 사람들',
+  외교관형: '취향이 곧 자기 표현인 사람들',
+  관리자형: '검증된 것에서 편안함을 느끼는 사람들',
+  탐험가형: '지금 마음이 끌리는 대로 사는 사람들',
+};
+
 export default function StyleDetailClient({ style }: StyleDetailClientProps) {
   const router = useRouter();
 
@@ -179,10 +186,13 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                   style.isDark ? 'bg-white/5 border-white/10 shadow-inner' : 'bg-black/5 border-black/10'
                 }`}
               >
-                <h4 className="font-black mb-6 flex items-center gap-3 opacity-80 uppercase tracking-widest text-[10px]">
+                <h4 className="font-black mb-3 flex items-center gap-3 opacity-80 uppercase tracking-widest text-[10px]">
                   <Fingerprint className={`w-4 h-4 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`} />
                   이런 성향에게 잘 맞아요 · {style.mbti.group}
                 </h4>
+                <p className={`text-sm font-light mb-6 ${style.isDark ? 'text-white/60' : 'text-black/60'}`}>
+                  {MBTI_GROUP_DESC[style.mbti.group]}
+                </p>
                 <div className="flex flex-wrap gap-3">
                   {style.mbti.types.map((t) => (
                     <div
