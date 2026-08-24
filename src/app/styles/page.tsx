@@ -12,13 +12,18 @@ const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: nu
     <motion.div
       className="relative shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw] h-[60vh] lg:h-[70vh] group ml-32 first:ml-0"
     >
-      <Link href={`/styles/${style.slug}`} className="block w-full h-full relative overflow-hidden rounded-[20px] lg:rounded-[40px] border border-white/5 md:hover:border-white/20 transition-colors duration-700">
+      <Link
+        href={`/styles/${style.slug}`}
+        draggable={false}
+        className="block w-full h-full relative overflow-hidden rounded-[20px] lg:rounded-[40px] border border-white/5 md:hover:border-white/20 transition-colors duration-700"
+      >
         {/* Background Image with Parallax effect could be added here later */}
         <div className="absolute inset-0 z-0">
           <Image
             src={style.previewImage}
             alt={style.nameEn}
             fill
+            draggable={false}
             className="object-cover transition-transform duration-1000 md:group-hover:scale-110 opacity-100 md:opacity-60 md:group-hover:opacity-100 grayscale-0 md:grayscale-[40%] md:group-hover:grayscale-0"
             sizes="(max-width: 1200px) 100vw, 80vw"
           />
@@ -108,8 +113,9 @@ export default function StylesPage() {
     window.scrollBy({ top: direction * step, behavior: 'smooth' });
   };
 
-  // Row 2 (new styles) — plain scrollLeft based drag-to-scroll + prev/next,
-  // kept independent from row 1's page-scroll-jacking track
+  // Row 2 (new styles) — native scrollLeft track, kept independent from
+  // row 1's page-scroll-jacking. Drag + wheel are wired manually because a
+  // vertical wheel would otherwise scroll the page right past this row.
   const dragStateRef = useRef({ dragging: false, startX: 0, startScroll: 0, moved: 0 });
   const suppressClickRef = useRef(false);
 
@@ -119,26 +125,14 @@ export default function StylesPage() {
     el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' });
   };
 
-  const handleRow2PointerDown = (e: React.MouseEvent) => {
+  const handleRow2MouseDown = (e: React.MouseEvent) => {
     const el = newStylesTrackRef.current;
-    if (!el) return;
+    if (!el || e.button !== 0) return;
+    // Stop the browser starting its own link/image drag, which would swallow mousemove
+    e.preventDefault();
     dragStateRef.current = { dragging: true, startX: e.pageX, startScroll: el.scrollLeft, moved: 0 };
   };
-  const handleRow2PointerMove = (e: React.MouseEvent) => {
-    const state = dragStateRef.current;
-    const el = newStylesTrackRef.current;
-    if (!state.dragging || !el) return;
-    const dx = e.pageX - state.startX;
-    state.moved = Math.abs(dx);
-    el.scrollLeft = state.startScroll - dx;
-  };
-  const handleRow2PointerUp = () => {
-    const state = dragStateRef.current;
-    if (state.dragging && state.moved > 5) {
-      suppressClickRef.current = true;
-    }
-    dragStateRef.current.dragging = false;
-  };
+
   const handleRow2ClickCapture = (e: React.MouseEvent) => {
     if (suppressClickRef.current) {
       e.preventDefault();
@@ -146,6 +140,49 @@ export default function StylesPage() {
       suppressClickRef.current = false;
     }
   };
+
+  React.useEffect(() => {
+    const el = newStylesTrackRef.current;
+    if (!el) return;
+
+    // Track the drag on the window so it survives the pointer leaving the row
+    const onMouseMove = (e: MouseEvent) => {
+      const state = dragStateRef.current;
+      if (!state.dragging) return;
+      e.preventDefault();
+      const dx = e.pageX - state.startX;
+      state.moved = Math.max(state.moved, Math.abs(dx));
+      el.scrollLeft = state.startScroll - dx;
+    };
+    const onMouseUp = () => {
+      const state = dragStateRef.current;
+      if (state.dragging && state.moved > 5) suppressClickRef.current = true;
+      state.dragging = false;
+    };
+
+    // Vertical wheel → horizontal scroll, handing control back to the page
+    // once the track reaches either end so it never traps the reader.
+    const onWheel = (e: WheelEvent) => {
+      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      if (delta === 0) return;
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (maxScroll <= 0) return;
+      const atStart = el.scrollLeft <= 0;
+      const atEnd = el.scrollLeft >= maxScroll - 1;
+      if ((delta < 0 && atStart) || (delta > 0 && atEnd)) return;
+      e.preventDefault();
+      el.scrollLeft += delta;
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+      el.removeEventListener('wheel', onWheel);
+    };
+  }, []);
 
   return (
     <>
@@ -231,22 +268,22 @@ export default function StylesPage() {
             </div>
             <div className="flex items-center gap-6">
               <span className="hidden md:inline text-[10px] font-black text-white/10 uppercase tracking-[0.5em]">Laol Interior Design</span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <button
                   type="button"
                   onClick={() => goRow1(-1)}
                   aria-label="이전 스타일"
-                  className="w-9 h-9 md:w-10 md:h-10 rounded-full glass-pill-premium border-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/10 hover:border-accent-gold/40 transition-all"
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/95 text-black border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.6)] flex items-center justify-center hover:bg-accent-gold hover:text-white hover:scale-105 active:scale-95 transition-all duration-300"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={26} strokeWidth={2.5} />
                 </button>
                 <button
                   type="button"
                   onClick={() => goRow1(1)}
                   aria-label="다음 스타일"
-                  className="w-9 h-9 md:w-10 md:h-10 rounded-full glass-pill-premium border-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/10 hover:border-accent-gold/40 transition-all"
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/95 text-black border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.6)] flex items-center justify-center hover:bg-accent-gold hover:text-white hover:scale-105 active:scale-95 transition-all duration-300"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={26} strokeWidth={2.5} />
                 </button>
               </div>
             </div>
@@ -282,29 +319,26 @@ export default function StylesPage() {
             type="button"
             onClick={() => goRow2(-1)}
             aria-label="이전 스타일"
-            className="w-11 h-11 md:w-12 md:h-12 rounded-full glass-pill-premium border-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/10 hover:border-accent-gold/40 transition-all"
+            className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/95 text-black border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.6)] flex items-center justify-center hover:bg-accent-gold hover:text-white hover:scale-105 active:scale-95 transition-all duration-300"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={30} strokeWidth={2.5} />
           </button>
           <button
             type="button"
             onClick={() => goRow2(1)}
             aria-label="다음 스타일"
-            className="w-11 h-11 md:w-12 md:h-12 rounded-full glass-pill-premium border-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/10 hover:border-accent-gold/40 transition-all"
+            className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/95 text-black border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.6)] flex items-center justify-center hover:bg-accent-gold hover:text-white hover:scale-105 active:scale-95 transition-all duration-300"
           >
-            <ChevronRight size={18} />
+            <ChevronRight size={30} strokeWidth={2.5} />
           </button>
         </div>
       </div>
 
       <div
         ref={newStylesTrackRef}
-        onMouseDown={handleRow2PointerDown}
-        onMouseMove={handleRow2PointerMove}
-        onMouseUp={handleRow2PointerUp}
-        onMouseLeave={handleRow2PointerUp}
+        onMouseDown={handleRow2MouseDown}
         onClickCapture={handleRow2ClickCapture}
-        className="overflow-x-auto pb-4 cursor-grab active:cursor-grabbing"
+        className="overflow-x-auto pb-4 cursor-grab active:cursor-grabbing select-none"
         style={{ scrollbarWidth: 'none' }}
       >
         <div className="flex items-center gap-16 px-[10vw] w-max">
