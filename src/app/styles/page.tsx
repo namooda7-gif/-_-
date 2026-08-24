@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
 import { interiorStyles, InteriorStyle } from '@/data/styles';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const StyleHorizontalItem = ({ style, index }: { style: InteriorStyle; index: number }) => {
   return (
@@ -95,9 +95,57 @@ export default function StylesPage() {
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   const x = useTransform(smoothProgress, [0, 1], ["0%", "-85%"]);
-  
+
   // Parallax for the background title
   const titleX = useTransform(smoothProgress, [0, 1], [0, -400]);
+
+  // Row 1 (flagship) prev/next — steps the page's scroll-jacked progress by ~one card
+  const goRow1 = (direction: 1 | -1) => {
+    if (!containerRef.current) return;
+    const scrollableHeight = containerRef.current.offsetHeight - window.innerHeight;
+    const steps = flagshipStyles.length + 1;
+    const step = scrollableHeight / steps;
+    window.scrollBy({ top: direction * step, behavior: 'smooth' });
+  };
+
+  // Row 2 (new styles) — plain scrollLeft based drag-to-scroll + prev/next,
+  // kept independent from row 1's page-scroll-jacking track
+  const dragStateRef = useRef({ dragging: false, startX: 0, startScroll: 0, moved: 0 });
+  const suppressClickRef = useRef(false);
+
+  const goRow2 = (direction: 1 | -1) => {
+    const el = newStylesTrackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' });
+  };
+
+  const handleRow2PointerDown = (e: React.MouseEvent) => {
+    const el = newStylesTrackRef.current;
+    if (!el) return;
+    dragStateRef.current = { dragging: true, startX: e.pageX, startScroll: el.scrollLeft, moved: 0 };
+  };
+  const handleRow2PointerMove = (e: React.MouseEvent) => {
+    const state = dragStateRef.current;
+    const el = newStylesTrackRef.current;
+    if (!state.dragging || !el) return;
+    const dx = e.pageX - state.startX;
+    state.moved = Math.abs(dx);
+    el.scrollLeft = state.startScroll - dx;
+  };
+  const handleRow2PointerUp = () => {
+    const state = dragStateRef.current;
+    if (state.dragging && state.moved > 5) {
+      suppressClickRef.current = true;
+    }
+    dragStateRef.current.dragging = false;
+  };
+  const handleRow2ClickCapture = (e: React.MouseEvent) => {
+    if (suppressClickRef.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      suppressClickRef.current = false;
+    }
+  };
 
   return (
     <>
@@ -181,7 +229,27 @@ export default function StylesPage() {
               <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">Style Board</span>
               <StyleCounter progress={scrollYProgress} />
             </div>
-            <span className="text-[10px] font-black text-white/10 uppercase tracking-[0.5em]">Laol Interior Design</span>
+            <div className="flex items-center gap-6">
+              <span className="hidden md:inline text-[10px] font-black text-white/10 uppercase tracking-[0.5em]">Laol Interior Design</span>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => goRow1(-1)}
+                  aria-label="이전 스타일"
+                  className="w-9 h-9 md:w-10 md:h-10 rounded-full glass-pill-premium border-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/10 hover:border-accent-gold/40 transition-all"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => goRow1(1)}
+                  aria-label="다음 스타일"
+                  className="w-9 h-9 md:w-10 md:h-10 rounded-full glass-pill-premium border-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/10 hover:border-accent-gold/40 transition-all"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
           </div>
           <div className="h-px w-full bg-white/5 relative">
             <motion.div 
@@ -193,28 +261,53 @@ export default function StylesPage() {
       </div>
     </main>
 
-    {/* 추가 스타일 5종 — 기존 15개짜리와 동일한 카드로, 독립된 두 번째 가로 스크롤 라인 */}
-    <section className="relative bg-[#0A0A0A] text-white py-24 md:py-40 overflow-hidden">
-      <div className="px-[10vw] mb-16 md:mb-20">
-        <p className="text-accent-gold text-xs md:text-sm tracking-[0.6em] font-black uppercase mb-6">
-          More Styles
-        </p>
-        <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter leading-none">
-          추가로 만나보는 <span className="text-white/30">5가지 스타일</span>
-        </h2>
+    {/* 추가 스타일 5종 — 기존 15개짜리와 동일한 카드지만, 시각적으로 구분되는 독립된 두 번째 가로 스크롤 라인 */}
+    <section className="relative bg-[#050505] text-white py-24 md:py-40 overflow-hidden border-t border-white/10">
+      <div className="px-[10vw] mb-10 md:mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <p className="text-accent-gold text-xs md:text-sm tracking-[0.6em] font-black uppercase mb-6">
+            Line 02 — Newly Added
+          </p>
+          <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+            추가로 만나보는 <span className="text-white/30">5가지 스타일</span>
+          </h2>
+          <div className="flex gap-3 items-center text-accent-gold mt-6">
+            <span className="text-xs font-black tracking-[0.4em] uppercase">Drag or scroll sideways</span>
+            <ArrowRight size={18} />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 shrink-0">
+          <button
+            type="button"
+            onClick={() => goRow2(-1)}
+            aria-label="이전 스타일"
+            className="w-11 h-11 md:w-12 md:h-12 rounded-full glass-pill-premium border-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/10 hover:border-accent-gold/40 transition-all"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            type="button"
+            onClick={() => goRow2(1)}
+            aria-label="다음 스타일"
+            className="w-11 h-11 md:w-12 md:h-12 rounded-full glass-pill-premium border-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/10 hover:border-accent-gold/40 transition-all"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
       </div>
 
       <div
         ref={newStylesTrackRef}
-        className="overflow-x-auto pb-4"
+        onMouseDown={handleRow2PointerDown}
+        onMouseMove={handleRow2PointerMove}
+        onMouseUp={handleRow2PointerUp}
+        onMouseLeave={handleRow2PointerUp}
+        onClickCapture={handleRow2ClickCapture}
+        className="overflow-x-auto pb-4 cursor-grab active:cursor-grabbing"
         style={{ scrollbarWidth: 'none' }}
       >
-        <motion.div
-          drag="x"
-          dragConstraints={newStylesTrackRef}
-          dragElastic={0.15}
-          className="flex items-center gap-16 px-[10vw] w-max cursor-grab active:cursor-grabbing"
-        >
+        <div className="flex items-center gap-16 px-[10vw] w-max">
           {newStyles.map((style, index) => (
             <StyleHorizontalItem
               key={style.slug}
@@ -222,7 +315,7 @@ export default function StylesPage() {
               index={flagshipStyles.length + index}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
     </>
