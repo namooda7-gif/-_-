@@ -75,12 +75,13 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="glass-pill-premium py-10 px-8 md:py-14 md:px-24 rounded-[4rem] border-white/5 backdrop-blur-xl shadow-[0_30px_100px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center w-[92vw] md:max-w-4xl"
+            style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
           >
-            <p className="text-accent-gold text-xs md:text-sm tracking-[0.5em] font-black mb-6 uppercase">
+            <p className="text-accent-gold text-xs md:text-sm tracking-[0.5em] font-black mb-6 uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
               {style.nameEn} Collection
             </p>
             <h1
-              className="font-black text-white mb-10 tracking-tighter leading-none whitespace-nowrap"
+              className="font-black text-white mb-10 tracking-tighter leading-none whitespace-nowrap drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]"
               style={{ fontSize: 'clamp(2rem, 10vw, 6rem)' }}
             >
               {style.nameKo}
@@ -162,15 +163,15 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                   style.isDark ? 'bg-white/5 border-white/10 shadow-inner' : 'bg-black/5 border-black/10'
                 }`}
               >
-                <h4 className="font-black mb-6 flex items-center gap-3 opacity-80 uppercase tracking-widest text-[10px]">
+                <h4 className="font-black mb-6 flex items-center gap-3 opacity-80 uppercase tracking-widest text-[12px]">
                   <Hash className={`w-4 h-4 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`} />
                   Interior Keywords
                 </h4>
                 <div className="flex flex-wrap gap-3">
                   {style.keywords.map((kw, i) => (
-                    <div 
-                      key={i} 
-                      className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black border uppercase tracking-widest ${
+                    <div
+                      key={i}
+                      className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-[14px] font-black border uppercase tracking-widest ${
                         style.isDark ? 'bg-white/5 border-white/10 text-white/80' : 'bg-black/5 border-black/10 text-black/80'
                       }`}
                     >
@@ -186,18 +187,18 @@ export default function StyleDetailClient({ style }: StyleDetailClientProps) {
                   style.isDark ? 'bg-white/5 border-white/10 shadow-inner' : 'bg-black/5 border-black/10'
                 }`}
               >
-                <h4 className="font-black mb-3 flex items-center gap-3 opacity-80 uppercase tracking-widest text-[10px]">
+                <h4 className="font-black mb-3 flex items-center gap-3 opacity-80 uppercase tracking-widest text-[12px]">
                   <Fingerprint className={`w-4 h-4 ${style.isDark ? 'text-accent-gold' : 'text-black/60'}`} />
                   이런 성향에게 잘 맞아요 · {style.mbti.group}
                 </h4>
-                <p className={`text-sm font-light mb-6 ${style.isDark ? 'text-white/60' : 'text-black/60'}`}>
+                <p className={`text-[17px] font-light mb-6 ${style.isDark ? 'text-white/60' : 'text-black/60'}`}>
                   {MBTI_GROUP_DESC[style.mbti.group]}
                 </p>
                 <div className="flex flex-wrap gap-3">
                   {style.mbti.types.map((t) => (
                     <div
                       key={t}
-                      className={`px-5 py-2.5 rounded-2xl text-xs font-black border uppercase tracking-widest ${
+                      className={`px-5 py-2.5 rounded-2xl text-[14px] font-black border uppercase tracking-widest ${
                         style.isDark ? 'bg-white/5 border-white/10 text-white/80' : 'bg-black/5 border-black/10 text-black/80'
                       }`}
                     >

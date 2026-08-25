@@ -444,9 +444,12 @@ export default function HeroGallery() {
                 {/* Step 3: Vertical Label for IDLE (Restored) */}
                 {!isActive && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="glass-pill-premium px-1.5 py-6 rounded-full border-white/5 backdrop-blur-[4px] transition-opacity duration-500 opacity-100 md:opacity-40 md:group-hover:opacity-100 flex items-center justify-center">
-                      <span 
-                        className="[writing-mode:vertical-lr] rotate-180 text-[8px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.3em] text-white uppercase"
+                    <div
+                      className="glass-pill-premium px-1.5 py-6 rounded-full border-white/5 backdrop-blur-[4px] transition-opacity duration-500 opacity-100 md:opacity-70 md:group-hover:opacity-100 flex items-center justify-center"
+                      style={{ backgroundColor: 'rgba(0,0,0,0.45)' }}
+                    >
+                      <span
+                        className="[writing-mode:vertical-lr] rotate-180 text-[10px] md:text-xs font-black tracking-[0.2em] md:tracking-[0.3em] text-white uppercase drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]"
                       >
                         {style.nameEn}
                       </span>
