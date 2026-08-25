@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
@@ -113,24 +113,93 @@ export default function StylesPage() {
     window.scrollBy({ top: direction * step, behavior: 'smooth' });
   };
 
-  // Row 2 (new styles) — native scrollLeft track, kept independent from
-  // row 1's page-scroll-jacking. Drag + wheel are wired manually because a
-  // vertical wheel would otherwise scroll the page right past this row.
-  const dragStateRef = useRef({ dragging: false, startX: 0, startScroll: 0, moved: 0 });
+  // Row 2 (new styles) — an independent, card-indexed horizontal carousel.
+  //
+  // A card is ~2,200px wide on a wide monitor (60vw + gap + ml-32), so any
+  // 1:1 pixel input is hopelessly under-geared: a 100px wheel notch took 23
+  // notches to advance a single card, and Firefox's line-mode delta (3px)
+  // froze it outright. The vertical-wheel interception also had to
+  // preventDefault the whole time, locking the page while the row crept.
+  // Everything below steps by whole cards instead, and the wheel is left to
+  // the browser (native horizontal trackpad scrolling still works).
+  const dragStateRef = useRef({ dragging: false, startX: 0, startScroll: 0, startIndex: 0, moved: 0 });
   const suppressClickRef = useRef(false);
+  const [row2Index, setRow2Index] = useState(0);
 
-  const goRow2 = (direction: 1 | -1) => {
+  // Drag moves the track faster than the cursor; at 1:1 you would have to
+  // pull the mouse a full card width (wider than most screens) to advance one.
+  const DRAG_SPEED = 2.5;
+
+  const getRow2Cards = useCallback(() => {
+    const inner = newStylesTrackRef.current?.firstElementChild;
+    return inner ? (Array.from(inner.children) as HTMLElement[]) : [];
+  }, []);
+
+  // scrollLeft that parks card `i` at the track's natural left inset
+  const row2TargetFor = useCallback(
+    (i: number) => {
+      const el = newStylesTrackRef.current;
+      const cards = getRow2Cards();
+      if (!el || cards.length === 0) return 0;
+      const idx = Math.max(0, Math.min(cards.length - 1, i));
+      // Both rects shift together with scrollLeft, so the delta is absolute.
+      const delta = cards[idx].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
+      return Math.max(0, Math.min(delta, el.scrollWidth - el.clientWidth));
+    },
+    [getRow2Cards]
+  );
+
+  const row2Pitch = useCallback(() => {
+    const cards = getRow2Cards();
+    if (cards.length < 2) return 1;
+    return cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
+  }, [getRow2Cards]);
+
+  const row2NearestIndex = useCallback(() => {
     const el = newStylesTrackRef.current;
-    if (!el) return;
-    el.scrollBy({ left: direction * el.clientWidth * 0.8, behavior: 'smooth' });
-  };
+    const cards = getRow2Cards();
+    if (!el || cards.length === 0) return 0;
+    let best = 0;
+    let bestDistance = Infinity;
+    cards.forEach((_, i) => {
+      const distance = Math.abs(row2TargetFor(i) - el.scrollLeft);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        best = i;
+      }
+    });
+    return best;
+  }, [getRow2Cards, row2TargetFor]);
+
+  const scrollToRow2 = useCallback(
+    (i: number) => {
+      const el = newStylesTrackRef.current;
+      const cards = getRow2Cards();
+      if (!el || cards.length === 0) return;
+      const idx = Math.max(0, Math.min(cards.length - 1, i));
+      el.scrollTo({ left: row2TargetFor(idx), behavior: 'smooth' });
+      setRow2Index(idx);
+    },
+    [getRow2Cards, row2TargetFor]
+  );
+
+  const goRow2 = (direction: 1 | -1) => scrollToRow2(row2Index + direction);
 
   const handleRow2MouseDown = (e: React.MouseEvent) => {
     const el = newStylesTrackRef.current;
     if (!el || e.button !== 0) return;
     // Stop the browser starting its own link/image drag, which would swallow mousemove
     e.preventDefault();
-    dragStateRef.current = { dragging: true, startX: e.pageX, startScroll: el.scrollLeft, moved: 0 };
+    // Clear any stale suppression from a drag that ended outside the row,
+    // which would otherwise swallow this gesture's click.
+    suppressClickRef.current = false;
+    dragStateRef.current = {
+      dragging: true,
+      startX: e.pageX,
+      startScroll: el.scrollLeft,
+      startIndex: row2NearestIndex(),
+      moved: 0,
+    };
   };
 
   const handleRow2ClickCapture = (e: React.MouseEvent) => {
@@ -141,7 +210,7 @@ export default function StylesPage() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const el = newStylesTrackRef.current;
     if (!el) return;
 
@@ -152,37 +221,46 @@ export default function StylesPage() {
       e.preventDefault();
       const dx = e.pageX - state.startX;
       state.moved = Math.max(state.moved, Math.abs(dx));
-      el.scrollLeft = state.startScroll - dx;
-    };
-    const onMouseUp = () => {
-      const state = dragStateRef.current;
-      if (state.dragging && state.moved > 5) suppressClickRef.current = true;
-      state.dragging = false;
+      el.scrollLeft = state.startScroll - dx * DRAG_SPEED;
     };
 
-    // Vertical wheel → horizontal scroll, handing control back to the page
-    // once the track reaches either end so it never traps the reader.
-    const onWheel = (e: WheelEvent) => {
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      if (delta === 0) return;
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      if (maxScroll <= 0) return;
-      const atStart = el.scrollLeft <= 0;
-      const atEnd = el.scrollLeft >= maxScroll - 1;
-      if ((delta < 0 && atStart) || (delta > 0 && atEnd)) return;
-      e.preventDefault();
-      el.scrollLeft += delta;
+    const onMouseUp = () => {
+      const state = dragStateRef.current;
+      if (!state.dragging) return;
+      state.dragging = false;
+      if (state.moved <= 5) return;
+      suppressClickRef.current = true;
+
+      // Settle on a whole card. Nearest-neighbour alone would spring back to
+      // the card you started on for anything under half a (very wide) card,
+      // so a deliberate pull past 20% commits to the next one instead.
+      const delta = el.scrollLeft - state.startScroll;
+      const pitch = row2Pitch();
+      const steps =
+        Math.abs(delta) < pitch * 0.2 ? 0 : Math.max(1, Math.round(Math.abs(delta) / pitch));
+      scrollToRow2(state.startIndex + Math.sign(delta) * steps);
+    };
+
+    // Keep the indicator honest for touch / trackpad scrolling, which never
+    // goes through the drag path.
+    let settleTimer: ReturnType<typeof setTimeout>;
+    const onScroll = () => {
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => {
+        if (!dragStateRef.current.dragging) setRow2Index(row2NearestIndex());
+      }, 120);
     };
 
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
-    el.addEventListener('wheel', onWheel, { passive: false });
+    el.addEventListener('scroll', onScroll, { passive: true });
     return () => {
+      clearTimeout(settleTimer);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
-      el.removeEventListener('wheel', onWheel);
+      el.removeEventListener('scroll', onScroll);
     };
-  }, []);
+  }, [row2NearestIndex, row2Pitch, scrollToRow2]);
 
   return (
     <>
@@ -309,7 +387,7 @@ export default function StylesPage() {
             추가로 만나보는 <span className="text-white/30">5가지 스타일</span>
           </h2>
           <div className="flex gap-3 items-center text-accent-gold mt-6">
-            <span className="text-xs font-black tracking-[0.4em] uppercase">Drag or scroll sideways</span>
+            <span className="text-xs font-black tracking-[0.4em] uppercase">화살표로 넘기거나 옆으로 드래그</span>
             <ArrowRight size={18} />
           </div>
         </div>
@@ -318,16 +396,18 @@ export default function StylesPage() {
           <button
             type="button"
             onClick={() => goRow2(-1)}
+            disabled={row2Index === 0}
             aria-label="이전 스타일"
-            className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/95 text-black border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.6)] flex items-center justify-center hover:bg-accent-gold hover:text-white hover:scale-105 active:scale-95 transition-all duration-300"
+            className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/95 text-black border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.6)] flex items-center justify-center hover:bg-accent-gold hover:text-white hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-25 disabled:pointer-events-none"
           >
             <ChevronLeft size={30} strokeWidth={2.5} />
           </button>
           <button
             type="button"
             onClick={() => goRow2(1)}
+            disabled={row2Index === newStyles.length - 1}
             aria-label="다음 스타일"
-            className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/95 text-black border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.6)] flex items-center justify-center hover:bg-accent-gold hover:text-white hover:scale-105 active:scale-95 transition-all duration-300"
+            className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/95 text-black border border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.6)] flex items-center justify-center hover:bg-accent-gold hover:text-white hover:scale-105 active:scale-95 transition-all duration-300 disabled:opacity-25 disabled:pointer-events-none"
           >
             <ChevronRight size={30} strokeWidth={2.5} />
           </button>
@@ -347,6 +427,28 @@ export default function StylesPage() {
               key={style.slug}
               style={style}
               index={flagshipStyles.length + index}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* The track's scrollbar is hidden, so this is the only position cue */}
+      <div className="px-[10vw] mt-10 flex items-center gap-6">
+        <span className="text-[10px] font-black text-white/25 uppercase tracking-[0.3em] shrink-0 tabular-nums">
+          {String(row2Index + 1).padStart(2, '0')} / {String(newStyles.length).padStart(2, '0')}
+        </span>
+        <div className="flex items-center gap-2 flex-1">
+          {newStyles.map((style, i) => (
+            <button
+              key={style.slug}
+              type="button"
+              onClick={() => scrollToRow2(i)}
+              aria-label={`${style.nameKo} 보기`}
+              className={`h-1 rounded-full transition-all duration-500 ${
+                i === row2Index
+                  ? 'flex-[3] bg-accent-gold shadow-[0_0_15px_rgba(197,160,89,0.4)]'
+                  : 'flex-1 bg-white/15 hover:bg-white/40'
+              }`}
             />
           ))}
         </div>
