@@ -303,7 +303,7 @@ export default function StylesPage() {
             <div className="w-[85vw] md:w-[50vw] max-w-2xl shrink-0 mr-32 flex flex-col justify-center space-y-10">
               <p className="text-sm md:text-lg lg:text-2xl text-white/50 max-w-xl font-light leading-relaxed">
                 공간은 단순한 물리적 장소를 넘어 삶의 철학을 담는 그릇입니다. <br className="hidden md:block" />
-                라올실내건축이 제안하는 15가지 프리미엄 스타일 보드를 통해 당신만의 감각을 발견해 보세요.
+                라올실내건축이 제안하는 20가지 프리미엄 스타일 보드를 통해 당신만의 감각을 발견해 보세요.
               </p>
               <div className="flex gap-4 items-center text-accent-gold">
                 <span className="text-xs font-black tracking-[0.4em] uppercase">Scroll to explore</span>
